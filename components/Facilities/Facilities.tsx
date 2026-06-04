@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   BedDouble,
   CarFront,
@@ -10,85 +11,116 @@ import {
 const facilities = [
   {
     Icon: Waves,
-    title: "Swimming",
-    subtitle: "Pool",
-    color: "bg-[#2f82c8]",
+    title: "Swimming Pool",
+    description: "Crystal-clear pool for a refreshing escape.",
+    color: "bg-[#4f86d2]",
   },
   {
     Icon: TreePalm,
-    title: "Spacious",
-    subtitle: "Lawns",
-    color: "bg-[#3f8f51]",
+    title: "Spacious Lawns",
+    description: "Expansive green spaces for relaxation & events.",
+    color: "bg-[#559653]",
   },
   {
     Icon: BedDouble,
-    title: "Comfortable",
-    subtitle: "Rooms",
-    color: "bg-[#f49a20]",
+    title: "Comfortable Rooms",
+    description: "Elegant stays with modern comforts.",
+    color: "bg-[#eca323]",
   },
   {
     Icon: Dices,
-    title: "Indoor",
-    subtitle: "Games",
-    color: "bg-[#12385f]",
+    title: "Indoor Games",
+    description: "Fun-filled games for all ages.",
+    color: "bg-[#12375d]",
   },
   {
     Icon: ConciergeBell,
-    title: "Delicious",
-    subtitle: "Food",
-    color: "bg-[#e02f32]",
+    title: "Delicious Food",
+    description: "A variety of cuisines to satisfy every craving.",
+    color: "bg-[#d73338]",
   },
   {
     Icon: CarFront,
-    title: "Ample",
-    subtitle: "Parking",
-    color: "bg-[#438f4d]",
+    title: "Ample Parking",
+    description: "Spacious & secure parking for your convenience.",
+    color: "bg-[#559653]",
   },
 ];
 
 export default function Facilities() {
   return (
-    <section className="relative overflow-hidden bg-[#fbfaf7] px-4 pb-14 pt-8 text-[#06233a] sm:px-6 lg:px-8 lg:pb-20 lg:pt-10">
-      <div className="pointer-events-none absolute right-[-20px] top-12 hidden h-64 w-64 opacity-10 lg:block">
-        <div className="absolute left-[112px] top-[75px] h-44 w-5 rotate-[-10deg] rounded-full bg-[#06233a]" />
-        {Array.from({ length: 7 }).map((_, index) => (
+    <section
+      id="facilities"
+      className="relative overflow-hidden bg-[#fbfaf7] px-4 py-16 text-[#06233a] sm:px-6 lg:min-h-[640px] lg:px-8 lg:pb-16 lg:pt-10"
+    >
+      
+      
+
+      <div className="absolute right-0 top-7 z-20 hidden rounded-l-[28px] bg-[#06233a] px-7 py-4 text-white shadow-xl lg:flex lg:items-center lg:gap-4">
+        <ConciergeBell className="text-[#e6a334]" size={34} strokeWidth={1.9} />
+        <span className="max-w-[150px] text-sm font-semibold leading-tight">
+          Your Perfect Escape Awaits
+        </span>
+      </div>
+
+      <div className="pointer-events-none absolute -left-24 top-28 z-10 hidden h-[440px] w-[440px] overflow-hidden rounded-full border-[14px] border-[#fbfaf7] shadow-[0_18px_45px_rgba(6,35,58,0.2)] lg:block xl:h-[470px] xl:w-[470px]">
+        <Image
+          src="/hero.png"
+          alt="Vicky Farmhouse swimming pool"
+          fill
+          className="object-cover object-center"
+          sizes="470px"
+        />
+      </div>
+
+      <div className="pointer-events-none absolute -right-16 top-20 hidden h-[520px] w-[390px] opacity-[0.08] lg:block">
+        <div className="absolute right-20 top-0 h-[500px] w-5 rotate-[28deg] rounded-full bg-[#06233a]" />
+        {Array.from({ length: 10 }).map((_, index) => (
           <span
             key={index}
-            className="absolute left-[98px] top-[36px] h-24 w-28 origin-bottom-left rounded-[100%_0_100%_0] bg-[#06233a]"
-            style={{ transform: `rotate(${index * 28 - 78}deg)` }}
+            className="absolute right-16 top-20 h-8 w-72 origin-right rounded-full bg-[#06233a]"
+            style={{ transform: `rotate(${index * 13 - 50}deg)` }}
           />
         ))}
       </div>
 
-      <div className="mx-auto max-w-7xl text-center">
-        <p className="mb-2 font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(28px,6vw,42px)] italic leading-none text-[#e4a43b]">
-          Our Facilities
-        </p>
+      <div className="relative z-20 mx-auto max-w-7xl text-center lg:pl-[300px] lg:pt-24 xl:max-w-[1500px] xl:pl-[330px]">
+        <div className="flex items-center justify-center gap-4 font-script text-4xl text-[#dca03a] sm:text-5xl">
+          <span className="hidden h-px w-16 bg-[#dca03a] sm:block" />
+          <span>Our Facilities</span>
+          <span className="hidden h-px w-16 bg-[#dca03a] sm:block" />
+        </div>
 
-        <h2 className="mx-auto max-w-3xl text-[clamp(30px,6vw,52px)] font-black uppercase leading-[1.04] tracking-normal">
+        <h2 className="mx-auto mt-4 max-w-5xl text-4xl font-extrabold uppercase leading-[1.08] tracking-wide text-[#06233a] sm:text-5xl lg:text-[54px] xl:text-[62px]">
           Everything You Need
-          <span className="block">
-            For <span className="text-[#f2a10c]">A Perfect Day Out!</span>
-          </span>
+          <br />
+          For A <span className="text-[#e6a334]">Perfect Day Out!</span>
         </h2>
 
-        <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-9 sm:grid-cols-3 lg:mt-14 lg:grid-cols-6 lg:gap-x-8">
-          {facilities.map((facility) => (
-            <div key={facility.title} className="grid place-items-center">
-              <div
-                className={`grid h-[88px] w-[88px] place-items-center rounded-full border-[5px] border-white text-white shadow-[0_10px_18px_rgba(6,35,58,.16)] ring-1 ring-[#06233a]/15 sm:h-[98px] sm:w-[98px] ${facility.color}`}
+        <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-[#294258] sm:text-lg">
+          Premium amenities designed for your comfort, enjoyment, and
+          unforgettable moments.
+        </p>
+
+        <div className="mt-16 grid gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:gap-x-8">
+          {facilities.map(({ Icon, title, description, color }) => (
+            <article
+              key={title}
+              className="group relative rounded-[18px] border border-[#e6e0d4] bg-white/90 px-4 pb-6 pt-16 shadow-[0_12px_26px_rgba(6,35,58,0.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_34px_rgba(6,35,58,0.18)]"
+            >
+              <span
+                className={`absolute left-1/2 top-0 flex h-[86px] w-[86px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[5px] border-white ${color} text-white shadow-[0_8px_20px_rgba(6,35,58,0.2)] ring-2 ring-[#e8e3da] transition duration-300 group-hover:scale-105`}
               >
-                <facility.Icon
-                  className="h-9 w-9 sm:h-10 sm:w-10"
-                  strokeWidth={1.9}
-                  aria-hidden="true"
-                />
-              </div>
-              <p className="mt-5 text-[13px] font-semibold uppercase leading-tight text-[#06233a] sm:text-sm">
-                {facility.title}
-                <span className="block">{facility.subtitle}</span>
+                <Icon size={42} strokeWidth={2} />
+              </span>
+
+              <h3 className="text-[15px] font-extrabold uppercase leading-tight tracking-wide text-[#06233a]">
+                {title}
+              </h3>
+              <p className="mt-3 text-[13px] font-medium leading-snug text-[#31475d]">
+                {description}
               </p>
-            </div>
+            </article>
           ))}
         </div>
       </div>

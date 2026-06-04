@@ -19,7 +19,11 @@ export default function Location() {
   return (
     <section
       id="location"
-      className="relative overflow-hidden bg-[#fbfaf7] px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-20"
+      className="relative overflow-hidden bg-cover bg-center bg-fixed px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-20"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(251,250,247,.50), rgba(251,250,247,.50)), url('/villa6.jpg')",
+      }}
     >
       <div className="mx-auto grid max-w-7xl overflow-hidden rounded-xl bg-white shadow-[0_18px_45px_rgba(6,35,58,.1)] ring-1 ring-[#06233a]/8 lg:grid-cols-[0.42fr_0.58fr]">
         <div className="px-6 py-10 text-center sm:px-10 lg:py-14 lg:text-left">

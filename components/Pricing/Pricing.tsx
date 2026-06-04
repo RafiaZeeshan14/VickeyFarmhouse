@@ -68,26 +68,32 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section className="relative overflow-hidden bg-[#fbfaf7] px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-20">
-      <div className="mx-auto max-w-[1580px] rounded-xl bg-white/80 px-4 py-14 shadow-[0_26px_70px_rgba(6,35,58,.1)] ring-1 ring-[#06233a]/5 sm:px-8 lg:px-10 lg:py-16">
+    <section
+      className="relative overflow-hidden bg-cover bg-center bg-fixed px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-20"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(167, 159, 159, 0.7), rgba(173, 173, 162, 0.7)), url('/villa6.jpg')",
+      }}
+    >
+      <div className="mx-auto max-w-[1580px] rounded-xl bg-transparent px-4 py-14 sm:px-8 lg:px-10 lg:py-16">
         <div className="relative mx-auto max-w-6xl text-center">
           <p className="mb-2 font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(28px,6vw,42px)] italic leading-none text-[#e4a43b]">
             Pricing Plans
           </p>
 
-          <h2 className="mx-auto max-w-4xl text-[clamp(30px,6vw,52px)] font-black uppercase leading-[1.05] tracking-normal text-[#06233a]">
+          <h2 className="mx-auto mb-10 max-w-4xl text-[clamp(30px,6vw,52px)] font-black uppercase leading-[1.05] tracking-normal text-[#06233a]">
             Choose The Plan That
             <span className="block">
               <span className="text-[#e4a43b]">Suits</span> You
             </span>
           </h2>
 
-          <div className="pointer-events-none absolute left-1/2 top-[98px] hidden -translate-x-1/2 select-none text-[clamp(128px,16vw,220px)] font-black leading-none text-[#06233a]/[.075] lg:block">
+          <div className="pointer-events-none absolute mt-10 left-1/2 top-[98px] hidden -translate-x-1/2 select-none text-[clamp(128px,16vw,220px)] font-black leading-none text-[#ffff]/[.40] lg:block">
             Pricing
           </div>
         </div>
 
-        <div className="relative z-10 mt-12 grid items-stretch gap-6 md:grid-cols-3 lg:mt-16 lg:gap-8 xl:gap-10">
+        <div className="relative z-10 mt-20 grid items-stretch gap-6 md:grid-cols-3 lg:mt-36 lg:gap-8 xl:gap-10">
           {plans.map((plan) => (
             <article
               key={plan.title}

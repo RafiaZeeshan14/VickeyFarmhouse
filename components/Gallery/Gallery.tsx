@@ -41,21 +41,21 @@ export default function Gallery() {
       id="gallery"
       className="relative overflow-hidden bg-[#fbfaf7] px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-20"
     >
-      <div className="mx-auto max-w-7xl text-center">
+      <div className="mx-auto max-w-7xl text-center xl:max-w-[1800px]">
         <p className="mb-2 font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(28px,6vw,42px)] italic leading-none text-[#e4a43b]">
           Gallery
         </p>
 
         <h2 className="mx-auto max-w-5xl text-[clamp(30px,6vw,52px)] font-black uppercase leading-[1.04] tracking-normal">
-          Glimpses Of{" "}
+          Glimpses Of{" "} <br/>
           <span className="text-[#e6a334]">Vicky Farmhouse</span>
         </h2>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4 xl:gap-5">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4 xl:grid-cols-4 xl:gap-6 xl:px-4 xl:mx-auto">
           {galleryImages.map((image) => (
             <div
               key={image.src}
-              className="group relative aspect-[16/9] overflow-hidden rounded-lg bg-white shadow-[0_14px_34px_rgba(6,35,58,.12)] ring-1 ring-[#06233a]/8"
+              className="group relative aspect-[16/9] overflow-hidden rounded-lg bg-white shadow-[0_14px_34px_rgba(6,35,58,.12)] ring-1 ring-[#06233a]/8 xl:aspect-[4/3]"
             >
               <Image
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -63,7 +63,7 @@ export default function Gallery() {
                 alt={image.alt}
                 width={900}
                 height={520}
-                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
               />
               <div className="absolute inset-0 bg-[#06233a]/0 transition-colors duration-300 group-hover:bg-[#06233a]/12" />
             </div>
