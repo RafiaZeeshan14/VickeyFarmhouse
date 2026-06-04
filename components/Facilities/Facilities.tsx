@@ -1,36 +1,45 @@
+import {
+  BedDouble,
+  CarFront,
+  ConciergeBell,
+  Dices,
+  TreePalm,
+  Waves,
+} from "lucide-react";
+
 const facilities = [
   {
-    icon: "W",
+    Icon: Waves,
     title: "Swimming",
     subtitle: "Pool",
     color: "bg-[#2f82c8]",
   },
   {
-    icon: "|||",
+    Icon: TreePalm,
     title: "Spacious",
     subtitle: "Lawns",
     color: "bg-[#3f8f51]",
   },
   {
-    icon: "R",
+    Icon: BedDouble,
     title: "Comfortable",
     subtitle: "Rooms",
     color: "bg-[#f49a20]",
   },
   {
-    icon: "G",
+    Icon: Dices,
     title: "Indoor",
     subtitle: "Games",
     color: "bg-[#12385f]",
   },
   {
-    icon: "F",
+    Icon: ConciergeBell,
     title: "Delicious",
     subtitle: "Food",
     color: "bg-[#e02f32]",
   },
   {
-    icon: "P",
+    Icon: CarFront,
     title: "Ample",
     subtitle: "Parking",
     color: "bg-[#438f4d]",
@@ -67,11 +76,15 @@ export default function Facilities() {
           {facilities.map((facility) => (
             <div key={facility.title} className="grid place-items-center">
               <div
-                className={`grid h-[88px] w-[88px] place-items-center rounded-full border-[5px] border-white text-4xl font-black text-white shadow-[0_10px_18px_rgba(6,35,58,.18)] ring-2 ring-black/10 sm:h-[98px] sm:w-[98px] ${facility.color}`}
+                className={`grid h-[88px] w-[88px] place-items-center rounded-full border-[5px] border-white text-white shadow-[0_10px_18px_rgba(6,35,58,.16)] ring-1 ring-[#06233a]/15 sm:h-[98px] sm:w-[98px] ${facility.color}`}
               >
-                {facility.icon}
+                <facility.Icon
+                  className="h-9 w-9 sm:h-10 sm:w-10"
+                  strokeWidth={1.9}
+                  aria-hidden="true"
+                />
               </div>
-              <p className="mt-5 text-[13px] font-black uppercase leading-tight text-[#06233a] sm:text-sm">
+              <p className="mt-5 text-[13px] font-semibold uppercase leading-tight text-[#06233a] sm:text-sm">
                 {facility.title}
                 <span className="block">{facility.subtitle}</span>
               </p>

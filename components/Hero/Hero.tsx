@@ -1,20 +1,21 @@
+import { CalendarCheck, House, Sprout, Waves } from "lucide-react";
 import Header from "../Header/Header";
 
 const features = [
   {
-    icon: "N",
+    Icon: Sprout,
     label: "Nature",
     subLabel: "All Around",
     color: "bg-[#3f8f51]",
   },
   {
-    icon: "H",
+    Icon: House,
     label: "Premium",
     subLabel: "Stay Experience",
     color: "bg-[#f49a20]",
   },
   {
-    icon: "~",
+    Icon: Waves,
     label: "Pool & Open",
     subLabel: "Spaces",
     color: "bg-[#2f9ad8]",
@@ -23,86 +24,145 @@ const features = [
 
 const heroBackground = {
   backgroundImage:
-    "linear-gradient(90deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.86) 27%, rgba(255,255,255,.42) 48%, rgba(255,255,255,.04) 74%), linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.28) 18%, rgba(255,255,255,0) 48%), url('/hero.png')",
+    "linear-gradient(90deg, rgba(255,255,255,.86) 0%, rgba(255,255,255,.68) 30%, rgba(255,255,255,.24) 54%, rgba(255,255,255,.04) 78%, rgba(255,255,255,0) 100%), linear-gradient(180deg, rgba(255,255,255,.76) 0%, rgba(255,255,255,.24) 22%, rgba(255,255,255,0) 48%), url('/hero.png')",
 };
 
 export default function Hero() {
   return (
     <section
-      className="relative min-h-[760px] overflow-hidden bg-cover bg-center sm:min-h-[820px] lg:min-h-screen"
+      className="relative min-h-[820px] overflow-hidden bg-cover bg-[68%_center] sm:min-h-[840px] md:min-h-[860px] md:bg-[66%_center] lg:min-h-screen lg:bg-center"
       style={heroBackground}
     >
-      <div className="pointer-events-none absolute left-[-170px] top-[86px] h-[610px] w-[90vw] max-w-[760px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,.98)_0%,rgba(255,255,255,.8)_45%,rgba(255,255,255,0)_73%)] lg:left-[-120px] lg:top-[76px] lg:h-[60vh]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_12%_48%,rgba(255,255,255,.9)_0%,rgba(255,255,255,.66)_28%,rgba(255,255,255,.26)_48%,rgba(255,255,255,0)_72%)] sm:bg-[radial-gradient(ellipse_at_16%_48%,rgba(255,255,255,.9)_0%,rgba(255,255,255,.68)_30%,rgba(255,255,255,.28)_50%,rgba(255,255,255,0)_74%)] lg:bg-[radial-gradient(ellipse_at_19%_46%,rgba(255,255,255,.86)_0%,rgba(255,255,255,.62)_27%,rgba(255,255,255,.32)_44%,rgba(255,255,255,.08)_64%,rgba(255,255,255,0)_78%)] xl:bg-[radial-gradient(ellipse_at_19%_46%,rgba(255,255,255,.84)_0%,rgba(255,255,255,.58)_27%,rgba(255,255,255,.3)_44%,rgba(255,255,255,.08)_64%,rgba(255,255,255,0)_78%)]" />
 
       <Header />
 
-      <div className="relative z-10 mx-auto mt-7 w-[calc(100%-28px)] max-w-[620px] sm:mt-10 sm:w-[calc(100%-36px)] lg:ml-9 lg:mr-auto lg:mt-16 lg:w-[min(760px,calc(100%-48px))] xl:mx-auto xl:mt-[92px] xl:w-[min(970px,calc(100%-64px))] xl:-translate-x-[21vw] 2xl:-translate-x-[350px]">
-        <p className="mb-2.5 ml-[82px] font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(28px,8vw,55px)] italic leading-none text-[rgba(81,163,122,.38)] sm:ml-[130px] lg:ml-[190px] xl:ml-[300px]">
-          A Perfect Escape
-        </p>
+      <div className="relative z-10 mx-auto mt-6 w-[calc(100%-36px)] max-w-[590px] sm:mt-8 sm:w-[calc(100%-48px)] md:mt-10 md:max-w-[720px] lg:mt-20 lg:w-[calc(100%-64px)] lg:max-w-none xl:mt-24 xl:w-[calc(100%-176px)] 2xl:mt-28 2xl:w-[min(1860px,calc(100%-192px))]">
+        <div className="max-w-[680px] lg:max-w-[980px] xl:max-w-[1060px] 2xl:max-w-[1120px]">
+          <p className="mb-3 text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(25px,7.4vw,42px)] italic leading-none text-[#e2a13a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]">
+            A Perfect Escape
+          </p>
 
-        <h1 className="m-0 max-w-[1040px] text-[clamp(37px,12vw,58px)] font-black uppercase leading-[.98] tracking-normal text-[#06233a] sm:text-[clamp(42px,8vw,82px)] xl:text-[clamp(64px,5.2vw,100px)]">
-          Relax, Celebrate
-          <span className="block text-[#ff980a]">& Create Memories</span>
-        </h1>
+          <h1 className="m-0 text-[clamp(31px,8.7vw,50px)] font-black uppercase leading-[1.05] tracking-normal text-[#06233a] sm:text-[50px] md:text-[64px] lg:text-[clamp(70px,5.8vw,86px)] lg:leading-[.98] xl:text-[clamp(76px,4.25vw,86px)]">
+            <span className="block whitespace-nowrap">Relax, Celebrate</span>
+            <span className="block text-[#f2a10c]">& Create Memories</span>
+          </h1>
 
-        <p className="mt-5 flex max-w-[690px] items-start gap-3.5 text-[clamp(15px,3.8vw,18px)] font-semibold leading-[1.55] text-[#273f4f] lg:mt-7 xl:text-[clamp(18px,1.16vw,21px)]">
-          <span className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-[#06233a] text-xs font-black">
-            i
-          </span>
-          <span>
-            <strong className="font-black">Vicky Farmhouse</strong> - Your
-            perfect picnic & event destination surrounded by nature and comfort.
-          </span>
-        </p>
-
-        <div
-          className="mt-8 grid grid-cols-1 gap-5 sm:flex sm:flex-wrap sm:items-center sm:gap-x-8 sm:gap-y-5 lg:mt-12 xl:mt-[78px] xl:gap-x-16"
-          aria-label="Farmhouse highlights"
-        >
-          {features.map((feature) => (
-            <div
-              key={feature.label}
-              className="grid grid-cols-[44px_auto] items-center gap-3.5 text-[13px] font-black uppercase leading-tight text-[#08263c] sm:grid-cols-[50px_auto] xl:text-[15px]"
-            >
-              <span
-                className={`grid h-[42px] w-[42px] place-items-center rounded-full text-[22px] font-black text-white sm:h-[50px] sm:w-[50px] sm:text-[28px] ${feature.color}`}
-              >
-                {feature.icon}
-              </span>
-              <span>
-                {feature.label}
-                <small className="mt-1 block text-[inherit] font-black">
-                  {feature.subLabel}
-                </small>
-              </span>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-7 flex flex-wrap items-center gap-4 lg:mt-12 xl:mt-[70px] xl:gap-7">
-          <a
-            className="inline-flex min-h-[46px] w-[min(100%,260px)] items-center justify-center gap-2.5 rounded-full bg-[#06233a] px-7 text-[13px] font-black uppercase text-white shadow-[0_12px_22px_rgba(6,35,58,.2)] sm:w-auto sm:min-w-[214px] lg:min-h-12"
-            href="#"
-          >
-            <span className="grid h-4 w-4 place-items-center rounded-sm border border-white/70 text-[9px]">
-              B
+          <p className="mt-5 max-w-[390px] text-[clamp(15px,4vw,18px)] font-semibold leading-[1.45] text-[#273f4f] sm:max-w-[470px] md:max-w-[560px] md:text-xl lg:mt-8 lg:flex lg:max-w-[700px] lg:items-start lg:gap-3 lg:text-[clamp(15px,1.4vw,18px)] xl:mt-9 xl:text-lg">
+            <span className="hidden h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-[#06233a] text-xs font-black leading-none lg:mt-0.5 lg:grid">
+              i
+            </span>{" "}
+            <span>
+              <strong className="font-black ">Vicky Farmhouse</strong><span className="font-['Brush_Script_MT','Segoe_Script',cursive] italic"> - Your
+              perfect picnic & event destination surrounded by nature and
+              comfort.</span>
             </span>
-            Book Now
-            <span aria-hidden="true">&gt;</span>
-          </a>
-          <a
-            className="inline-flex min-h-[46px] w-[min(100%,260px)] items-center justify-center gap-2.5 rounded-full border-2 border-[#e6a3346b] bg-white/60 px-7 text-[13px] font-black uppercase text-[#e6a334] shadow-[inset_0_0_0_1px_rgba(255,255,255,.72)] sm:w-auto sm:min-w-[218px] lg:min-h-12"
-            href="#"
+          </p>
+
+          <div
+            className="mt-8 hidden flex-wrap items-center gap-x-8 gap-y-5 lg:mt-14 lg:flex xl:mt-16 xl:gap-x-12"
+            aria-label="Farmhouse highlights"
           >
-            Explore More
-            <span aria-hidden="true">&gt;</span>
-          </a>
+            {features.map((feature, index) => (
+              <div key={feature.label} className="flex items-center gap-8 xl:gap-12">
+                <div className="grid grid-cols-[38px_auto] items-center gap-3 text-[12px] font-semibold uppercase leading-tight text-[#08263c] sm:grid-cols-[50px_auto] sm:gap-3.5 sm:text-[13px] xl:text-[15px]">
+                  <span
+                    className={`grid h-9 w-9 place-items-center rounded-full text-white shadow-[0_10px_20px_rgba(6,35,58,.16)] sm:h-[50px] sm:w-[50px] ${feature.color}`}
+                  >
+                    <feature.Icon
+                      className="h-5 w-5 sm:h-7 sm:w-7"
+                      strokeWidth={2.4}
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <span>
+                    {feature.label}
+                    <small className="mt-1 block text-[inherit] font-semibold">
+                      {feature.subLabel}
+                    </small>
+                  </span>
+                </div>
+                {index < features.length - 1 && (
+                  <span
+                    className="hidden h-10 w-px bg-[#06233a]/20 lg:block"
+                    aria-hidden="true"
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 grid max-w-[470px] grid-cols-2 items-center gap-x-5 gap-y-6 md:max-w-[560px] md:gap-x-8 lg:hidden">
+            {features.map((feature) => (
+              <div
+                key={feature.label}
+                className="grid grid-cols-[38px_auto] items-center gap-3 text-[12px] font-semibold uppercase leading-tight text-[#08263c] md:grid-cols-[46px_auto] md:text-sm"
+              >
+                <span
+                  className={`grid h-9 w-9 place-items-center rounded-full text-white shadow-[0_10px_20px_rgba(6,35,58,.16)] md:h-11 md:w-11 ${feature.color}`}
+                >
+                  <feature.Icon
+                    className="h-5 w-5 md:h-6 md:w-6"
+                    strokeWidth={2.4}
+                    aria-hidden="true"
+                  />
+                </span>
+                <span>
+                  {feature.label}
+                  <small className="mt-1 block text-[inherit] font-semibold">
+                    {feature.subLabel}
+                  </small>
+                </span>
+              </div>
+            ))}
+
+            <a
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#06233a] px-5 text-[12px] font-bold uppercase text-white shadow-[0_12px_22px_rgba(6,35,58,.2)] transition-colors hover:bg-[#e6a334] hover:text-[#06233a] md:min-h-[52px] md:text-sm"
+              href="#"
+            >
+              <CalendarCheck
+                className="h-4 w-4"
+                strokeWidth={2.4}
+                aria-hidden="true"
+              />
+              Book Now
+              <span aria-hidden="true">&gt;</span>
+            </a>
+
+            <a
+              className="col-span-2 mx-auto inline-flex min-h-12 w-[min(100%,230px)] items-center justify-center gap-2 rounded-full border-2 border-[#e6a3346b] bg-white/60 px-6 text-[12px] font-bold uppercase text-[#e6a334] shadow-[inset_0_0_0_1px_rgba(255,255,255,.72)] transition-colors hover:border-[#e6a334] hover:bg-[#e6a334] hover:text-[#06233a] md:min-h-[52px] md:w-[260px] md:text-sm"
+              href="#"
+            >
+              Explore More
+            </a>
+          </div>
+
+          <div className="mt-6 hidden flex-wrap items-center gap-3 sm:mt-7 sm:gap-4 lg:mt-12 lg:flex xl:mt-14 xl:gap-6">
+            <a
+              className="inline-flex min-h-11 w-[calc(50%-6px)] min-w-[150px] items-center justify-center gap-2 rounded-full bg-[#06233a] px-4 text-[12px] font-bold uppercase text-white shadow-[0_12px_22px_rgba(6,35,58,.2)] transition-colors hover:bg-[#e6a334] hover:text-[#06233a] sm:w-auto sm:min-w-[214px] sm:gap-2.5 sm:px-7 sm:text-[13px] lg:min-h-12"
+              href="#"
+            >
+              <CalendarCheck
+                className="h-4 w-4"
+                strokeWidth={2.4}
+                aria-hidden="true"
+              />
+              Book Now
+              <span aria-hidden="true">&gt;</span>
+            </a>
+            <a
+              className="inline-flex min-h-11 w-[calc(50%-6px)] min-w-[160px] items-center justify-center gap-2 rounded-full border-2 border-[#e6a3346b] bg-white/60 px-4 text-[12px] font-bold uppercase text-[#e6a334] shadow-[inset_0_0_0_1px_rgba(255,255,255,.72)] transition-colors hover:border-[#e6a334] hover:bg-[#e6a334] hover:text-[#06233a] sm:w-auto sm:min-w-[218px] sm:gap-2.5 sm:px-7 sm:text-[13px] lg:min-h-12"
+              href="#"
+            >
+              Explore More
+              <span aria-hidden="true">&gt;</span>
+            </a>
+          </div>
         </div>
       </div>
 
       <div
-        className="absolute bottom-[-1px] left-0 right-0 z-10 h-[clamp(36px,5.5vw,76px)] bg-white"
+        className="absolute bottom-[-1px] left-0 right-0 z-10 h-[clamp(36px,5.5vw,76px)] bg-[#fbfaf7]"
         style={{
           clipPath:
             "polygon(0 43%, 18% 59%, 35% 50%, 52% 29%, 69% 51%, 84% 38%, 100% 54%, 100% 100%, 0 100%)",
