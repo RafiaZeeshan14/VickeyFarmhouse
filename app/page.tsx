@@ -5,6 +5,7 @@ import Gallery from "@/components/Gallery/Gallery";
 import Hero from "@/components/Hero/Hero";
 import Location from "@/components/Location/Location";
 import Pricing from "@/components/Pricing/Pricing";
+import Terms from "@/components/Terms/Terms";
 import VideoSection from "@/components/VideoSection/VideoSection";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <Facilities />
       <Pricing />
       <Gallery />
+      <Terms/>
       <Location />
       <Footer />
     </main>

@@ -1,11 +1,23 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import {
   BedDouble,
   CarFront,
   ConciergeBell,
   Dices,
+  Flame,
+  MonitorPlay,
+  ShieldCheck,
+  Snowflake,
+  Trees,
   TreePalm,
+  Utensils,
   Waves,
+  Baby,
+  Trophy,
 } from "lucide-react";
 
 const facilities = [
@@ -13,115 +25,267 @@ const facilities = [
     Icon: Waves,
     title: "Swimming Pool",
     description: "Crystal-clear pool for a refreshing escape.",
-    color: "bg-[#4f86d2]",
+    image: "/villa1.jpg",
   },
   {
     Icon: TreePalm,
     title: "Spacious Lawns",
     description: "Expansive green spaces for relaxation & events.",
-    color: "bg-[#559653]",
+    image: "/lawn.jpg",
   },
   {
     Icon: BedDouble,
     title: "Comfortable Rooms",
     description: "Elegant stays with modern comforts.",
-    color: "bg-[#eca323]",
+    image: "/room.jpg",
   },
   {
     Icon: Dices,
     title: "Indoor Games",
     description: "Fun-filled games for all ages.",
-    color: "bg-[#12375d]",
+    image: "/game.jpg",
   },
   {
     Icon: ConciergeBell,
-    title: "Delicious Food",
-    description: "A variety of cuisines to satisfy every craving.",
-    color: "bg-[#d73338]",
+    title: "BBQ & Food Area",
+    description: "Perfect food setup for family gatherings.",
+    image: "/bbq.jpg",
   },
   {
     Icon: CarFront,
-    title: "Ample Parking",
+    title: "Safe Parking Space",
     description: "Spacious & secure parking for your convenience.",
-    color: "bg-[#559653]",
+    image: "/car.jpg",
+  },
+  {
+    Icon: MonitorPlay,
+    title: "Projector Screen",
+    description: "Enjoy movie nights, presentations, and family screenings.",
+    image: "/screen.jpg",
+  },
+  {
+    Icon: Baby,
+    title: "Children Play Area",
+    description: "A safe and fun outdoor space for kids to enjoy.",
+    image: "/play.jpg",
+  },
+  {
+    Icon: ShieldCheck,
+    title: "24 Hours Security",
+    description: "Secure environment with round-the-clock safety support.",
+    image: "/security.jpg",
+  },
+  {
+    Icon: Trophy,
+    title: "Cricket Place",
+    description: "Open cricket space for friendly matches and outdoor fun.",
+    image: "/cricket.jpg",
+  },
+  {
+    Icon: Snowflake,
+    title: "4–5 AC Rooms",
+    description: "Comfortable air-conditioned rooms for a relaxing stay.",
+    image: "/room.jpg",
+  },
+  {
+    Icon: Waves,
+    title: "Children Pool",
+    description: "A separate pool area designed for kids’ enjoyment.",
+    image: "/villa1.jpg",
+  },
+  {
+    Icon: Flame,
+    title: "Bonfire Area",
+    description: "A cozy bonfire setup for memorable evenings.",
+    image: "/bonfire.jpg",
+  },
+  {
+    Icon: Utensils,
+    title: "Dining Area",
+    description: "Comfortable dining space for families and groups.",
+    image: "/dining.jpg",
+  },
+  {
+    Icon: Trees,
+    title: "Beautiful Lawn & Garden",
+    description: "Refreshing greenery with a calm and peaceful ambience.",
+    image: "/lawn.jpg",
+  },
+  {
+    Icon: Waves,
+    title: "Big Size Pool",
+    description: "A spacious pool for a premium farmhouse experience.",
+    image: "/villa1.jpg",
   },
 ];
 
+const smoothEase = [0.25, 1, 0.5, 1] as const;
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: smoothEase },
+  },
+};
+
 export default function Facilities() {
+  const [active, setActive] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
+
+  const nextSlide = () => {
+    setActive((prev) => (prev + 1) % facilities.length);
+  };
+
+  const prevSlide = () => {
+    setActive((prev) => (prev - 1 + facilities.length) % facilities.length);
+  };
+
   return (
     <section
       id="facilities"
-      className="relative overflow-hidden bg-[#fbfaf7] px-4 py-16 text-[#06233a] sm:px-6 lg:min-h-[640px] lg:px-8 lg:pb-16 lg:pt-10"
+      className="scroll-mt-28 relative overflow-hidden bg-[#fbfaf7] px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-24"
     >
+      <div className="mx-auto max-w-[1700px]">
+        <motion.div
+          className="mx-auto mb-12 max-w-5xl text-center"
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView={shouldReduceMotion ? undefined : "show"}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.p
+            variants={fadeUp}
+            className="mb-3 font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,6vw,46px)] italic leading-none text-[#e4a43b]"
+          >
+            Our Facilities
+          </motion.p>
 
+          <motion.h2
+            variants={fadeUp}
+            className="text-[clamp(34px,6vw,70px)] font-black uppercase leading-[.98] tracking-tight text-[#06233a]"
+          >
+            Everything You Need
+            <span className="block">
+              For A <span className="text-[#e6a334]">Perfect Day Out!</span>
+            </span>
+          </motion.h2>
 
+          <motion.p
+            variants={fadeUp}
+            className="mx-auto mt-5 max-w-3xl text-[16px] font-medium leading-8 text-[#294258] sm:text-lg"
+          >
+            Explore premium farmhouse spaces including pool, parking, indoor
+            games, BBQ area, lawns, rooms, play area, bonfire, dining, and more.
+          </motion.p>
+        </motion.div>
 
-      <div className="absolute right-0 top-7 z-20 hidden rounded-l-[28px] bg-[#06233a] px-7 py-4 text-white shadow-xl lg:flex lg:items-center lg:gap-4">
-        <ConciergeBell className="text-[#e6a334]" size={34} strokeWidth={1.9} />
-        <span className="max-w-[150px] text-sm font-semibold leading-tight">
-          Your Perfect Escape Awaits
-        </span>
-      </div>
+        <div className="relative overflow-hidden rounded-[32px] bg-white px-5 py-8 shadow-[0_28px_90px_rgba(6,35,58,.12)] sm:px-8 lg:px-10 xl:px-14">
+          <div className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-[#e6a334]/20 blur-3xl" />
+          <div className="pointer-events-none absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-[#2f9ad8]/15 blur-3xl" />
 
-      <div className="pointer-events-none absolute -left-24 top-28 z-10 hidden h-[440px] w-[440px] overflow-hidden rounded-full border-[14px] border-[#fbfaf7] shadow-[0_18px_45px_rgba(6,35,58,0.2)] lg:block xl:h-[470px] xl:w-[470px]">
-        <Image
-          src="/hero.png"
-          alt="Vicky Farmhouse swimming pool"
-          fill
-          className="object-cover object-center"
-          sizes="470px"
-        />
-      </div>
-
-      <div className="pointer-events-none absolute -right-16 top-20 hidden h-[520px] w-[390px] opacity-[0.08] lg:block">
-        <div className="absolute right-20 top-0 h-[500px] w-5 rotate-[28deg] rounded-full bg-[#06233a]" />
-        {Array.from({ length: 10 }).map((_, index) => (
-          <span
-            key={index}
-            className="absolute right-16 top-20 h-8 w-72 origin-right rounded-full bg-[#06233a]"
-            style={{ transform: `rotate(${index * 13 - 50}deg)` }}
-          />
-        ))}
-      </div>
-
-      <div className="relative z-20 mx-auto max-w-7xl text-center lg:pl-[300px] lg:pt-24 xl:max-w-[1500px] xl:pl-[330px]">
-        <div className="flex items-center justify-center gap-4 font-script text-4xl text-[#dca03a] sm:text-5xl">
-          <span className="hidden h-px w-16 bg-[#dca03a] sm:block" />
-          <span className="font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(28px,6vw,42px)] italic">Our Facilities</span>
-          <span className="hidden h-px w-16 bg-[#dca03a] sm:block" />
-        </div>
-
-        <h2 className="mx-auto mt-4 max-w-5xl text-4xl font-extrabold uppercase leading-[1.08] tracking-wide text-[#06233a] sm:text-5xl lg:text-[54px] xl:text-[62px]">
-          Everything You Need
-          <br />
-          For A <span className="text-[#e6a334]">Perfect Day Out!</span>
-        </h2>
-
-        <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-[#294258] sm:text-lg">
-          Premium amenities designed for your comfort, enjoyment, and
-          unforgettable moments.
-        </p>
-
-        <div className="mt-16 grid gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:gap-x-8">
-          {facilities.map(({ Icon, title, description, color }) => (
-            <article
-              key={title}
-              className="group relative rounded-[18px] border border-[#e6e0d4] bg-white/90 px-4 pb-6 pt-16 shadow-[0_12px_26px_rgba(6,35,58,0.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_34px_rgba(6,35,58,0.18)]"
-            >
-              <span
-                className={`absolute left-1/2 top-0 flex h-[86px] w-[86px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[5px] border-white ${color} text-white shadow-[0_8px_20px_rgba(6,35,58,0.2)] ring-2 ring-[#e8e3da] transition duration-300 group-hover:scale-105`}
-              >
-                <Icon size={42} strokeWidth={2} />
-              </span>
-
-              <h3 className="text-[15px] font-extrabold uppercase leading-tight tracking-wide text-[#06233a]">
-                {title}
-              </h3>
-              <p className="mt-3 text-[13px] font-medium leading-snug text-[#31475d]">
-                {description}
+          <div className="relative z-10 mb-8 flex items-center justify-between gap-4">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.25em] text-[#e6a334]">
+                Vicky Farmhouse
               </p>
-            </article>
-          ))}
+              <h3 className="mt-2 text-2xl font-black uppercase text-[#06233a] sm:text-3xl">
+                Explore Facilities
+              </h3>
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                onClick={prevSlide}
+                className="grid h-12 w-12 place-items-center rounded-full bg-[#06233a] text-2xl text-white shadow-lg transition hover:bg-[#e6a334] hover:text-[#06233a] sm:h-14 sm:w-14"
+                aria-label="Previous facility"
+              >
+                ←
+              </button>
+
+              <button
+                onClick={nextSlide}
+                className="grid h-12 w-12 place-items-center rounded-full bg-[#e6a334] text-2xl text-[#06233a] shadow-lg transition hover:bg-[#06233a] hover:text-white sm:h-14 sm:w-14"
+                aria-label="Next facility"
+              >
+                →
+              </button>
+            </div>
+          </div>
+
+          <div className="relative z-10 h-[430px] overflow-hidden sm:h-[500px] lg:h-[560px] xl:h-[620px]">
+            {facilities.map((facility, index) => {
+              const offset = index - active;
+
+              return (
+                <motion.article
+                  key={`${facility.title}-${index}`}
+                  className="absolute left-0 top-0 h-full w-[82vw] max-w-[360px] overflow-hidden rounded-[26px] bg-[#06233a] shadow-[0_26px_70px_rgba(6,35,58,.22)] ring-1 ring-white/60 sm:max-w-[430px] lg:max-w-[520px] xl:max-w-[600px]"
+                  animate={{
+                    x:
+                      offset *
+                      (typeof window !== "undefined" &&
+                      window.innerWidth >= 1280
+                        ? 635
+                        : typeof window !== "undefined" &&
+                            window.innerWidth >= 1024
+                          ? 555
+                          : 390),
+                    scale: index === active ? 1 : 0.9,
+                    opacity:
+                      offset < 0
+                        ? 0
+                        : offset > 2
+                          ? 0
+                          : index === active
+                            ? 1
+                            : 0.5,
+                    zIndex: 10 - Math.abs(offset),
+                  }}
+                  transition={{ duration: 0.75, ease: smoothEase }}
+                >
+                  <Image
+                    src={facility.image}
+                    alt={facility.title}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1280px) 600px, (min-width: 1024px) 520px, 82vw"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#06233a]/95 via-[#06233a]/35 to-transparent" />
+
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white sm:p-7 xl:p-9">
+                    <span className="mb-4 grid h-14 w-14 place-items-center rounded-full bg-white/20 text-[#e6a334] backdrop-blur-md ring-1 ring-white/30 xl:h-16 xl:w-16">
+                      <facility.Icon className="h-7 w-7 xl:h-8 xl:w-8" />
+                    </span>
+
+                    <h3 className="text-2xl font-black uppercase leading-tight xl:text-4xl">
+                      {facility.title}
+                    </h3>
+
+                    <p className="mt-3 max-w-[430px] text-sm font-medium leading-6 text-white/85 sm:text-base">
+                      {facility.description}
+                    </p>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+
+          <div className="relative z-10 mt-7 flex flex-wrap justify-center gap-2">
+            {facilities.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActive(index)}
+                className={`h-2.5 rounded-full transition-all ${
+                  active === index
+                    ? "w-9 bg-[#e6a334]"
+                    : "w-2.5 bg-[#06233a]/25"
+                }`}
+                aria-label={`Go to facility ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

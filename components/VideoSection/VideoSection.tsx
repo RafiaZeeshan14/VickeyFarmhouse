@@ -1,6 +1,36 @@
+"use client";
+
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+
+const smoothEase = [0.25, 1, 0.5, 1] as const;
+
+const textContainer: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.14,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const textReveal: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.75,
+      ease: smoothEase,
+    },
+  },
+};
+
 export default function VideoSection() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <section className="relative -mt-px overflow-hidden bg-[#062b45] px-4 pb-24 pt-14 text-white sm:px-6 lg:px-8 lg:pb-28 lg:pt-16">
+    <section className="scroll-mt-28 relative -mt-px overflow-hidden bg-[#062b45] px-4 pb-24 pt-14 text-white sm:px-6 lg:px-8 lg:pb-28 lg:pt-16">
       <div className="mx-auto grid w-full max-w-7xl items-stretch gap-8 lg:grid-cols-[0.48fr_0.52fr] xl:max-w-[1500px] xl:gap-10">
         <div className="relative min-h-[620px] overflow-hidden lg:min-h-[640px]">
           <div className="absolute inset-y-0 left-0 w-full rounded-xl bg-white shadow-[0_28px_70px_rgba(0,0,0,.2)] [clip-path:polygon(7%_0,100%_0,92%_100%,0_100%)]" />
@@ -8,31 +38,38 @@ export default function VideoSection() {
           <div className="pointer-events-none absolute right-[39%] top-0 z-10 h-28 w-1.5 -skew-x-[10deg] bg-[#062b45]" />
           <div className="pointer-events-none absolute bottom-0 right-[39%] z-10 h-28 w-1.5 -skew-x-[10deg] bg-[#062b45]" />
 
-          <div className="relative  z-10 flex min-h-[620px] max-w-[430px] flex-col justify-center px-8 py-12 text-[#06233a] sm:px-12 lg:min-h-[640px] xl:px-14">
-            <p className="md:mb-8 mb-4 max-w-[280px] font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(42px,5vw,60px)] italic leading-[.95] text-[#e2a13a]">
+          <motion.div
+            className="relative z-10 flex min-h-[620px] max-w-[430px] flex-col justify-center px-8 py-12 text-[#06233a] sm:px-12 lg:min-h-[640px] xl:px-14"
+            variants={textContainer}
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView={shouldReduceMotion ? undefined : "show"}
+            viewport={{ once: true, amount: 0.35 }}
+          >
+            <motion.p
+              className="mb-4 max-w-[280px] font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(42px,5vw,60px)] italic leading-[.95] text-[#e2a13a] md:mb-8"
+              variants={textReveal}
+            >
               Take a Virtual Tour
-            </p>
+            </motion.p>
 
-            <h2 className="text-[clamp(42px,4.5vw,62px)] font-black uppercase leading-[1.02] tracking-normal">
+            <motion.h2
+              className="text-[clamp(42px,4.5vw,62px)] font-black uppercase leading-[1.02] tracking-normal"
+              variants={textReveal}
+            >
               Feel The Vibes
-              <span className="block text-[#f5a40b]">Before You Arrive!</span>
-            </h2>
+              <span className="block text-[#f5a40b]">
+                Before You Arrive!
+              </span>
+            </motion.h2>
 
-            <p className="md:mt-9 mt-2 mb-4 md:mb-8 max-w-[360px] text-[17px] font-semibold leading-8 text-[#17334a]">
+            <motion.p
+              className="mb-4 mt-2 max-w-[360px] text-[17px] font-semibold leading-8 text-[#17334a] md:mb-8 md:mt-9"
+              variants={textReveal}
+            >
               Watch our video and explore the beauty, ambience, and experiences
               that await you.
-            </p>
-
-            {/* <a
-              className="mt-9 inline-flex min-h-14 w-max items-center justify-center gap-3 rounded-full bg-[#06233a] px-7 text-[13px] font-bold uppercase text-white shadow-[0_14px_26px_rgba(6,35,58,.22)] transition-colors hover:bg-[#e6a334] hover:text-[#06233a]"
-              href="#tour-video"
-            >
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#06233a]">
-                <span className="ml-0.5 h-0 w-0 border-y-[6px] border-l-[9px] border-y-transparent border-l-current" />
-              </span>
-              Watch Video
-            </a> */}
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
 
         <div className="relative min-h-[340px] overflow-hidden rounded-xl bg-black shadow-[0_28px_70px_rgba(0,0,0,.26)] ring-1 ring-white/10 sm:min-h-[420px] lg:min-h-[640px]">

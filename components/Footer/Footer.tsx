@@ -1,19 +1,17 @@
+"use client";
+
 import Image from "next/image";
-import {
-  Clock,
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 const quickLinks = [
-  "Home",
-  "About Us",
-  "Facilities",
-  "Pricing",
-  "Gallery",
-  "Location",
-  "Contact Us",
+  { label: "Home", href: "#" },
+  { label: "About Us", href: "#about" },
+  { label: "Facilities", href: "#facilities" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Location", href: "#location" },
+  { label: "Contact Us", href: "#contact" },
 ];
 
 const socialLinks = [
@@ -55,11 +53,52 @@ const socialLinks = [
   },
 ];
 
+const smoothEase = [0.25, 1, 0.5, 1] as const;
+
+const footerContainer: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.12,
+    },
+  },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: smoothEase },
+  },
+};
+
+const smallFade: Variants = {
+  hidden: { opacity: 0, y: 14 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: smoothEase },
+  },
+};
+
 export default function Footer() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <footer className="bg-[#06233a] px-4 pt-14 text-white sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-10 pb-10 lg:grid-cols-[1.15fr_0.9fr_1.3fr_1fr] lg:gap-12">
-        <div>
+    <footer
+      id="contact"
+      className="scroll-mt-28 overflow-hidden bg-[#06233a] px-4 pt-14 text-white sm:px-6 lg:px-8"
+    >
+      <motion.div
+        className="mx-auto grid max-w-7xl gap-10 pb-10 lg:grid-cols-[1.15fr_0.9fr_1.3fr_1fr] lg:gap-12"
+        variants={footerContainer}
+        initial={shouldReduceMotion ? false : "hidden"}
+        whileInView={shouldReduceMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <motion.div variants={fadeUp}>
           <a
             className="relative block h-28 w-52 overflow-hidden"
             href="#"
@@ -73,73 +112,92 @@ export default function Footer() {
               height={2000}
             />
           </a>
+
           <p className="mt-4 max-w-xs text-sm font-medium leading-7 text-white/80">
             Vicky Farmhouse is your perfect getaway for picnics, parties, and
             peaceful stays surrounded by nature.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="border-white/10 lg:border-l lg:pl-12">
+        <motion.div variants={fadeUp} className="border-white/10 lg:border-l lg:pl-12">
           <h3 className="text-base font-bold uppercase">Quick Links</h3>
-          <nav className="mt-5 grid gap-2.5">
-            {quickLinks.map((link) => (
-              <a
-                key={link}
-                className="text-sm font-normal text-white/85 transition-colors hover:text-[#e6a334]"
-                href="#"
-              >
-                {link}
-              </a>
-            ))}
-          </nav>
-        </div>
 
-        <div className="border-white/10 lg:border-l lg:pl-12">
+          <motion.nav className="mt-5 grid gap-2.5" variants={footerContainer}>
+            {quickLinks.map((link) => (
+              <motion.a
+                key={link.label}
+                variants={smallFade}
+                className="text-sm font-normal text-white/85 transition-colors hover:text-[#e6a334]"
+                href={link.href}
+              >
+                {link.label}
+              </motion.a>
+            ))}
+          </motion.nav>
+        </motion.div>
+
+        <motion.div variants={fadeUp} className="border-white/10 lg:border-l lg:pl-12">
           <h3 className="text-base font-bold uppercase">Contact Us</h3>
-          <div className="mt-5 grid gap-4">
-            <div className="grid grid-cols-[34px_auto] gap-3">
+
+          <motion.div className="mt-5 grid gap-4" variants={footerContainer}>
+            <motion.div variants={smallFade} className="grid grid-cols-[34px_auto] gap-3">
               <span className="grid h-8 w-8 place-items-center rounded-lg bg-[#e6a334] text-[#06233a]">
                 <MapPin className="h-4 w-4" strokeWidth={2.4} />
               </span>
               <span className="text-sm font-normal leading-6 text-white/80">
                 358R+X3V, A Rehman Gabol Goth Gadap Town, Karachi
               </span>
-            </div>
-            <div className="grid grid-cols-[34px_auto] items-center gap-3">
+            </motion.div>
+
+            <motion.div
+              variants={smallFade}
+              className="grid grid-cols-[34px_auto] items-center gap-3"
+            >
               <span className="grid h-8 w-8 place-items-center rounded-lg bg-[#e6a334] text-[#06233a]">
                 <Phone className="h-4 w-4" strokeWidth={2.4} />
               </span>
               <span className="text-sm font-normal text-white/80">
-               +92 3712108053
+                +92 3712108053
               </span>
-            </div>
-            <div className="grid grid-cols-[34px_auto] items-center gap-3">
+            </motion.div>
+
+            <motion.div
+              variants={smallFade}
+              className="grid grid-cols-[34px_auto] items-center gap-3"
+            >
               <span className="grid h-8 w-8 place-items-center rounded-lg bg-[#e6a334] text-[#06233a]">
                 <Mail className="h-4 w-4" strokeWidth={2.4} />
               </span>
               <span className="text-sm font-normal text-white/80">
                 Vickyfarmhouse@gmail.com
               </span>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="mt-6 flex gap-3">
+          <motion.div className="mt-6 flex gap-3" variants={footerContainer}>
             {socialLinks.map((social) => (
-              <a
+              <motion.a
                 key={social.label}
+                variants={smallFade}
+                whileHover={shouldReduceMotion ? undefined : { y: -3, scale: 1.05 }}
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
                 className={`grid h-10 w-10 place-items-center rounded-full bg-white text-[#06233a] shadow-[0_10px_22px_rgba(0,0,0,.18)] transition-colors hover:text-white ${social.color}`}
                 href="#"
                 aria-label={social.label}
               >
                 {social.icon}
-              </a>
+              </motion.a>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="border-white/10 lg:border-l lg:pl-12">
+        <motion.div variants={fadeUp} className="border-white/10 lg:border-l lg:pl-12">
           <h3 className="text-base font-bold uppercase">Opening Hours</h3>
-          <div className="mt-8 grid grid-cols-[34px_auto] gap-3">
+
+          <motion.div
+            variants={smallFade}
+            className="mt-8 grid grid-cols-[34px_auto] gap-3"
+          >
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-white/10 text-[#e6a334]">
               <Clock className="h-4 w-4" strokeWidth={2.4} />
             </span>
@@ -147,20 +205,29 @@ export default function Footer() {
               Monday - Sunday
               <span className="block">8.00 AM - 10:00 PM</span>
             </p>
-          </div>
+          </motion.div>
 
-          <a
+          <motion.a
+            variants={smallFade}
+            whileHover={shouldReduceMotion ? undefined : { y: -3 }}
+            whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
             className="mt-10 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#e6a334] px-8 text-[13px] font-bold uppercase text-[#06233a] shadow-[0_12px_22px_rgba(0,0,0,.22)] transition-colors hover:bg-white"
             href="#"
           >
             Book Now
-          </a>
-        </div>
-      </div>
+          </motion.a>
+        </motion.div>
+      </motion.div>
 
-      <div className="border-t border-white/10 py-5 text-center text-sm font-semibold text-white/58">
+      <motion.div
+        className="border-t border-white/10 py-5 text-center text-sm font-semibold text-white/58"
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+        whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.7 }}
+        transition={{ duration: 0.6, ease: smoothEase }}
+      >
         © 2026 Vicky Farmhouse. All Rights Reserved.
-      </div>
+      </motion.div>
     </footer>
   );
 }
