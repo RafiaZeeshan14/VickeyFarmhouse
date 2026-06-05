@@ -8,8 +8,8 @@ export default function VideoSection() {
           <div className="pointer-events-none absolute right-[39%] top-0 z-10 h-28 w-1.5 -skew-x-[10deg] bg-[#062b45]" />
           <div className="pointer-events-none absolute bottom-0 right-[39%] z-10 h-28 w-1.5 -skew-x-[10deg] bg-[#062b45]" />
 
-          <div className="relative z-10 flex min-h-[620px] max-w-[430px] flex-col justify-center px-8 py-12 text-[#06233a] sm:px-12 lg:min-h-[640px] xl:px-14">
-            <p className="mb-8 max-w-[280px] font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(42px,5vw,60px)] italic leading-[.95] text-[#e2a13a]">
+          <div className="relative  z-10 flex min-h-[620px] max-w-[430px] flex-col justify-center px-8 py-12 text-[#06233a] sm:px-12 lg:min-h-[640px] xl:px-14">
+            <p className="md:mb-8 mb-4 max-w-[280px] font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(42px,5vw,60px)] italic leading-[.95] text-[#e2a13a]">
               Take a Virtual Tour
             </p>
 
@@ -18,12 +18,12 @@ export default function VideoSection() {
               <span className="block text-[#f5a40b]">Before You Arrive!</span>
             </h2>
 
-            <p className="mt-9 max-w-[360px] text-[17px] font-semibold leading-8 text-[#17334a]">
+            <p className="md:mt-9 mt-2 mb-4 md:mb-8 max-w-[360px] text-[17px] font-semibold leading-8 text-[#17334a]">
               Watch our video and explore the beauty, ambience, and experiences
               that await you.
             </p>
 
-            <a
+            {/* <a
               className="mt-9 inline-flex min-h-14 w-max items-center justify-center gap-3 rounded-full bg-[#06233a] px-7 text-[13px] font-bold uppercase text-white shadow-[0_14px_26px_rgba(6,35,58,.22)] transition-colors hover:bg-[#e6a334] hover:text-[#06233a]"
               href="#tour-video"
             >
@@ -31,7 +31,7 @@ export default function VideoSection() {
                 <span className="ml-0.5 h-0 w-0 border-y-[6px] border-l-[9px] border-y-transparent border-l-current" />
               </span>
               Watch Video
-            </a>
+            </a> */}
           </div>
         </div>
 

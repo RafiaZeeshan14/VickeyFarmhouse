@@ -1,4 +1,4 @@
-import { CalendarCheck, House, Sprout, Waves } from "lucide-react";
+import { House, Sprout, UserRound, Waves } from "lucide-react";
 import Header from "../Header/Header";
 
 const features = [
@@ -37,25 +37,43 @@ export default function Hero() {
 
       <Header />
 
-      <div className="relative z-10 mx-auto mt-6 w-[calc(100%-36px)] max-w-[590px] sm:mt-8 sm:w-[calc(100%-48px)] md:mt-10 md:max-w-[720px] lg:mt-20 lg:w-[calc(100%-64px)] lg:max-w-none xl:mt-24 xl:w-[calc(100%-176px)] 2xl:mt-28 2xl:w-[min(1860px,calc(100%-192px))]">
+      <div className="relative z-10 mx-auto mt-20 lg:mt-6 w-[calc(100%-36px)] max-w-[590px] sm:mt-8 sm:w-[calc(100%-48px)] md:mt-10 md:max-w-[720px] lg:mt-20 lg:w-[calc(100%-64px)] lg:max-w-none xl:mt-24 xl:w-[calc(100%-176px)] 2xl:mt-28 2xl:w-[min(1860px,calc(100%-192px))]">
         <div className="max-w-[680px] lg:max-w-[980px] xl:max-w-[1060px] 2xl:max-w-[1120px]">
-          <p className="mb-3 text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(25px,7.4vw,42px)] italic leading-none text-[#e2a13a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]">
+          <p className="mb-3 hidden lg:block text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(25px,7.4vw,42px)] italic leading-none text-[#e2a13a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]">
             A Perfect Escape
+          </p>
+          <p className="lg:hidden mb-3 text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(25px,7.4vw,42px)] italic leading-none text-[#e2a13a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]">
+            A Perfect 
+          </p>
+          <p className=" lg:hidden mb-3 text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(25px,7.4vw,42px)] italic leading-none text-[#e2a13a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]">
+             Escape
           </p>
 
           <h1 className="m-0 text-[clamp(31px,8.7vw,50px)] font-black uppercase leading-[1.05] tracking-normal text-[#06233a] sm:text-[50px] md:text-[64px] lg:text-[clamp(70px,5.8vw,86px)] lg:leading-[.98] xl:text-[clamp(76px,4.25vw,86px)]">
-            <span className="block whitespace-nowrap">Relax, Celebrate</span>
-            <span className="block text-[#f2a10c]">& Create Memories</span>
+            <span className="block whitespace-nowrap hidden lg:block">Relax, Celebrate</span>
+              <span className="block text-[#f2a10c] hidden lg:block">& Create Memories</span>
+            <span className="block whitespace-nowrap md:block lg:hidden">Relax</span>
+            <span className="block whitespace-nowrap md:block lg:hidden"> Celebrate</span>
+               <span className="block text-[#f2a10c] hidden md:block lg:hidden">& Create Memories</span>
+            <span className="block text-[#f2a10c] md:hidden">& Create </span>
+            <span className="block text-[#f2a10c] md:hidden"> Memories</span>
           </h1>
 
-          <p className="mt-5 max-w-[390px] text-[clamp(15px,4vw,18px)] font-semibold leading-[1.45] text-[#273f4f] sm:max-w-[470px] md:max-w-[560px] md:text-xl lg:mt-8 lg:flex lg:max-w-[700px] lg:items-start lg:gap-3 lg:text-[clamp(15px,1.4vw,18px)] xl:mt-9 xl:text-lg">
+          <p className="mt-5 flex max-w-[400px] items-start gap-3 rounded-[22px] border border-white/70 bg-white/55 p-4 text-[14px] font-medium leading-[1.5] text-[#17334a] shadow-[0_14px_34px_rgba(6,35,58,.13),inset_0_1px_0_rgba(255,255,255,.85)] ring-1 ring-white/35 backdrop-blur-[16px] sm:max-w-[500px] sm:gap-3.5 sm:rounded-[24px] sm:p-5 sm:text-[15px] md:max-w-[540px] md:text-[17px] lg:mt-8 lg:flex lg:max-w-[700px] lg:items-start lg:gap-3 lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:text-[clamp(15px,1.4vw,18px)] lg:font-semibold lg:shadow-none lg:ring-0 lg:backdrop-blur-0 xl:mt-9 xl:text-lg">
+            {/* <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#e6a334]/45 bg-white/70 text-[#e6a334] shadow-[0_10px_22px_rgba(230,163,52,.18)] sm:h-11 sm:w-11 lg:hidden">
+              <UserRound className="h-5 w-5" strokeWidth={2.2} aria-hidden="true" />
+            </span> */}
             <span className="hidden h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-[#06233a] text-xs font-black leading-none lg:mt-0.5 lg:grid">
               i
             </span>{" "}
             <span>
-              <strong className="font-black ">Vicky Farmhouse</strong><span className="font-['Brush_Script_MT','Segoe_Script',cursive] italic"> - Your
-              perfect picnic & event destination surrounded by nature and
-              comfort.</span>
+              
+              {/* <strong className="font-black">Vicky Farmhouse</strong> */}
+              <span className="font-medium font-['Brush_Script_MT','Segoe_Script',cursive] lg:italic">
+                {" "}
+                 Your perfect picnic & event destination surrounded by nature
+                and comfort.
+              </span>
             </span>
           </p>
 
@@ -92,64 +110,49 @@ export default function Hero() {
             ))}
           </div>
 
-          <div className="mt-8 grid max-w-[470px] grid-cols-2 items-center gap-x-5 gap-y-6 md:max-w-[560px] md:gap-x-8 lg:hidden">
-            {features.map((feature) => (
-              <div
-                key={feature.label}
-                className="grid grid-cols-[38px_auto] items-center gap-3 text-[12px] font-semibold uppercase leading-tight text-[#08263c] md:grid-cols-[46px_auto] md:text-sm"
-              >
-                <span
-                  className={`grid h-9 w-9 place-items-center rounded-full text-white shadow-[0_10px_20px_rgba(6,35,58,.16)] md:h-11 md:w-11 ${feature.color}`}
+          <div className="mt-8 max-w-[560px] lg:hidden">
+            <div className="grid grid-cols-3 items-center rounded-3xl border border-white/65 bg-white/55 px-3 py-4 shadow-[0_18px_42px_rgba(6,35,58,.14),inset_0_1px_0_rgba(255,255,255,.82)] ring-1 ring-white/35 backdrop-blur-[16px] sm:px-5 sm:py-5 md:px-6">
+              {features.map((feature, index) => (
+                <div
+                  key={feature.label}
+                  className="flex min-w-0 items-center justify-center gap-2 px-1 text-[9px] font-semibold uppercase leading-tight text-[#08263c] sm:gap-3 sm:text-[11px] md:text-xs"
                 >
-                  <feature.Icon
-                    className="h-5 w-5 md:h-6 md:w-6"
-                    strokeWidth={2.4}
-                    aria-hidden="true"
-                  />
-                </span>
-                <span>
-                  {feature.label}
-                  <small className="mt-1 block text-[inherit] font-semibold">
-                    {feature.subLabel}
-                  </small>
-                </span>
-              </div>
-            ))}
+                  <span
+                    className={`grid h-9 w-9 shrink-0 place-items-center rounded-full text-white shadow-[0_10px_20px_rgba(6,35,58,.16)] sm:h-11 sm:w-11 ${feature.color}`}
+                  >
+                    <feature.Icon
+                      className="h-5 w-5 sm:h-6 sm:w-6"
+                      strokeWidth={2.4}
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <span className="min-w-0 text-left">
+                    {feature.label}
+                    <small className="mt-1 block text-[inherit] font-semibold">
+                      {feature.subLabel}
+                    </small>
+                  </span>
+                  {index < features.length - 1 ? (
+                    <span
+                      className="ml-auto hidden h-12 w-px bg-[#06233a]/12 sm:block"
+                      aria-hidden="true"
+                    />
+                  ) : null}
+                </div>
+              ))}
+            </div>
 
             <a
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#06233a] px-5 text-[12px] font-bold uppercase text-white shadow-[0_12px_22px_rgba(6,35,58,.2)] transition-colors hover:bg-[#e6a334] hover:text-[#06233a] md:min-h-[52px] md:text-sm"
-              href="#"
-            >
-              <CalendarCheck
-                className="h-4 w-4"
-                strokeWidth={2.4}
-                aria-hidden="true"
-              />
-              Book Now
-              <span aria-hidden="true">&gt;</span>
-            </a>
-
-            <a
-              className="col-span-2 mx-auto inline-flex min-h-12 w-[min(100%,230px)] items-center justify-center gap-2 rounded-full border-2 border-[#e6a3346b] bg-white/60 px-6 text-[12px] font-bold uppercase text-[#e6a334] shadow-[inset_0_0_0_1px_rgba(255,255,255,.72)] transition-colors hover:border-[#e6a334] hover:bg-[#e6a334] hover:text-[#06233a] md:min-h-[52px] md:w-[260px] md:text-sm"
+              className="mx-auto mt-6 inline-flex min-h-12 w-[min(100%,260px)] items-center justify-center gap-2 rounded-full border-2 border-[#e6a3346b] bg-white/60 px-6 text-[12px] font-bold uppercase text-[#e6a334] shadow-[0_14px_30px_rgba(6,35,58,.12),inset_0_0_0_1px_rgba(255,255,255,.72)] backdrop-blur-[10px] transition-colors hover:border-[#e6a334] hover:bg-[#e6a334] hover:text-[#06233a] md:min-h-[52px] md:w-[280px] md:text-sm"
               href="#"
             >
               Explore More
+              <span aria-hidden="true">&gt;</span>
             </a>
           </div>
 
           <div className="mt-6 hidden flex-wrap items-center gap-3 sm:mt-7 sm:gap-4 lg:mt-12 lg:flex xl:mt-14 xl:gap-6">
-            <a
-              className="inline-flex min-h-11 w-[calc(50%-6px)] min-w-[150px] items-center justify-center gap-2 rounded-full bg-[#06233a] px-4 text-[12px] font-bold uppercase text-white shadow-[0_12px_22px_rgba(6,35,58,.2)] transition-colors hover:bg-[#e6a334] hover:text-[#06233a] sm:w-auto sm:min-w-[214px] sm:gap-2.5 sm:px-7 sm:text-[13px] lg:min-h-12"
-              href="#"
-            >
-              <CalendarCheck
-                className="h-4 w-4"
-                strokeWidth={2.4}
-                aria-hidden="true"
-              />
-              Book Now
-              <span aria-hidden="true">&gt;</span>
-            </a>
+         
             <a
               className="inline-flex min-h-11 w-[calc(50%-6px)] min-w-[160px] items-center justify-center gap-2 rounded-full border-2 border-[#e6a3346b] bg-white/60 px-4 text-[12px] font-bold uppercase text-[#e6a334] shadow-[inset_0_0_0_1px_rgba(255,255,255,.72)] transition-colors hover:border-[#e6a334] hover:bg-[#e6a334] hover:text-[#06233a] sm:w-auto sm:min-w-[218px] sm:gap-2.5 sm:px-7 sm:text-[13px] lg:min-h-12"
               href="#"

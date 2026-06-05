@@ -11,7 +11,7 @@ const contactDetails = [
   },
   {
     Icon: Mail,
-    text: "Vickyyfarmhouse@gmail.com",
+    text: "Vickyfarmhouse@gmail.com",
   },
 ];
 
@@ -54,7 +54,7 @@ export default function Location() {
                     aria-hidden="true"
                   />
                 </span>
-                <span className="text-sm font-bold leading-6 text-[#344756] sm:text-base">
+                <span className="text-sm font-semibold leading-6 text-[#344756] sm:text-base">
                   {item.text}
                 </span>
               </div>

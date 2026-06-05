@@ -72,7 +72,7 @@ export default function Pricing() {
       className="relative overflow-hidden bg-cover bg-center bg-fixed px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-20"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(167, 159, 159, 0.7), rgba(173, 173, 162, 0.7)), url('/villa6.jpg')",
+          "linear-gradient(rgb(63 57 57 / 70%), rgba(173, 173, 162, 70%)), url(/villa6.jpg)",
       }}
     >
       <div className="mx-auto max-w-[1580px] rounded-xl bg-transparent px-4 py-14 sm:px-8 lg:px-10 lg:py-16">
@@ -81,26 +81,26 @@ export default function Pricing() {
             Pricing Plans
           </p>
 
-          <h2 className="mx-auto mb-10 max-w-4xl text-[clamp(30px,6vw,52px)] font-black uppercase leading-[1.05] tracking-normal text-[#06233a]">
+          <h2 className="mx-auto mb-10 max-w-4xl text-[clamp(30px,6vw,52px)] font-black uppercase leading-[1.05] tracking-normal text-[#ffffff]/[.80]">
             Choose The Plan That
             <span className="block">
               <span className="text-[#e4a43b]">Suits</span> You
             </span>
           </h2>
 
-          <div className="pointer-events-none absolute mt-10 left-1/2 top-[98px] hidden -translate-x-1/2 select-none text-[clamp(128px,16vw,220px)] font-black leading-none text-[#ffff]/[.40] lg:block">
+          <div className="pointer-events-none absolute mt-14 left-1/2 top-[98px] hidden -translate-x-1/2 select-none text-[clamp(128px,16vw,220px)] font-black leading-none text-[#ffff]/[.50] lg:block">
             Pricing
           </div>
         </div>
 
-        <div className="relative z-10 mt-20 grid items-stretch gap-6 md:grid-cols-3 lg:mt-36 lg:gap-8 xl:gap-10">
+        <div className="relative z-10 mt-20 grid items-stretch gap-6 md:grid-cols-3 lg:mt-40 lg:gap-8 xl:gap-10">
           {plans.map((plan) => (
             <article
               key={plan.title}
-              className={`relative flex min-h-[760px] w-full flex-col rounded-[22px] border bg-[#fbfaf7]  px-7 pb-8 pt-8 text-left shadow-[0_18px_45px_rgba(6,35,58,.1)] backdrop-blur-md xl:px-8 ${
+              className={`relative flex min-h-[710px] w-full flex-col rounded-[22px] border bg-white/45 px-7 pb-8 pt-8 text-left shadow-[0_22px_60px_rgba(6,35,58,.24),inset_0_1px_0_rgba(255,255,255,.8)] ring-1 ring-white/35 backdrop-blur-[18px] transition-shadow duration-300 hover:shadow-[0_26px_70px_rgba(6,35,58,.3),inset_0_1px_0_rgba(255,255,255,.9)] xl:px-8 ${
                 plan.popular
                   ? "border-[#e6a334] md:-translate-y-3"
-                  : "border-[#06233a]/8"
+                  : "border-white/55"
               }`}
             >
               {plan.popular ? (

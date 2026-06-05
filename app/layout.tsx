@@ -11,6 +11,11 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Vicky Farmhouse",
   description: "A perfect picnic and event destination surrounded by nature.",
+  icons: {
+    icon: "/vlogo.png",
+    shortcut: "/vlogo.png",
+    apple: "/vlogo.png",
+  },
 };
 
 export const viewport: Viewport = {

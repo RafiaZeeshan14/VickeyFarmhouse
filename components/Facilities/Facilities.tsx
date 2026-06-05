@@ -53,8 +53,8 @@ export default function Facilities() {
       id="facilities"
       className="relative overflow-hidden bg-[#fbfaf7] px-4 py-16 text-[#06233a] sm:px-6 lg:min-h-[640px] lg:px-8 lg:pb-16 lg:pt-10"
     >
-      
-      
+
+
 
       <div className="absolute right-0 top-7 z-20 hidden rounded-l-[28px] bg-[#06233a] px-7 py-4 text-white shadow-xl lg:flex lg:items-center lg:gap-4">
         <ConciergeBell className="text-[#e6a334]" size={34} strokeWidth={1.9} />
@@ -87,7 +87,7 @@ export default function Facilities() {
       <div className="relative z-20 mx-auto max-w-7xl text-center lg:pl-[300px] lg:pt-24 xl:max-w-[1500px] xl:pl-[330px]">
         <div className="flex items-center justify-center gap-4 font-script text-4xl text-[#dca03a] sm:text-5xl">
           <span className="hidden h-px w-16 bg-[#dca03a] sm:block" />
-          <span>Our Facilities</span>
+          <span className="font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(28px,6vw,42px)] italic">Our Facilities</span>
           <span className="hidden h-px w-16 bg-[#dca03a] sm:block" />
         </div>
 
