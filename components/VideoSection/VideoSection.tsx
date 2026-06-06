@@ -85,13 +85,13 @@ export default function VideoSection() {
           />
           <div className="absolute inset-0 bg-black/10" />
 
-          <a
+          {/* <a
             className="absolute left-1/2 top-1/2 grid h-24 w-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-[6px] border-white/80 bg-white/10 text-white backdrop-blur-sm transition-colors hover:border-[#e6a334] hover:bg-[#e6a334] hover:text-[#06233a] sm:h-28 sm:w-28"
             href="#tour-video"
             aria-label="Watch video"
           >
             <span className="ml-1 h-0 w-0 border-y-[18px] border-l-[28px] border-y-transparent border-l-current sm:border-y-[22px] sm:border-l-[34px]" />
-          </a>
+          </a> */}
         </div>
       </div>
 

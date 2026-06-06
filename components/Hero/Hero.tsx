@@ -108,7 +108,7 @@ export default function Hero() {
             A Perfect Escape
           </motion.p>
 <motion.p
-            className="lg:hidden mb-3 text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#e2693a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]"
+            className="lg:hidden  text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#e2693a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]"
             variants={fadeUp}
           >
             A Perfect 

@@ -69,9 +69,12 @@ export default function Header() {
 
         <motion.a
           className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#06233a] px-4 text-[11px] font-bold uppercase text-white shadow-[0_12px_22px_rgba(6,35,58,.2)] transition-colors hover:bg-[#e6a334] hover:text-[#06233a] sm:px-5"
-          href="#"
+            href="https://wa.me/923712108053?text=Hello%20I%20want%20to%20book%20Vicky%20Farmhouse"
+            target="_blank"
+            rel="noopener noreferrer"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.97 }}
+          
         >
           Book Now
         </motion.a>

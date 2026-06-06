@@ -73,11 +73,18 @@ export default function About() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="aboutus" className="scroll-mt-28 relative overflow-hidden bg-[#fbfaf7] px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-24 xl:py-28">
+    <section
+      id="aboutus"
+      className="scroll-mt-28 relative overflow-hidden bg-[#fbfaf7] px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-24 xl:py-28"
+    >
       <div className="pointer-events-none absolute -top-12 left-0 right-0 h-20 bg-[#fbfaf7]" />
 
+      {/* Premium Gradient Glow */}
+      <div className="pointer-events-none absolute -right-28 top-10 h-96 w-96 rounded-full bg-[#e6a334]/18 blur-3xl" />
+      <div className="pointer-events-none absolute -left-28 bottom-10 h-96 w-96 rounded-full bg-[#e6a334]/16 blur-3xl" />
+
       <motion.div
-        className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20 xl:max-w-7xl xl:grid-cols-[1.08fr_1fr] xl:gap-24"
+        className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20 xl:max-w-7xl xl:grid-cols-[1.08fr_1fr] xl:gap-24"
         variants={containerVariants}
         initial={shouldReduceMotion ? false : "hidden"}
         whileInView={shouldReduceMotion ? undefined : "show"}
@@ -103,10 +110,12 @@ export default function About() {
             className="absolute bottom-4 left-0 h-48 w-24 rounded-full bg-[#f6a313] blur-[1px] sm:bottom-8 sm:left-4"
             variants={fadeUp}
           />
+
           <motion.div
             className="absolute bottom-2 left-4 h-28 w-28 -rotate-45 rounded-tl-[90px] bg-[#f6a313]"
             variants={fadeUp}
           />
+
           <motion.div
             className="absolute bottom-0 left-2 h-28 w-36 origin-bottom-left rotate-[-24deg] bg-[#06233a] [clip-path:polygon(0_75%,100%_0,78%_100%,0_100%)]"
             variants={fadeUp}
@@ -115,7 +124,9 @@ export default function About() {
           <motion.div
             className="absolute left-[20%] top-4 w-[68%] rotate-[-4deg] rounded-md bg-white p-2 shadow-[0_10px_18px_rgba(6,35,58,.22)] sm:left-[18%] sm:w-[70%] xl:left-[15%] xl:w-[76%] xl:p-2.5"
             variants={imageFloatLeft}
-            whileHover={shouldReduceMotion ? undefined : { y: -5, rotate: -5 }}
+            whileHover={
+              shouldReduceMotion ? undefined : { y: -5, rotate: -5 }
+            }
           >
             <div className="h-36 overflow-hidden rounded bg-[#d7e6d6] sm:h-44 xl:h-52">
               <img
@@ -129,7 +140,9 @@ export default function About() {
           <motion.div
             className="absolute bottom-6 left-[28%] w-[68%] rotate-[4deg] rounded-md bg-white p-2 shadow-[0_12px_20px_rgba(6,35,58,.24)] sm:bottom-8 sm:left-[25%] sm:w-[72%] xl:left-[21%] xl:w-[78%] xl:p-2.5"
             variants={imageFloatRight}
-            whileHover={shouldReduceMotion ? undefined : { y: -5, rotate: 5 }}
+            whileHover={
+              shouldReduceMotion ? undefined : { y: -5, rotate: 5 }
+            }
           >
             <div className="h-40 overflow-hidden rounded bg-[#d7e6d6] sm:h-52 xl:h-60">
               <img
@@ -146,7 +159,7 @@ export default function About() {
           variants={containerVariants}
         >
           <motion.p
-            className="mb-3 font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(28px,6vw,42px)] italic leading-none text-[#e4a43b] xl:text-5xl"
+            className="mb-3 font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(35px,6vw,42px)] italic leading-none text-[#e4a43b] xl:text-5xl"
             variants={fadeUp}
           >
             About Us
@@ -196,6 +209,7 @@ export default function About() {
                     aria-hidden="true"
                   />
                 </span>
+
                 <span className="text-[11px] font-semibold leading-tight">
                   {feature.title}
                   <small className="block text-[10px] font-medium text-[#536271]">
@@ -205,7 +219,6 @@ export default function About() {
               </motion.div>
             ))}
           </motion.div>
-
         </motion.div>
       </motion.div>
 

@@ -5,6 +5,7 @@ import Gallery from "@/components/Gallery/Gallery";
 import Hero from "@/components/Hero/Hero";
 import Location from "@/components/Location/Location";
 import Pricing from "@/components/Pricing/Pricing";
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import Terms from "@/components/Terms/Terms";
 import VideoSection from "@/components/VideoSection/VideoSection";
 
@@ -20,6 +21,7 @@ export default function Home() {
       <Terms/>
       <Location />
       <Footer />
+      <ScrollToTop />
     </main>
   );
 }

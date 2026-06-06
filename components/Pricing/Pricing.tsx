@@ -207,7 +207,7 @@ export default function Pricing() {
         </motion.div>
 
         <motion.div
-          className="relative z-10 mt-20 grid items-stretch gap-6 md:grid-cols-3 lg:mt-40 lg:gap-8 xl:gap-10"
+          className="relative z-10 mt-20 grid items-stretch gap-6 lg:grid-cols-3 lg:mt-40 lg:gap-8 xl:gap-10"
           variants={cardsContainer}
           initial={shouldReduceMotion ? false : "hidden"}
           whileInView={shouldReduceMotion ? undefined : "show"}
@@ -227,7 +227,7 @@ export default function Pricing() {
             >
               {plan.popular ? (
                 <>
-                  <div className="absolute inset-x-0 top-0 h-[3px] bg-[#e6a334]" />
+                  {/* <div className="absolute inset-x-0 top-0 h-[3px] bg-[#e6a334]" /> */}
 
                   <div className="absolute left-1/2 top-0 flex min-h-[58px] min-w-[220px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-b-[28px] rounded-t-none bg-[#e6a334] px-8 py-2 text-center shadow-[0_14px_30px_rgba(230,163,52,.35)]">
                     <span className="text-[11px] font-black uppercase tracking-[0.18em] text-white/80">
@@ -284,7 +284,9 @@ export default function Pricing() {
                     ? `border-[#e6a334] bg-[#e6a334] text-[#06233a] shadow-[0_12px_24px_rgba(230,163,52,.24)] ${plan.buttonHover}`
                     : `${plan.accentBorder} bg-white/55 ${plan.accentText} ${plan.buttonHover}`
                 }`}
-                href="#contact"
+                href="https://wa.me/923712108053?text=Hello%20I%20want%20to%20book%20Vicky%20Farmhouse"
+                target="_blank"
+                rel="noopener noreferrer"
                 variants={smoothReveal}
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
               >

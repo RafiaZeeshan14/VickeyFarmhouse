@@ -212,7 +212,9 @@ export default function Footer() {
             whileHover={shouldReduceMotion ? undefined : { y: -3 }}
             whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
             className="mt-10 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#e6a334] px-8 text-[13px] font-bold uppercase text-[#06233a] shadow-[0_12px_22px_rgba(0,0,0,.22)] transition-colors hover:bg-white"
-            href="#"
+            href="https://wa.me/923712108053?text=Hello%20I%20want%20to%20book%20Vicky%20Farmhouse"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Book Now
           </motion.a>

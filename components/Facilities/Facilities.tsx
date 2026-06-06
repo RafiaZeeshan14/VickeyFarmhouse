@@ -156,7 +156,7 @@ export default function Facilities() {
         >
           <motion.p
             variants={fadeUp}
-            className="mb-3 font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,6vw,46px)] italic leading-none text-[#e4a43b]"
+            className="mb-3 font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(37px,6vw,46px)] italic leading-none text-[#e4a43b]"
           >
             Our Facilities
           </motion.p>
