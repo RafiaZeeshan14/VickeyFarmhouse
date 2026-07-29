@@ -4,9 +4,12 @@ import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
+const whatsappLink =
+  "https://wa.me/923712108053?text=Hello%20I%20want%20to%20book%20Vicky%20Farmhouse";
+
 const quickLinks = [
-  { label: "Home", href: "#" },
-  { label: "About Us", href: "#about" },
+  { label: "Home", href: "#home" },
+  { label: "About Us", href: "#aboutus" },
   { label: "Facilities", href: "#facilities" },
   { label: "Pricing", href: "#pricing" },
   { label: "Gallery", href: "#gallery" },
@@ -17,6 +20,7 @@ const quickLinks = [
 const socialLinks = [
   {
     label: "Facebook",
+    href: "https://facebook.com/",
     color: "hover:bg-[#1877f2]",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
@@ -29,6 +33,7 @@ const socialLinks = [
   },
   {
     label: "Instagram",
+    href: "https://instagram.com/",
     color: "hover:bg-[#e1306c]",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
@@ -41,6 +46,7 @@ const socialLinks = [
   },
   {
     label: "WhatsApp",
+    href: whatsappLink,
     color: "hover:bg-[#25d366]",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
@@ -101,7 +107,7 @@ export default function Footer() {
         <motion.div variants={fadeUp}>
           <a
             className="relative block h-28 w-52 overflow-hidden"
-            href="#"
+            href="#home"
             aria-label="Vicky Farmhouse home"
           >
             <Image
@@ -119,7 +125,10 @@ export default function Footer() {
           </p>
         </motion.div>
 
-        <motion.div variants={fadeUp} className="border-white/10 lg:border-l lg:pl-12">
+        <motion.div
+          variants={fadeUp}
+          className="border-white/10 lg:border-l lg:pl-12"
+        >
           <h3 className="text-base font-bold uppercase">Quick Links</h3>
 
           <motion.nav className="mt-5 grid gap-2.5" variants={footerContainer}>
@@ -136,11 +145,17 @@ export default function Footer() {
           </motion.nav>
         </motion.div>
 
-        <motion.div variants={fadeUp} className="border-white/10 lg:border-l lg:pl-12">
+        <motion.div
+          variants={fadeUp}
+          className="border-white/10 lg:border-l lg:pl-12"
+        >
           <h3 className="text-base font-bold uppercase">Contact Us</h3>
 
           <motion.div className="mt-5 grid gap-4" variants={footerContainer}>
-            <motion.div variants={smallFade} className="grid grid-cols-[34px_auto] gap-3">
+            <motion.div
+              variants={smallFade}
+              className="grid grid-cols-[34px_auto] gap-3"
+            >
               <span className="grid h-8 w-8 place-items-center rounded-lg bg-[#e6a334] text-[#06233a]">
                 <MapPin className="h-4 w-4" strokeWidth={2.4} />
               </span>
@@ -156,9 +171,12 @@ export default function Footer() {
               <span className="grid h-8 w-8 place-items-center rounded-lg bg-[#e6a334] text-[#06233a]">
                 <Phone className="h-4 w-4" strokeWidth={2.4} />
               </span>
-              <span className="text-sm font-normal text-white/80">
+              <a
+                className="text-sm font-normal text-white/80 transition-colors hover:text-[#e6a334]"
+                href="tel:+923712108053"
+              >
                 +92 3712108053
-              </span>
+              </a>
             </motion.div>
 
             <motion.div
@@ -168,9 +186,12 @@ export default function Footer() {
               <span className="grid h-8 w-8 place-items-center rounded-lg bg-[#e6a334] text-[#06233a]">
                 <Mail className="h-4 w-4" strokeWidth={2.4} />
               </span>
-              <span className="text-sm font-normal text-white/80">
+              <a
+                className="text-sm font-normal text-white/80 transition-colors hover:text-[#e6a334]"
+                href="mailto:Vickyfarmhouse@gmail.com"
+              >
                 Vickyfarmhouse@gmail.com
-              </span>
+              </a>
             </motion.div>
           </motion.div>
 
@@ -179,10 +200,14 @@ export default function Footer() {
               <motion.a
                 key={social.label}
                 variants={smallFade}
-                whileHover={shouldReduceMotion ? undefined : { y: -3, scale: 1.05 }}
+                whileHover={
+                  shouldReduceMotion ? undefined : { y: -3, scale: 1.05 }
+                }
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
                 className={`grid h-10 w-10 place-items-center rounded-full bg-white text-[#06233a] shadow-[0_10px_22px_rgba(0,0,0,.18)] transition-colors hover:text-white ${social.color}`}
-                href="#"
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={social.label}
               >
                 {social.icon}
@@ -191,7 +216,10 @@ export default function Footer() {
           </motion.div>
         </motion.div>
 
-        <motion.div variants={fadeUp} className="border-white/10 lg:border-l lg:pl-12">
+        <motion.div
+          variants={fadeUp}
+          className="border-white/10 lg:border-l lg:pl-12"
+        >
           <h3 className="text-base font-bold uppercase">Opening Hours</h3>
 
           <motion.div
@@ -212,7 +240,7 @@ export default function Footer() {
             whileHover={shouldReduceMotion ? undefined : { y: -3 }}
             whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
             className="mt-10 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#e6a334] px-8 text-[13px] font-bold uppercase text-[#06233a] shadow-[0_12px_22px_rgba(0,0,0,.22)] transition-colors hover:bg-white"
-            href="https://wa.me/923712108053?text=Hello%20I%20want%20to%20book%20Vicky%20Farmhouse"
+            href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -4,7 +4,6 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 import {
   AlertTriangle,
   CalendarDays,
-  Check,
   Clock,
   Moon,
   ShieldCheck,
@@ -14,34 +13,76 @@ import {
 
 const plans = [
   {
-    Icon: SunMedium,
-    title: "Day Outing",
-    description: "12 Hours Day Experience",
-    price: "RS 45,000",
-    unit: "/ Day",
-    timing: "09:00 AM - 06:00 PM",
-    poolTiming: "10:00 AM - 04:00 PM",
+    Icon: CalendarDays,
+    title: "Weekend 24 hrs",
+    description: "24 Hours Full Experience",
+    price: "RS 150,000",
+    unit: "/ Weekend",
+    timing: "Flexible weekend booking",
+    poolTiming: "24 Hours pool access",
     accentText: "text-[#5f9270]",
     accentBg: "bg-[#eaf2eb]",
     accentBorder: "border-[#5f9270]",
     checkBg: "bg-[#5f9270]",
     buttonHover: "hover:border-[#5f9270] hover:bg-[#5f9270] hover:text-white",
     button: "outline",
-    notes: [
-      "Maximum 50 persons allowed",
-      "Extra person: Rs. 1,000 per head",
-      "50% advance required for booking",
-      "Security deposit: Rs. 10,000 refundable",
-    ],
+  },
+   {
+     Icon: SunMedium,
+    title: "Weekend 12 hrs (Day)",
+    description: "12 Hours Day Experience",
+    price: "RS 100,000",
+    unit: "/ Weekend",
+    timing: "Day slot booking",
+    poolTiming: "Day pool access",
+     accentText: "text-[#e6a334]",
+    accentBg: "bg-[#fff4df]",
+    accentBorder: "border-[#e6a334]",
+    checkBg: "bg-[#e6a334]",
+    buttonHover:
+      "hover:border-[#e6a334] hover:bg-[#e6a334] hover:text-[#06233a]",
+    button: "solid",
+
   },
   {
     Icon: Moon,
-    title: "Weekend Stay",
-    description: "20 Hours Complete Experience",
-    price: "RS 95,000",
+    title: "Weekend 12 hrs (Night)",
+    description: "12 Hours Night Experience",
+    price: "RS 120,000",
     unit: "/ Weekend",
-    timing: "Saturday Night - Sunday Night",
-    poolTiming: "24 Hours Pool Access",
+    timing: "Night slot booking",
+    poolTiming: "Night pool access",
+    accentText: "text-[#3f78b2]",
+    accentBg: "bg-[#eaf2fb]",
+    accentBorder: "border-[#3f78b2]",
+    checkBg: "bg-[#3f78b2]",
+    buttonHover: "hover:border-[#3f78b2] hover:bg-[#3f78b2] hover:text-white",
+    button: "outline",
+     },
+ 
+    {
+    Icon: CalendarDays,
+    title: "Non Weekend 24 hrs",
+    description: "24 Hours Full Experience",
+    price: "RS 100,000",
+    unit: "/ Day",
+    timing: "Flexible booking",
+    poolTiming: "24 Hours pool access",
+    accentText: "text-[#5f9270]",
+    accentBg: "bg-[#eaf2eb]",
+    accentBorder: "border-[#5f9270]",
+    checkBg: "bg-[#5f9270]",
+    buttonHover: "hover:border-[#5f9270] hover:bg-[#5f9270] hover:text-white",
+    button: "outline",
+  },
+  {
+    Icon: SunMedium,
+    title: "Non Weekend 12 hrs (Day)",
+    description: "12 Hours Day Experience",
+    price: "RS 65,000",
+    unit: "/ Day",
+    timing: "Day slot booking",
+    poolTiming: "Day pool access",
     accentText: "text-[#e6a334]",
     accentBg: "bg-[#fff4df]",
     accentBorder: "border-[#e6a334]",
@@ -49,35 +90,21 @@ const plans = [
     buttonHover:
       "hover:border-[#e6a334] hover:bg-[#e6a334] hover:text-[#06233a]",
     button: "solid",
-    popular: true,
-        notes: [
-      "Weekend & holiday rates may apply",
-      "Cold drinks available at canteen ",
-      "Outside cold drinks not allowed",
-      "Rates may change without prior notice",
-    ],
-  
   },
   {
-    Icon: CalendarDays,
-    title: " Night",
-    description: "12 Hours Complete Experience",
-    price: "RS 85,000",
-    unit: "/ 12 Hours",
-    timing: "08:00 PM - 04:00 PM",
-    poolTiming: "10:00 PM - 04:00 PM",
-    accentText: "text-[#3f78b2]",
+    Icon: Moon,
+    title: "Non Weekend 12 hrs (Night)",
+    description: "12 Hours Night Experience",
+    price: "RS 75,000",
+    unit: "/ Night",
+    timing: "Night slot booking",
+    poolTiming: "Night pool access",
+     accentText: "text-[#3f78b2]",
     accentBg: "bg-[#eaf2fb]",
     accentBorder: "border-[#3f78b2]",
     checkBg: "bg-[#3f78b2]",
     buttonHover: "hover:border-[#3f78b2] hover:bg-[#3f78b2] hover:text-white",
     button: "outline",
-  notes: [
-      "Maximum 50 persons allowed",
-      "Extra person: Rs. 1,000 per head",
-      "Balance 7 days before booking",
-      "Misuse may result in immediate vacation",
-    ],
   },
 ];
 
@@ -207,7 +234,7 @@ export default function Pricing() {
         </motion.div>
 
         <motion.div
-          className="relative z-10 mt-20 grid items-stretch gap-6 lg:grid-cols-3 lg:mt-40 lg:gap-8 xl:gap-10"
+          className="relative z-10 mt-20 grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3 lg:mt-40 lg:gap-8 xl:gap-10"
           variants={cardsContainer}
           initial={shouldReduceMotion ? false : "hidden"}
           whileInView={shouldReduceMotion ? undefined : "show"}
@@ -216,30 +243,13 @@ export default function Pricing() {
           {plans.map((plan) => (
             <motion.article
               key={plan.title}
-              className={`relative flex min-h-[760px] w-full flex-col rounded-[24px] border bg-white/48 px-7 pb-8 pt-8 text-left shadow-[0_22px_60px_rgba(6,35,58,.24),inset_0_1px_0_rgba(255,255,255,.8)] ring-1 ring-white/35 backdrop-blur-[18px] transition-shadow duration-300 hover:shadow-[0_26px_70px_rgba(6,35,58,.3),inset_0_1px_0_rgba(255,255,255,.9)] xl:px-8 ${
-                plan.popular
-                  ? "border-[#e6a334] md:-translate-y-6 lg:scale-[1.03]"
-                  : "border-white/55"
-              }`}
+              className="relative flex h-full min-h-[520px] w-full flex-col rounded-[24px] border border-white/55 bg-white/48 px-7 pb-8 pt-8 text-left shadow-[0_22px_60px_rgba(6,35,58,.24),inset_0_1px_0_rgba(255,255,255,.8)] ring-1 ring-white/35 backdrop-blur-[18px] transition-shadow duration-300 hover:shadow-[0_26px_70px_rgba(6,35,58,.3),inset_0_1px_0_rgba(255,255,255,.9)] xl:px-8"
               variants={cardReveal}
               whileHover={shouldReduceMotion ? undefined : { y: -8 }}
               transition={{ duration: 0.28, ease: "easeOut" }}
             >
-              {plan.popular ? (
-                <>
-                  {/* <div className="absolute inset-x-0 top-0 h-[3px] bg-[#e6a334]" /> */}
-
-                  <div className="absolute left-1/2 top-0 flex min-h-[58px] min-w-[220px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-b-[28px] rounded-t-none bg-[#e6a334] px-8 py-2 text-center shadow-[0_14px_30px_rgba(230,163,52,.35)]">
-                    <span className="text-[11px] font-black uppercase tracking-[0.18em] text-white/80">
-                      Most Popular
-                    </span>
-
-                  </div>
-                </>
-              ) : null}
-
               <motion.div
-                className="grid min-h-[96px] grid-cols-[76px_auto] items-center gap-4"
+                className="grid min-h-[96px] grid-cols-[76px_auto] items-center xl:gap-4"
                 variants={smoothReveal}
               >
                 <span
@@ -295,67 +305,11 @@ export default function Pricing() {
 
               <div className="mt-7 h-px bg-[#06233a]/10" />
 
-              <motion.div className="mt-7 space-y-5" variants={listContainer}>
-                <motion.div
-                  variants={listItemReveal}
-                  className="rounded-2xl bg-white/50 p-4 ring-1 ring-[#06233a]/8"
-                >
-                  <div className="flex items-center gap-2">
-                    <Clock className={`h-4 w-4 ${plan.accentText}`} />
-                    <p className="text-xs font-black uppercase tracking-[0.16em] text-[#5e6b75]">
-                      Farmhouse Timing
-                    </p>
-                  </div>
-                  <p className="mt-2 text-lg font-bold text-[#06233a]">
-                    {plan.timing}
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  variants={listItemReveal}
-                  className="rounded-2xl bg-white/50 p-4 ring-1 ring-[#06233a]/8"
-                >
-                  <div className="flex items-center gap-2">
-                    <Clock className={`h-4 w-4 ${plan.accentText}`} />
-                    <p className="text-xs font-black uppercase tracking-[0.16em] text-[#5e6b75]">
-                      Pool Timing
-                    </p>
-                  </div>
-                  <p className="mt-2 text-lg font-semibold text-[#06233a]">
-                    {plan.poolTiming}
-                  </p>
-                </motion.div>
-
-                <div className="h-px bg-[#06233a]/10" />
-
+              <motion.div className="mt-7" variants={listContainer}>
                 <motion.div variants={listItemReveal}>
-                  <div className="mb-4 flex items-center gap-2">
-                    <AlertTriangle className={`h-4 w-4 ${plan.accentText}`} />
-                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#5e6b75]">
-                      Important Notes
-                    </p>
-                  </div>
-
-                  <div className="space-y-3">
-                    {plan.notes.map((note) => (
-                      <motion.div
-                        key={note}
-                        className="flex items-start gap-3 text-sm font-semibold leading-6 text-[#2e3f4c]"
-                        variants={listItemReveal}
-                      >
-                        <span
-                          className={`mt-1 grid h-5 w-5 shrink-0 place-items-center rounded-full ${plan.checkBg}`}
-                        >
-                          <Check
-                            className="h-3.5 w-3.5 text-white"
-                            strokeWidth={3}
-                            aria-hidden="true"
-                          />
-                        </span>
-                        {note}
-                      </motion.div>
-                    ))}
-                  </div>
+                  <p className="text-sm font-semibold leading-6 text-[#4b5863]">
+                    Choose this package and book your farmhouse experience instantly.
+                  </p>
                 </motion.div>
               </motion.div>
             </motion.article>
