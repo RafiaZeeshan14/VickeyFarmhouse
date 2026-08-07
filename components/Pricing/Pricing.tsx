@@ -4,7 +4,6 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 import {
   AlertTriangle,
   CalendarDays,
-  Clock,
   Moon,
   ShieldCheck,
   SunMedium,
