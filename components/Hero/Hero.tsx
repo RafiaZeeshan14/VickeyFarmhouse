@@ -9,7 +9,6 @@ import {
 import SwimmingPoolImage from "@/public/swimmingpool.png";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useEffect, useRef } from "react";
 import Header from "../Header/Header";
 
 const heroBackground = {
@@ -31,32 +30,6 @@ const softReveal = createScaleReveal({
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-
-    if (!video) return;
-
-    video.muted = true;
-    video.defaultMuted = true;
-
-    const playVideo = () => {
-      void video.play().catch(() => undefined);
-    };
-
-    playVideo();
-    video.addEventListener("canplay", playVideo);
-    document.addEventListener("touchstart", playVideo, {
-      once: true,
-      passive: true,
-    });
-
-    return () => {
-      video.removeEventListener("canplay", playVideo);
-      document.removeEventListener("touchstart", playVideo);
-    };
-  }, []);
 
   return (
     <motion.section
@@ -68,13 +41,12 @@ export default function Hero() {
       transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
     >
       <video
-        ref={videoRef}
         className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[62%_center] md:object-[60%_center] lg:object-[center_42%]"
         autoPlay
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         poster={SwimmingPoolImage.src}
         aria-hidden="true"
         tabIndex={-1}

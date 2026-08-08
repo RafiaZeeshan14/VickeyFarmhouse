@@ -57,11 +57,12 @@ export default function VideoSection() {
           <video
             id="tour-video"
             className="absolute inset-0 h-full w-full object-cover"
-            src="/FarmVideo2.mp4"
+            src="/farmVideo2.mp4"
             poster={heroImage.src}
             muted
             loop
             playsInline
+            preload="metadata"
             autoPlay
           />
           <div className="absolute inset-0 bg-black/10" />
