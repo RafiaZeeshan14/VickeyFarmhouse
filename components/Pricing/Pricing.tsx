@@ -31,7 +31,7 @@ export default function Pricing() {
         backgroundImage: `linear-gradient(rgb(63 57 57 / 70%), rgba(173, 173, 162, 70%)), url('${pricingBackground.src}')`,
       }}
     >
-      <div className="mx-auto max-w-[1580px] rounded-xl bg-transparent px-4 py-14 sm:px-8 lg:px-10 lg:py-16">
+      <div className="mx-auto max-w-[1580px] rounded-xl bg-transparent py-14 sm:px-8 lg:px-10 lg:py-16">
         <motion.div
           className="relative mx-auto max-w-6xl text-center"
           variants={headingContainer}
@@ -63,7 +63,7 @@ export default function Pricing() {
         </motion.div>
 
         <motion.div
-          className="relative z-10 mt-20 grid items-stretch gap-6 md:grid-cols-2 lg:mt-40 lg:grid-cols-3 lg:gap-8 xl:gap-10"
+          className="relative z-10 mx-auto mt-14 grid w-full max-w-[480px] justify-items-center gap-6 md:mt-20 md:max-w-none md:grid-cols-2 md:items-stretch lg:mt-40 lg:grid-cols-3 lg:gap-8 xl:gap-10"
           variants={cardsContainer}
           initial={shouldReduceMotion ? false : "hidden"}
           whileInView={shouldReduceMotion ? undefined : "show"}
@@ -72,13 +72,13 @@ export default function Pricing() {
           {pricingPlans.map((plan) => (
             <motion.article
               key={plan.title}
-              className="relative flex h-full min-h-[520px] w-full flex-col rounded-[24px] border border-white/55 bg-white/48 px-7 pb-8 pt-8 text-left shadow-[0_22px_60px_rgba(6,35,58,.24),inset_0_1px_0_rgba(255,255,255,.8)] ring-1 ring-white/35 backdrop-blur-[18px] transition-shadow duration-300 hover:shadow-[0_26px_70px_rgba(6,35,58,.3),inset_0_1px_0_rgba(255,255,255,.9)] xl:px-8"
+              className="relative flex h-full min-h-[520px] w-full min-w-0 flex-col rounded-[24px] border border-white/55 bg-white/48 px-5 pb-8 pt-8 text-center shadow-[0_22px_60px_rgba(6,35,58,.24),inset_0_1px_0_rgba(255,255,255,.8)] ring-1 ring-white/35 backdrop-blur-[18px] transition-shadow duration-300 hover:shadow-[0_26px_70px_rgba(6,35,58,.3),inset_0_1px_0_rgba(255,255,255,.9)] sm:px-7 md:text-left xl:px-8"
               variants={cardReveal}
               whileHover={shouldReduceMotion ? undefined : { y: -8 }}
               transition={{ duration: 0.28, ease: "easeOut" }}
             >
               <motion.div
-                className="grid min-h-[96px] grid-cols-[76px_auto] items-center xl:gap-4"
+                className="flex min-h-[96px] min-w-0 flex-col items-center justify-center gap-4 md:grid md:grid-cols-[76px_minmax(0,1fr)] md:text-left xl:gap-4"
                 variants={smoothReveal}
               >
                 <span
@@ -90,7 +90,7 @@ export default function Pricing() {
                     aria-hidden="true"
                   />
                 </span>
-                <div>
+                <div className="min-w-0">
                   <h3
                     className={`text-[clamp(20px,1.55vw,28px)] font-black leading-tight ${plan.accentText}`}
                   >
@@ -104,10 +104,10 @@ export default function Pricing() {
 
               <div className="mt-7 h-px bg-[#06233a]/10" />
               <motion.div
-                className="mt-7 flex min-h-[64px] items-end gap-2 whitespace-nowrap"
+                className="mt-7 flex min-h-[64px] min-w-0 flex-wrap items-end justify-center gap-x-2 gap-y-1 md:flex-nowrap md:justify-start md:whitespace-nowrap"
                 variants={smoothReveal}
               >
-                <span className="text-[clamp(32px,3.15vw,56px)] font-bold leading-none text-[#06233a]">
+                <span className="text-[clamp(32px,10vw,48px)] font-bold leading-none text-[#06233a] md:text-[clamp(32px,3.15vw,56px)]">
                   {plan.price}
                 </span>
                 <span className="shrink-0 pb-1 text-sm font-bold text-[#5e6b75]">
@@ -131,7 +131,7 @@ export default function Pricing() {
               </motion.a>
 
               <div className="mt-7 h-px bg-[#06233a]/10" />
-              <motion.div className="mt-7" variants={listContainer}>
+              <motion.div className="mt-7 text-center md:text-left" variants={listContainer}>
                 <motion.div variants={listItemReveal}>
                   <p className="text-sm font-semibold leading-6 text-[#4b5863]">
                     Choose this package and book your farmhouse experience
@@ -144,25 +144,25 @@ export default function Pricing() {
         </motion.div>
 
         <motion.div
-          className="relative z-10 mx-auto mt-12 grid max-w-5xl gap-4 rounded-[24px] border border-white/45 bg-white/45 p-5 text-[#06233a] shadow-[0_18px_45px_rgba(6,35,58,.18)] ring-1 ring-white/35 backdrop-blur-[18px] sm:grid-cols-3 sm:p-6 lg:mt-16"
+          className="relative z-10 mx-auto mt-12 grid max-w-5xl gap-5 rounded-[24px] border border-white/45 bg-white/45 p-5 text-center text-[#06233a] shadow-[0_18px_45px_rgba(6,35,58,.18)] ring-1 ring-white/35 backdrop-blur-[18px] md:grid-cols-3 md:p-6 md:text-left lg:mt-16"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.75, ease: smoothEase }}
         >
-          <div className="flex gap-3">
+          <div className="flex flex-col items-center gap-2 md:flex-row md:items-start md:gap-3">
             <UsersRound className="mt-1 h-5 w-5 shrink-0 text-[#e6a334]" />
             <p className="text-sm font-semibold leading-6">
               Maximum 50 persons are allowed in standard booking.
             </p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col items-center gap-2 md:flex-row md:items-start md:gap-3">
             <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-[#e6a334]" />
             <p className="text-sm font-semibold leading-6">
               Security deposit is refundable after property inspection.
             </p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col items-center gap-2 md:flex-row md:items-start md:gap-3">
             <AlertTriangle className="mt-1 h-5 w-5 shrink-0 text-[#e6a334]" />
             <p className="text-sm font-semibold leading-6">
               Holidays and weekends may be charged at updated rates.
