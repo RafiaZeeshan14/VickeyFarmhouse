@@ -6,6 +6,8 @@ import {
   createStaggerContainer,
   easeOutExpo,
 } from "@/animations";
+import outdoorImage from "@/public/outdoorar.png";
+import swimmingPoolImage from "@/public/swimmingpool.png";
 import { motion, useReducedMotion } from "framer-motion";
 import { Bed, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
 import Image from "next/image";
@@ -115,8 +117,8 @@ export default function About() {
             <div className="h-36 overflow-hidden rounded bg-[#d7e6d6] sm:h-44 xl:h-52">
               <Image
                 className="h-full w-full object-cover object-[50%_28%]"
-                src="/hero.png"
-                alt="Green farmhouse garden pathway"
+                src={outdoorImage}
+                alt="Vicky Farmhouse outdoor lawn and rooms"
                 width={1600}
                 height={900}
               />
@@ -132,9 +134,9 @@ export default function About() {
           >
             <div className="h-40 overflow-hidden rounded bg-[#d7e6d6] sm:h-52 xl:h-60">
               <Image
-                className="h-full w-full object-cover object-[75%_58%]"
-                src="/hero.png"
-                alt="Farmhouse lawn with poolside seating"
+                className="h-full w-full object-cover object-[50%_58%]"
+                src={swimmingPoolImage}
+                alt="Vicky Farmhouse covered swimming pool"
                 width={1600}
                 height={900}
               />

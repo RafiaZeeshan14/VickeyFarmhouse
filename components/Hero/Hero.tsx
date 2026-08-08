@@ -6,6 +6,7 @@ import {
   createStaggerContainer,
   easeOutExpo,
 } from "@/animations";
+import SwimmingPoolImage from "@/public/swimmingpool.png";
 import { motion, useReducedMotion } from "framer-motion";
 import { House, Sprout, Waves } from "lucide-react";
 import Header from "../Header/Header";
@@ -32,12 +33,13 @@ const features = [
 ];
 
 const heroBackground = {
-  backgroundImage:
-    "linear-gradient(90deg, rgba(255,255,255,.86) 0%, rgba(255,255,255,.68) 30%, rgba(255,255,255,.24) 54%, rgba(255,255,255,.04) 78%, rgba(255,255,255,0) 100%), linear-gradient(180deg, rgba(255,255,255,.76) 0%, rgba(255,255,255,.24) 22%, rgba(255,255,255,0) 48%), url('/hero.png')",
+  backgroundImage: `linear-gradient(90deg, rgba(255,255,255,.74) 0%, rgba(255,255,255,.56) 30%, rgba(255,255,255,.18) 54%, rgba(255,255,255,.03) 78%, rgba(255,255,255,0) 100%), linear-gradient(180deg, rgba(255,255,255,.62) 0%, rgba(255,255,255,.18) 22%, rgba(255,255,255,0) 48%), url('${SwimmingPoolImage.src}')`,
 };
 
-const descriptionText =
-  "Your perfect picnic & event destination surrounded by nature and comfort.";
+const descriptionLines = [
+  "Your perfect picnic & event destination",
+  "surrounded by nature and comfort.",
+];
 
 const containerVariants = createStaggerContainer(0.16, 0.35);
 const featureContainer = createStaggerContainer(0.12, 0.15);
@@ -54,14 +56,14 @@ export default function Hero() {
   return (
     <motion.section
       id="#"
-      className="scroll-mt-28 relative min-h-[820px] overflow-hidden bg-cover bg-[68%_center] pb-24 sm:min-h-[840px] md:min-h-[860px] md:bg-[66%_center] lg:min-h-[max(100vh,900px)] lg:bg-center lg:pb-28"
+      className="scroll-mt-28 relative min-h-[820px] overflow-hidden bg-cover bg-[68%_center] pb-24 sm:min-h-[840px] md:min-h-[860px] md:bg-[66%_center] lg:min-h-[max(100vh,900px)] lg:bg-[center_42%] lg:pb-28"
       style={heroBackground}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
     >
       <motion.div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_12%_48%,rgba(255,255,255,.9)_0%,rgba(255,255,255,.66)_28%,rgba(255,255,255,.26)_48%,rgba(255,255,255,0)_72%)] sm:bg-[radial-gradient(ellipse_at_16%_48%,rgba(255,255,255,.9)_0%,rgba(255,255,255,.68)_30%,rgba(255,255,255,.28)_50%,rgba(255,255,255,0)_74%)] lg:bg-[radial-gradient(ellipse_at_19%_46%,rgba(255,255,255,.86)_0%,rgba(255,255,255,.62)_27%,rgba(255,255,255,.32)_44%,rgba(255,255,255,.08)_64%,rgba(255,255,255,0)_78%)] xl:bg-[radial-gradient(ellipse_at_19%_46%,rgba(255,255,255,.84)_0%,rgba(255,255,255,.58)_27%,rgba(255,255,255,.3)_44%,rgba(255,255,255,.08)_64%,rgba(255,255,255,0)_78%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_12%_48%,rgba(255,255,255,.8)_0%,rgba(255,255,255,.55)_28%,rgba(255,255,255,.2)_48%,rgba(255,255,255,0)_72%)] sm:bg-[radial-gradient(ellipse_at_16%_48%,rgba(255,255,255,.8)_0%,rgba(255,255,255,.56)_30%,rgba(255,255,255,.21)_50%,rgba(255,255,255,0)_74%)] lg:bg-[radial-gradient(ellipse_at_19%_46%,rgba(255,255,255,.74)_0%,rgba(255,255,255,.5)_27%,rgba(255,255,255,.24)_44%,rgba(255,255,255,.05)_64%,rgba(255,255,255,0)_78%)] xl:bg-[radial-gradient(ellipse_at_19%_46%,rgba(255,255,255,.72)_0%,rgba(255,255,255,.47)_27%,rgba(255,255,255,.22)_44%,rgba(255,255,255,.05)_64%,rgba(255,255,255,0)_78%)]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 0.35 }}
@@ -117,11 +119,15 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            className="mt-5 flex max-w-[400px] items-start gap-3 rounded-[22px] border border-white/70 bg-white/55 p-4 text-[14px] font-medium leading-[1.5] text-[#17334a] shadow-[0_14px_34px_rgba(6,35,58,.13),inset_0_1px_0_rgba(255,255,255,.85)] ring-1 ring-white/35 backdrop-blur-[16px] sm:max-w-[500px] sm:gap-3.5 sm:rounded-[24px] sm:p-5 sm:text-[15px] md:max-w-[540px] md:text-[17px] lg:mt-8 lg:flex lg:max-w-[700px] lg:items-start lg:gap-3 lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:text-[clamp(15px,1.4vw,18px)] lg:font-semibold lg:shadow-none lg:ring-0 lg:backdrop-blur-0 xl:mt-9 xl:text-lg"
+            className="mt-5 max-w-[700px] text-[13px] font-medium leading-[1.5] text-[#17334a] sm:text-[15px] md:text-[17px] lg:mt-8 lg:text-[clamp(15px,1.4vw,18px)] lg:font-semibold xl:mt-9 xl:text-lg"
             variants={softReveal}
           >
             <span className="font-medium font-['Brush_Script_MT','Segoe_Script',cursive] lg:italic">
-              {descriptionText}
+              {descriptionLines.map((line) => (
+                <span key={line} className="block whitespace-nowrap">
+                  {line}
+                </span>
+              ))}
             </span>
           </motion.p>
 

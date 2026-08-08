@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
+import logoImage from "@/public/vlogo.png";
 import "../styles/globals.css";
 
 const poppins = Poppins({
@@ -12,9 +13,9 @@ export const metadata: Metadata = {
   title: "Vicky Farmhouse",
   description: "A perfect picnic and event destination surrounded by nature.",
   icons: {
-    icon: "/vlogo.png",
-    shortcut: "/vlogo.png",
-    apple: "/vlogo.png",
+    icon: logoImage.src,
+    shortcut: logoImage.src,
+    apple: logoImage.src,
   },
 };
 

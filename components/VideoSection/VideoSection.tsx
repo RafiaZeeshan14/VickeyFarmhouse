@@ -1,6 +1,7 @@
 "use client";
 
 import { createFadeUp, createStaggerContainer } from "@/animations";
+import heroImage from "@/public/hero.png";
 import { motion, useReducedMotion } from "framer-motion";
 
 const textContainer = createStaggerContainer(0.14, 0.15);
@@ -57,7 +58,7 @@ export default function VideoSection() {
             id="tour-video"
             className="h-full w-full object-cover"
             src="/video.mp4"
-            poster="/hero.png"
+            poster={heroImage.src}
             muted
             loop
             playsInline

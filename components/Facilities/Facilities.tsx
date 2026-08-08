@@ -118,11 +118,23 @@ export default function Facilities() {
                   }}
                   transition={{ duration: 0.75, ease: smoothEase }}
                 >
+                  {facility.showFullImage ? (
+                    <Image
+                      src={facility.image}
+                      alt=""
+                      fill
+                      aria-hidden="true"
+                      className="scale-110 object-cover opacity-60 blur-xl"
+                      sizes="(min-width: 1280px) 600px, (min-width: 1024px) 520px, 82vw"
+                    />
+                  ) : null}
                   <Image
                     src={facility.image}
                     alt={facility.title}
                     fill
-                    className="object-cover"
+                    className={
+                      facility.showFullImage ? "object-contain" : "object-cover"
+                    }
                     sizes="(min-width: 1280px) 600px, (min-width: 1024px) 520px, 82vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#06233a]/95 via-[#06233a]/35 to-transparent" />

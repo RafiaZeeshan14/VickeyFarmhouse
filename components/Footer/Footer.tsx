@@ -7,6 +7,7 @@ import {
   smoothEase,
 } from "@/animations";
 import { footerLinks, siteContact } from "@/lib/site";
+import logoImage from "@/public/vlogo.png";
 import { motion, useReducedMotion } from "framer-motion";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
@@ -58,7 +59,7 @@ export default function Footer() {
           >
             <Image
               className="absolute left-1/2 top-1/2 h-[440px] w-[440px] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain"
-              src="/vlogo.png"
+              src={logoImage}
               alt="Vicky Farmhouse"
               width={2000}
               height={2000}

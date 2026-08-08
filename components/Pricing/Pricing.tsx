@@ -8,6 +8,7 @@ import {
 } from "@/animations";
 import { pricingPlans } from "@/data/pricing";
 import { siteContact } from "@/lib/site";
+import pricingBackground from "@/public/outdoorar.png";
 import { motion, useReducedMotion } from "framer-motion";
 import { AlertTriangle, ShieldCheck, UsersRound } from "lucide-react";
 
@@ -27,8 +28,7 @@ export default function Pricing() {
       id="pricing"
       className="scroll-mt-28 relative overflow-hidden bg-cover bg-center bg-fixed px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-20"
       style={{
-        backgroundImage:
-          "linear-gradient(rgb(63 57 57 / 70%), rgba(173, 173, 162, 70%)), url(/villa6.jpg)",
+        backgroundImage: `linear-gradient(rgb(63 57 57 / 70%), rgba(173, 173, 162, 70%)), url('${pricingBackground.src}')`,
       }}
     >
       <div className="mx-auto max-w-[1580px] rounded-xl bg-transparent px-4 py-14 sm:px-8 lg:px-10 lg:py-16">

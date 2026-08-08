@@ -94,7 +94,7 @@ export default function Gallery() {
 
                 return (
                   <motion.div
-                    key={image.src}
+                    key={image.src.src}
                     className="absolute cursor-grab overflow-hidden rounded-[28px] bg-white shadow-[0_28px_80px_rgba(6,35,58,.22)] ring-1 ring-white/70 active:cursor-grabbing"
                     animate={{
                       x: offset * 210,

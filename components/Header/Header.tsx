@@ -1,6 +1,7 @@
 "use client";
 
 import { navigationLinks, siteContact } from "@/lib/site";
+import logoImage from "@/public/vlogo.png";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
@@ -26,7 +27,7 @@ export default function Header() {
       >
         <Image
           className="absolute left-1/2 top-[60%] h-[330px] w-[330px] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain sm:h-[380px] sm:w-[380px] md:h-[430px] md:w-[430px] lg:top-[62%] lg:h-[480px] lg:w-[480px]"
-          src="/vlogo.png"
+          src={logoImage}
           alt="Vicky Farmhouse"
           width={2000}
           height={2000}
