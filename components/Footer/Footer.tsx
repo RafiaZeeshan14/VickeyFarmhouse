@@ -1,7 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import {
+  createFadeUp,
+  createStaggerContainer,
+  smoothEase,
+} from "@/animations";
+import { motion, useReducedMotion } from "framer-motion";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 const whatsappLink =
@@ -59,35 +64,9 @@ const socialLinks = [
   },
 ];
 
-const smoothEase = [0.25, 1, 0.5, 1] as const;
-
-const footerContainer: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.12,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: smoothEase },
-  },
-};
-
-const smallFade: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, ease: smoothEase },
-  },
-};
+const footerContainer = createStaggerContainer(0.12, 0.12);
+const fadeUp = createFadeUp();
+const smallFade = createFadeUp({ distance: 14, duration: 0.55 });
 
 export default function Footer() {
   const shouldReduceMotion = useReducedMotion();

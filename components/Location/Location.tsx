@@ -1,6 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import {
+  createFadeUp,
+  createScaleReveal,
+  createStaggerContainer,
+} from "@/animations";
+import { motion, useReducedMotion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 const contactDetails = [
@@ -18,36 +23,9 @@ const contactDetails = [
   },
 ];
 
-const smoothEase = [0.25, 1, 0.5, 1] as const;
-
-const containerVariants: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.12,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: smoothEase },
-  },
-};
-
-const mapReveal: Variants = {
-  hidden: { opacity: 0, scale: 0.98, x: 28 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    x: 0,
-    transition: { duration: 0.85, ease: smoothEase },
-  },
-};
+const containerVariants = createStaggerContainer(0.12, 0.12);
+const fadeUp = createFadeUp();
+const mapReveal = createScaleReveal({ x: 28, duration: 0.85 });
 
 export default function Location() {
   const shouldReduceMotion = useReducedMotion();

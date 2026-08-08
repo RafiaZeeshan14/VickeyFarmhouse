@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { createFadeUp, smoothEase } from "@/animations";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   BedDouble,
   CarFront,
@@ -119,16 +120,7 @@ const facilities = [
   },
 ];
 
-const smoothEase = [0.25, 1, 0.5, 1] as const;
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.75, ease: smoothEase },
-  },
-};
+const fadeUp = createFadeUp({ duration: 0.75 });
 
 export default function Facilities() {
   const [active, setActive] = useState(0);

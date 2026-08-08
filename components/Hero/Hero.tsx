@@ -1,6 +1,12 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import {
+  createFadeUp,
+  createScaleReveal,
+  createStaggerContainer,
+  easeOutExpo,
+} from "@/animations";
+import { motion, useReducedMotion } from "framer-motion";
 import { House, Sprout, Waves } from "lucide-react";
 import Header from "../Header/Header";
 
@@ -33,53 +39,22 @@ const heroBackground = {
 const descriptionText =
   "Your perfect picnic & event destination surrounded by nature and comfort.";
 
-const easeOutExpo = [0.16, 1, 0.3, 1] as const;
-
-const containerVariants: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.16,
-      delayChildren: 0.35,
-    },
-  },
-};
-
-const featureContainer: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: easeOutExpo },
-  },
-};
-
-const softReveal: Variants = {
-  hidden: { opacity: 0, scale: 0.98, y: 18 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.72, ease: easeOutExpo },
-  },
-};
+const containerVariants = createStaggerContainer(0.16, 0.35);
+const featureContainer = createStaggerContainer(0.12, 0.15);
+const fadeUp = createFadeUp({ duration: 0.65, ease: easeOutExpo });
+const softReveal = createScaleReveal({
+  y: 18,
+  duration: 0.72,
+  ease: easeOutExpo,
+});
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <motion.section id="#"
-      className="scroll-mt-28 relative min-h-[820px] overflow-hidden bg-cover bg-[68%_center] sm:min-h-[840px] md:min-h-[860px] md:bg-[66%_center] lg:min-h-screen lg:bg-center"
+    <motion.section
+      id="#"
+      className="scroll-mt-28 relative min-h-[820px] overflow-hidden bg-cover bg-[68%_center] pb-24 sm:min-h-[840px] md:min-h-[860px] md:bg-[66%_center] lg:min-h-[max(100vh,900px)] lg:bg-center lg:pb-28"
       style={heroBackground}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

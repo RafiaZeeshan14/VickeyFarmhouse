@@ -1,30 +1,10 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { createFadeUp, createStaggerContainer } from "@/animations";
+import { motion, useReducedMotion } from "framer-motion";
 
-const smoothEase = [0.25, 1, 0.5, 1] as const;
-
-const textContainer: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.14,
-      delayChildren: 0.15,
-    },
-  },
-};
-
-const textReveal: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.75,
-      ease: smoothEase,
-    },
-  },
-};
+const textContainer = createStaggerContainer(0.14, 0.15);
+const textReveal = createFadeUp({ duration: 0.75 });
 
 export default function VideoSection() {
   const shouldReduceMotion = useReducedMotion();

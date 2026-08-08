@@ -1,6 +1,12 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import {
+  createFadeUp,
+  createScaleReveal,
+  createStaggerContainer,
+  easeOutExpo,
+} from "@/animations";
+import { motion, useReducedMotion } from "framer-motion";
 import { Bed, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
 
 const aboutFeatures = [
@@ -26,48 +32,26 @@ const aboutFeatures = [
   },
 ];
 
-const easeOutExpo = [0.16, 1, 0.3, 1] as const;
-
-const containerVariants: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.14,
-      delayChildren: 0.18,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 26 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: easeOutExpo },
-  },
-};
-
-const imageFloatLeft: Variants = {
-  hidden: { opacity: 0, x: -36, y: 20, scale: 0.96 },
-  show: {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.85, ease: easeOutExpo },
-  },
-};
-
-const imageFloatRight: Variants = {
-  hidden: { opacity: 0, x: 36, y: 20, scale: 0.96 },
-  show: {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.85, ease: easeOutExpo },
-  },
-};
+const containerVariants = createStaggerContainer(0.14, 0.18);
+const fadeUp = createFadeUp({
+  distance: 26,
+  duration: 0.65,
+  ease: easeOutExpo,
+});
+const imageFloatLeft = createScaleReveal({
+  initialScale: 0.96,
+  x: -36,
+  y: 20,
+  duration: 0.85,
+  ease: easeOutExpo,
+});
+const imageFloatRight = createScaleReveal({
+  initialScale: 0.96,
+  x: 36,
+  y: 20,
+  duration: 0.85,
+  ease: easeOutExpo,
+});
 
 export default function About() {
   const shouldReduceMotion = useReducedMotion();

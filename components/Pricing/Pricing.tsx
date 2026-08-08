@@ -1,6 +1,12 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import {
+  createFadeUp,
+  createSlideReveal,
+  createStaggerContainer,
+  smoothEase,
+} from "@/animations";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   AlertTriangle,
   CalendarDays,
@@ -107,85 +113,13 @@ const plans = [
   },
 ];
 
-const smoothEase = [0.25, 1, 0.5, 1] as const;
-
-const headingContainer: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.08,
-    },
-  },
-};
-
-const cardsContainer: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.14,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const smoothReveal: Variants = {
-  hidden: { opacity: 0, y: 22 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.75,
-      ease: smoothEase,
-    },
-  },
-};
-
-const bgTextReveal: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.9,
-      ease: smoothEase,
-    },
-  },
-};
-
-const cardReveal: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.82,
-      ease: smoothEase,
-    },
-  },
-};
-
-const listContainer: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.045,
-      delayChildren: 0.12,
-    },
-  },
-};
-
-const listItemReveal: Variants = {
-  hidden: { opacity: 0, x: -10 },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.45,
-      ease: smoothEase,
-    },
-  },
-};
+const headingContainer = createStaggerContainer(0.12, 0.08);
+const cardsContainer = createStaggerContainer(0.14, 0.2);
+const smoothReveal = createFadeUp({ distance: 22, duration: 0.75 });
+const bgTextReveal = createFadeUp({ distance: 18, duration: 0.9 });
+const cardReveal = createFadeUp({ distance: 30, duration: 0.82 });
+const listContainer = createStaggerContainer(0.045, 0.12);
+const listItemReveal = createSlideReveal({ x: -10, duration: 0.45 });
 
 export default function Pricing() {
   const shouldReduceMotion = useReducedMotion();

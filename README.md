@@ -54,6 +54,7 @@ This project currently requires no environment variables.
 
 ```text
 app/                 Next.js layout and homepage
+animations/          Reusable Framer Motion animation variants
 components/          Page sections and interactive UI
 public/              Images, logo, and promotional video
 styles/              Global CSS

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { createFadeUp, createStaggerContainer } from "@/animations";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   CalendarCheck,
   Clock,
@@ -55,26 +56,8 @@ const terms = [
   },
 ];
 
-const smoothEase = [0.25, 1, 0.5, 1] as const;
-
-const containerVariants: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.09,
-      delayChildren: 0.15,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 26 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: smoothEase },
-  },
-};
+const containerVariants = createStaggerContainer(0.09, 0.15);
+const fadeUp = createFadeUp({ distance: 26 });
 
 export default function TermsConditions() {
   const shouldReduceMotion = useReducedMotion();
