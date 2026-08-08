@@ -1,189 +1,82 @@
-# Vickey Farmhouse - Landing Page
+# Vicky Farmhouse
 
-A modern, responsive landing page built with **Next.js 14**, **React 18**, **TypeScript**, and **Tailwind CSS**.
+A responsive single-page website for Vicky Farmhouse in Gadap Town, Karachi. It presents the venue, facilities, booking packages, gallery, rules, location, and direct WhatsApp booking options.
 
-## Features
+## Tech stack
 
-- ✅ **Modern Design**: Clean and professional landing page layout
-- ✅ **Fully Responsive**: Mobile-first responsive design
-- ✅ **TypeScript Support**: Type-safe development
-- ✅ **Tailwind CSS**: Utility-first CSS framework
-- ✅ **Optimized Performance**: Next.js optimizations built-in
-- ✅ **SEO Ready**: Proper metadata and structured markup
-- ✅ **ESLint Configured**: Code quality tools included
+- Next.js 16 with the App Router
+- React 19 and TypeScript
+- Tailwind CSS 4
+- Framer Motion for animations
+- Lucide React for icons
 
-## Project Structure
+## Main sections
 
-```
-VickeyFarmhouse/
-├── app/                      # Next.js app directory
-│   ├── layout.tsx           # Root layout
-│   ├── page.tsx             # Home page
-│   └── globals.css          # Global styles
-├── components/              # Reusable React components
-│   ├── Header/              # Header component
-│   ├── Hero/                # Hero section component
-│   └── Footer/              # Footer component
-├── public/                  # Static assets
-├── styles/                  # Global stylesheet
-├── next.config.js          # Next.js configuration
-├── tailwind.config.js      # Tailwind CSS configuration
-├── tsconfig.json           # TypeScript configuration
-└── postcss.config.js       # PostCSS configuration
-```
+The homepage is assembled in `app/page.tsx` from components in `components/`:
 
-## Getting Started
+- Header and hero
+- About and promotional video
+- Facilities and pricing packages
+- Image gallery
+- Terms and conditions
+- Location, contact details, and footer
 
-### Prerequisites
+Static images and the promotional video are stored in `public/`. Global styles live in `styles/globals.css`.
 
-- **Node.js**: v16.8 or later
-- **npm** or **yarn** package manager
+## Local setup
 
-### Installation
+### Requirements
 
-1. **Install dependencies**:
+- Node.js 20.9 or newer
+- npm
+
+### Install and run
+
 ```bash
 npm install
-```
-
-2. **Run development server**:
-```bash
 npm run dev
 ```
 
-3. **Open in browser**:
-Visit [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000).
 
-## Available Scripts
+This project currently requires no environment variables.
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm start` | Start production server |
-| `npm run lint` | Run ESLint |
+## Commands
 
-## Customization
+| Command Purpose |
+| --- | --- |
+| `npm run dev` | Start the local development server |
+| `npm run lint` | Check the code with ESLint |
+| `npm run build` | Create an optimized production build |
+| `npm start` | Run the production build |
 
-### Colors
-Edit `tailwind.config.js` to customize colors and theme:
-```js
-theme: {
-  extend: {
-    colors: {
-      primary: '#1f2937',
-      secondary: '#059669',
-    },
-  },
-}
+## Project structure
+
+```text
+app/                 Next.js layout and homepage
+components/          Page sections and interactive UI
+public/              Images, logo, and promotional video
+styles/              Global CSS
+next.config.js       Next.js configuration
+postcss.config.js    Tailwind/PostCSS configuration
+eslint.config.mjs    ESLint configuration
+tailwind.config.js   Tailwind theme configuration
+tsconfig.json        TypeScript configuration
 ```
 
-### Components
-- **Header**: Located in `components/Header/Header.tsx`
-- **Hero Section**: Located in `components/Hero/Hero.tsx`
-- **Footer**: Located in `components/Footer/Footer.tsx`
+## Updating content
 
-Edit these files to customize content and styling.
+- Change section text and links inside the relevant file in `components/`.
+- Update packages and prices in `components/Pricing/Pricing.tsx`.
+- Update contact details in `components/Location/Location.tsx` and `components/Footer/Footer.tsx`.
+- Add or replace media in `public/`, then update its `/filename.ext` reference in the component.
+- Update page title, description, and icons in `app/layout.tsx`.
 
-### Global Styles
-All global styles are in `styles/globals.css`. Custom utility classes are already defined.
+## Production
 
-## Components Overview
-
-### Header Component
-- Responsive navigation menu
-- Mobile hamburger menu
-- CTA button
-- Sticky positioning
-
-### Hero Component
-- Eye-catching headline
-- Feature cards
-- Call-to-action buttons
-- Gradient background
-
-### Footer Component
-- Multiple columns layout
-- Quick links
-- Contact information
-- Copyright notice
-
-## Deployment
-
-### Deploy to Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Visit [vercel.com](https://vercel.com)
-3. Import your repository
-4. Click Deploy
-
-### Deploy to Other Platforms
-
-The project can be deployed to any platform supporting Node.js:
-- Netlify
-- AWS Amplify
-- DigitalOcean
-- Heroku
-- etc.
-
-Build command: `npm run build`
-Start command: `npm start`
-
-## Environment Variables
-
-Create a `.env.local` file in the root directory (if needed):
-
-```env
-# Example variables
-NEXT_PUBLIC_API_URL=https://api.example.com
+```bash
+npm run build
+npm start
 ```
 
-## Technologies Used
-
-- **Next.js 14** - React framework
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **ESLint** - Code quality
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## Performance
-
-- Optimized images
-- Code splitting
-- CSS optimization
-- Bundle analysis ready
-
-## Best Practices
-
-- ✅ Clean, readable code
-- ✅ Component-based architecture
-- ✅ Type-safe with TypeScript
-- ✅ Responsive design
-- ✅ Accessibility considerations
-- ✅ SEO optimized
-
-## Learn More
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [React Documentation](https://react.dev)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [TypeScript Documentation](https://www.typescriptlang.org/docs)
-
-## License
-
-This project is licensed under the MIT License.
-
-## Support
-
-For issues or questions, please create an issue or contact support.
-
----
-
-**Happy coding! 🚀**
+The site can also be deployed to any hosting platform that supports Next.js, such as Vercel.

@@ -8,14 +8,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint app components"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.0",
     "@types/node": "^25.9.1",
     "@types/react": "^19.2.16",
     "autoprefixer": "^10.5.0",
-    "eslint": "^10.4.1",
+    "eslint": "^9.0.0",
     "eslint-config-next": "^16.2.7",
     "next": "^16.2.7",
     "postcss": "^8.5.15",
