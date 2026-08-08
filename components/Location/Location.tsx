@@ -5,21 +5,22 @@ import {
   createScaleReveal,
   createStaggerContainer,
 } from "@/animations";
+import { siteContact } from "@/lib/site";
 import { motion, useReducedMotion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 const contactDetails = [
   {
     Icon: MapPin,
-    text: "358R+X3V, A Rehman Gabol Goth Gadap Town, Karachi",
+    text: siteContact.address,
   },
   {
     Icon: Phone,
-    text: "+92 3712108053",
+    text: siteContact.phone,
   },
   {
     Icon: Mail,
-    text: "Vickyfarmhouse@gmail.com",
+    text: siteContact.email,
   },
 ];
 
@@ -103,7 +104,7 @@ export default function Location() {
           <iframe
             className="h-full min-h-[360px] w-full border-0 lg:min-h-[480px]"
             title="Vicky Farmhouse map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.0128470269665!2d67.1894532!3d25.0675537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34f006e3045f5%3A0xbef464f04a192b17!2sVicky%E2%80%99s%20Farmhouse%20Gadap!5e0!3m2!1sen!2s!4v1780569888939!5m2!1sen!2s"
+            src={siteContact.mapEmbed}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />

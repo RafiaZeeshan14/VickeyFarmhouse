@@ -8,6 +8,7 @@ import {
 } from "@/animations";
 import { motion, useReducedMotion } from "framer-motion";
 import { Bed, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
+import Image from "next/image";
 
 const aboutFeatures = [
   {
@@ -63,7 +64,6 @@ export default function About() {
     >
       <div className="pointer-events-none absolute -top-12 left-0 right-0 h-20 bg-[#fbfaf7]" />
 
-      {/* Premium Gradient Glow */}
       <div className="pointer-events-none absolute -right-28 top-10 h-96 w-96 rounded-full bg-[#e6a334]/18 blur-3xl" />
       <div className="pointer-events-none absolute -left-28 bottom-10 h-96 w-96 rounded-full bg-[#e6a334]/16 blur-3xl" />
 
@@ -113,10 +113,12 @@ export default function About() {
             }
           >
             <div className="h-36 overflow-hidden rounded bg-[#d7e6d6] sm:h-44 xl:h-52">
-              <img
+              <Image
                 className="h-full w-full object-cover object-[50%_28%]"
                 src="/hero.png"
                 alt="Green farmhouse garden pathway"
+                width={1600}
+                height={900}
               />
             </div>
           </motion.div>
@@ -129,10 +131,12 @@ export default function About() {
             }
           >
             <div className="h-40 overflow-hidden rounded bg-[#d7e6d6] sm:h-52 xl:h-60">
-              <img
+              <Image
                 className="h-full w-full object-cover object-[75%_58%]"
                 src="/hero.png"
                 alt="Farmhouse lawn with poolside seating"
+                width={1600}
+                height={900}
               />
             </div>
           </motion.div>

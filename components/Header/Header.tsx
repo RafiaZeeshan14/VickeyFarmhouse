@@ -1,20 +1,10 @@
 "use client";
 
+import { navigationLinks, siteContact } from "@/lib/site";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { CalendarCheck, Menu, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-
-const navItems = [
-  { label: "Home", href: "#" },
-  { label: "About Us", href: "#aboutus" },
-  { label: "Facilities", href: "#facilities" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Location", href: "#location" },
-   { label: "Terms & Conditions", href: "#terms" },
-  { label: "Contact", href: "#contact" },
-];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,12 +59,11 @@ export default function Header() {
 
         <motion.a
           className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#06233a] px-4 text-[11px] font-bold uppercase text-white shadow-[0_12px_22px_rgba(6,35,58,.2)] transition-colors hover:bg-[#e6a334] hover:text-[#06233a] sm:px-5"
-            href="https://wa.me/923712108053?text=Hello%20I%20want%20to%20book%20Vicky%20Farmhouse"
-            target="_blank"
-            rel="noopener noreferrer"
+          href={siteContact.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.97 }}
-          
         >
           Book Now
         </motion.a>
@@ -84,7 +73,7 @@ export default function Header() {
         className="hidden flex-1 items-center justify-center gap-5 lg:flex xl:gap-10"
         aria-label="Primary navigation"
       >
-        {navItems.map((item, index) => (
+        {navigationLinks.map((item, index) => (
           <motion.a
             key={item.label}
             className={`relative py-2.5 text-[11px] font-semibold uppercase tracking-normal transition-colors hover:text-[#e6a334] xl:text-sm ${
@@ -95,7 +84,11 @@ export default function Header() {
             href={item.href}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.55 + index * 0.07, ease: "easeOut" }}
+            transition={{
+              duration: 0.5,
+              delay: 0.55 + index * 0.07,
+              ease: "easeOut",
+            }}
             whileHover={{ y: -2 }}
           >
             {item.label}
@@ -127,7 +120,7 @@ export default function Header() {
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <nav className="grid gap-1 p-4" aria-label="Mobile navigation">
-              {navItems.map((item, index) => (
+              {navigationLinks.map((item, index) => (
                 <motion.a
                   key={item.label}
                   className={`rounded-2xl px-4 py-3 text-sm font-black uppercase tracking-normal transition-colors hover:bg-[#fff5e1] hover:text-[#e6a334] ${
@@ -144,7 +137,6 @@ export default function Header() {
                   {item.label}
                 </motion.a>
               ))}
-           
             </nav>
           </motion.div>
         ) : null}

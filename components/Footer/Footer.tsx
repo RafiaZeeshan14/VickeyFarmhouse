@@ -6,61 +6,28 @@ import {
   createStaggerContainer,
   smoothEase,
 } from "@/animations";
+import { footerLinks, siteContact } from "@/lib/site";
 import { motion, useReducedMotion } from "framer-motion";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-
-const whatsappLink =
-  "https://wa.me/923712108053?text=Hello%20I%20want%20to%20book%20Vicky%20Farmhouse";
-
-const quickLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About Us", href: "#aboutus" },
-  { label: "Facilities", href: "#facilities" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Location", href: "#location" },
-  { label: "Contact Us", href: "#contact" },
-];
 
 const socialLinks = [
   {
     label: "Facebook",
     href: "https://facebook.com/",
     color: "hover:bg-[#1877f2]",
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
-        <path
-          fill="currentColor"
-          d="M14.2 8.6V7.1c0-.7.5-.9.8-.9h2V3h-2.8c-3.1 0-3.8 2.3-3.8 3.8v1.8H8v3.5h2.4V21h3.8v-8.9h2.6l.4-3.5h-3Z"
-        />
-      </svg>
-    ),
+    path: "M14.2 8.6V7.1c0-.7.5-.9.8-.9h2V3h-2.8c-3.1 0-3.8 2.3-3.8 3.8v1.8H8v3.5h2.4V21h3.8v-8.9h2.6l.4-3.5h-3Z",
   },
   {
     label: "Instagram",
     href: "https://instagram.com/",
     color: "hover:bg-[#e1306c]",
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
-        <path
-          fill="currentColor"
-          d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm8.9 2.1a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4ZM12 7.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Zm0 2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z"
-        />
-      </svg>
-    ),
+    path: "M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm8.9 2.1a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4ZM12 7.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Zm0 2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z",
   },
   {
     label: "WhatsApp",
-    href: whatsappLink,
+    href: siteContact.whatsapp,
     color: "hover:bg-[#25d366]",
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
-        <path
-          fill="currentColor"
-          d="M12 2a9.8 9.8 0 0 0-8.4 14.9L2.4 22l5.2-1.2A9.8 9.8 0 1 0 12 2Zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.7.7-3-.2-.3A8 8 0 1 1 12 19.8Zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.2-.3.2-.6.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.1 1.6.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1 0-.2-.2-.3-.4-.4Z"
-        />
-      </svg>
-    ),
+    path: "M12 2a9.8 9.8 0 0 0-8.4 14.9L2.4 22l5.2-1.2A9.8 9.8 0 1 0 12 2Zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.7.7-3-.2-.3A8 8 0 1 1 12 19.8Zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.2-.3.2-.6.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.1 1.6.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1 0-.2-.2-.3-.4-.4Z",
   },
 ];
 
@@ -111,7 +78,7 @@ export default function Footer() {
           <h3 className="text-base font-bold uppercase">Quick Links</h3>
 
           <motion.nav className="mt-5 grid gap-2.5" variants={footerContainer}>
-            {quickLinks.map((link) => (
+            {footerLinks.map((link) => (
               <motion.a
                 key={link.label}
                 variants={smallFade}
@@ -139,7 +106,7 @@ export default function Footer() {
                 <MapPin className="h-4 w-4" strokeWidth={2.4} />
               </span>
               <span className="text-sm font-normal leading-6 text-white/80">
-                358R+X3V, A Rehman Gabol Goth Gadap Town, Karachi
+                {siteContact.address}
               </span>
             </motion.div>
 
@@ -152,9 +119,9 @@ export default function Footer() {
               </span>
               <a
                 className="text-sm font-normal text-white/80 transition-colors hover:text-[#e6a334]"
-                href="tel:+923712108053"
+                href={siteContact.phoneHref}
               >
-                +92 3712108053
+                {siteContact.phone}
               </a>
             </motion.div>
 
@@ -167,9 +134,9 @@ export default function Footer() {
               </span>
               <a
                 className="text-sm font-normal text-white/80 transition-colors hover:text-[#e6a334]"
-                href="mailto:Vickyfarmhouse@gmail.com"
+                href={siteContact.emailHref}
               >
-                Vickyfarmhouse@gmail.com
+                {siteContact.email}
               </a>
             </motion.div>
           </motion.div>
@@ -189,7 +156,13 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label={social.label}
               >
-                {social.icon}
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                >
+                  <path fill="currentColor" d={social.path} />
+                </svg>
               </motion.a>
             ))}
           </motion.div>
@@ -219,7 +192,7 @@ export default function Footer() {
             whileHover={shouldReduceMotion ? undefined : { y: -3 }}
             whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
             className="mt-10 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#e6a334] px-8 text-[13px] font-bold uppercase text-[#06233a] shadow-[0_12px_22px_rgba(0,0,0,.22)] transition-colors hover:bg-white"
-            href={whatsappLink}
+            href={siteContact.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
           >

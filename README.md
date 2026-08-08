@@ -56,6 +56,8 @@ This project currently requires no environment variables.
 app/                 Next.js layout and homepage
 animations/          Reusable Framer Motion animation variants
 components/          Page sections and interactive UI
+data/                Typed facilities, pricing, gallery, and terms content
+lib/                 Shared site links and contact information
 public/              Images, logo, and promotional video
 styles/              Global CSS
 next.config.js       Next.js configuration
@@ -68,8 +70,9 @@ tsconfig.json        TypeScript configuration
 ## Updating content
 
 - Change section text and links inside the relevant file in `components/`.
-- Update packages and prices in `components/Pricing/Pricing.tsx`.
-- Update contact details in `components/Location/Location.tsx` and `components/Footer/Footer.tsx`.
+- Update packages and prices in `data/pricing.ts`.
+- Update facilities, gallery items, and policies in the matching file under `data/`.
+- Update navigation and contact details in `lib/site.ts`.
 - Add or replace media in `public/`, then update its `/filename.ext` reference in the component.
 - Update page title, description, and icons in `app/layout.tsx`.
 

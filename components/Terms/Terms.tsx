@@ -1,60 +1,8 @@
 "use client";
 
 import { createFadeUp, createStaggerContainer } from "@/animations";
+import { farmhouseTerms } from "@/data/terms";
 import { motion, useReducedMotion } from "framer-motion";
-import {
-  CalendarCheck,
-  Clock,
-  ShieldCheck,
-  Waves,
-  Volume2,
-  Trash2,
-  AlertTriangle,
-  UsersRound,
-} from "lucide-react";
-
-const terms = [
-  {
-    Icon: CalendarCheck,
-    title: "Advance Booking",
-    description: "Booking confirmation requires advance payment.",
-  },
-  {
-    Icon: Clock,
-    title: "Check-in & Check-out",
-    description: "Guests must follow the confirmed booking time slot.",
-  },
-  {
-    Icon: UsersRound,
-    title: "Guest Limit",
-    description: "Extra guests may require additional charges.",
-  },
-  {
-    Icon: Waves,
-    title: "Pool Safety",
-    description: "Children must be supervised by adults near the pool.",
-  },
-  {
-    Icon: Volume2,
-    title: "Sound Policy",
-    description: "Loud music is not allowed after the permitted time.",
-  },
-  {
-    Icon: Trash2,
-    title: "Cleanliness",
-    description: "Guests are requested to keep the farmhouse clean.",
-  },
-  {
-    Icon: AlertTriangle,
-    title: "Damage Policy",
-    description: "Any damage to property will be charged separately.",
-  },
-  {
-    Icon: ShieldCheck,
-    title: "Security Rules",
-    description: "Management is not responsible for personal belongings.",
-  },
-];
 
 const containerVariants = createStaggerContainer(0.09, 0.15);
 const fadeUp = createFadeUp({ distance: 26 });
@@ -63,7 +11,8 @@ export default function TermsConditions() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="terms" className="scroll-mt-28 relative overflow-hidden bg-[#fbfaf7] px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-24">
+    <section id="terms" className="scroll-mt-28 relative overflow-hidden bg-[#fbfaf7] px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-24"
+    >
       <div className="pointer-events-none absolute -left-24 top-20 h-80 w-80 rounded-full bg-[#e6a334]/15 blur-3xl" />
       <div className="pointer-events-none absolute -right-24 bottom-10 h-96 w-96 rounded-full bg-[#2f9ad8]/12 blur-3xl" />
 
@@ -103,7 +52,7 @@ export default function TermsConditions() {
           className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 xl:gap-6"
           variants={containerVariants}
         >
-          {terms.map(({ Icon, title, description }) => (
+          {farmhouseTerms.map(({ Icon, title, description }) => (
             <motion.article
               key={title}
               variants={fadeUp}
@@ -112,7 +61,7 @@ export default function TermsConditions() {
             >
               <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#e6a334]/10 transition duration-300 group-hover:scale-125" />
 
-              <span className="grid h-13 w-13 h-[52px] w-[52px] place-items-center rounded-2xl bg-[#06233a] text-[#e6a334] shadow-[0_12px_26px_rgba(6,35,58,.18)]">
+              <span className="grid h-[52px] w-[52px] place-items-center rounded-2xl bg-[#06233a] text-[#e6a334] shadow-[0_12px_26px_rgba(6,35,58,.18)]">
                 <Icon className="h-6 w-6" strokeWidth={2.2} />
               </span>
 

@@ -1,19 +1,21 @@
 "use client";
 
+import { galleryImages } from "@/data/gallery";
+import { animate, motion, useMotionValue } from "framer-motion";
 import Image from "next/image";
-import { motion, useMotionValue, animate } from "framer-motion";
 import { useState } from "react";
 
-const galleryImages = [
-  { src: "/villa1.jpg", alt: "Vicky Farmhouse pool area" },
-  { src: "/villa2.jpg", alt: "Vicky Farmhouse outdoor lawn seating" },
-  { src: "/villa3.jpg", alt: "Vicky Farmhouse evening event setup" },
-  { src: "/villa4.jpg", alt: "Vicky Farmhouse indoor room" },
-  { src: "/villa5.jpg", alt: "Vicky Farmhouse garden pathway" },
-  { src: "/villa6.jpg", alt: "Vicky Farmhouse outdoor dining setup" },
-  { src: "/villa7.jpg", alt: "Vicky Farmhouse outdoor setup" },
-  { src: "/villa8.jpg", alt: "Vicky Farmhouse indoor dining setup" },
-];
+const DRAG_THRESHOLD = 80;
+
+function getCircularOffset(index: number, activeIndex: number) {
+  let offset = index - activeIndex;
+  const midpoint = galleryImages.length / 2;
+
+  if (offset > midpoint) offset -= galleryImages.length;
+  if (offset < -midpoint) offset += galleryImages.length;
+
+  return offset;
+}
 
 export default function Gallery() {
   const [active, setActive] = useState(0);
@@ -28,9 +30,9 @@ export default function Gallery() {
   const handleDragEnd = () => {
     const currentX = dragX.get();
 
-    if (currentX < -80) {
+    if (currentX < -DRAG_THRESHOLD) {
       goToSlide(active + 1);
-    } else if (currentX > 80) {
+    } else if (currentX > DRAG_THRESHOLD) {
       goToSlide(active - 1);
     } else {
       animate(dragX, 0, { duration: 0.35, ease: "easeOut" });
@@ -87,14 +89,7 @@ export default function Gallery() {
               onDragEnd={handleDragEnd}
             >
               {galleryImages.map((image, index) => {
-                let offset = index - active;
-
-                if (offset > galleryImages.length / 2) {
-                  offset -= galleryImages.length;
-                } else if (offset < -galleryImages.length / 2) {
-                  offset += galleryImages.length;
-                }
-
+                const offset = getCircularOffset(index, active);
                 const isActive = offset === 0;
 
                 return (

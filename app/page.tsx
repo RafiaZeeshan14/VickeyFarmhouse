@@ -18,7 +18,7 @@ export default function Home() {
       <Facilities />
       <Pricing />
       <Gallery />
-      <Terms/>
+      <Terms />
       <Location />
       <Footer />
       <ScrollToTop />

@@ -77,22 +77,22 @@ export default function Hero() {
       >
         <div className="max-w-[680px] lg:max-w-[980px] xl:max-w-[1060px] 2xl:max-w-[1120px]">
           <motion.p
-            className="hidden lg:block mb-3 text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#e2693a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]"
+            className="mb-3 hidden text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#e2693a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:block lg:text-[50px] xl:text-[54px]"
             variants={fadeUp}
           >
             A Perfect Escape
           </motion.p>
-<motion.p
-            className="lg:hidden  text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#e2693a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]"
+          <motion.p
+            className="text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#e2693a] sm:text-[42px] md:text-[48px] lg:hidden lg:text-[50px]"
             variants={fadeUp}
           >
-            A Perfect 
+            A Perfect
           </motion.p>
           <motion.p
-            className="lg:hidden mb-3 text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#e2693a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]"
+            className="mb-3 text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#e2693a] sm:text-[42px] md:text-[48px] lg:hidden lg:text-[50px]"
             variants={fadeUp}
           >
-           Escape
+            Escape
           </motion.p>
 
 
@@ -205,7 +205,7 @@ export default function Hero() {
               ))}
             </motion.div>
 
-            <motion.a 
+          <motion.a
               className="mx-auto mt-6 inline-flex min-h-12 w-[min(100%,260px)] items-center justify-center gap-2 rounded-full border-2 border-[#e6a3346b] bg-white/60 px-6 text-[12px] font-bold uppercase text-[#e6a334] shadow-[0_14px_30px_rgba(6,35,58,.12),inset_0_0_0_1px_rgba(255,255,255,.72)] backdrop-blur-[10px] transition-colors hover:border-[#e6a334] hover:bg-[#e6a334] hover:text-[#06233a] md:min-h-[52px] md:w-[280px] md:text-sm"
               variants={fadeUp}
               whileHover={shouldReduceMotion ? undefined : { y: -2 }}
@@ -220,7 +220,7 @@ export default function Hero() {
             className="mt-6 hidden flex-wrap items-center gap-3 sm:mt-7 sm:gap-4 lg:mt-12 lg:flex xl:mt-14 xl:gap-6"
             variants={fadeUp}
           >
-            <motion.a 
+            <motion.a
               className="inline-flex min-h-11 w-[calc(50%-6px)] min-w-[160px] items-center justify-center gap-2 rounded-full border-2 border-[#e6a3346b] bg-white/60 px-4 text-[12px] font-bold uppercase text-[#e6a334] shadow-[inset_0_0_0_1px_rgba(255,255,255,.72)] transition-colors hover:border-[#e6a334] hover:bg-[#e6a334] hover:text-[#06233a] sm:w-auto sm:min-w-[218px] sm:gap-2.5 sm:px-7 sm:text-[13px] lg:min-h-12"
               whileHover={shouldReduceMotion ? undefined : { y: -2 }}
               whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
