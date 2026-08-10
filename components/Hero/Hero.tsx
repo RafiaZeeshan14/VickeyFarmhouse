@@ -46,7 +46,7 @@ export default function Hero() {
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         poster={SwimmingPoolImage.src}
         aria-hidden="true"
         tabIndex={-1}

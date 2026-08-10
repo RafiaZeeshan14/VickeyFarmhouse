@@ -26,7 +26,7 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="scroll-mt-28 relative overflow-hidden bg-cover bg-center bg-fixed px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-20"
+      className="scroll-mt-28 relative overflow-hidden bg-cover bg-center px-4 py-16 text-[#06233a] sm:px-6 lg:bg-fixed lg:px-8 lg:py-20"
       style={{
         backgroundImage: `linear-gradient(rgb(63 57 57 / 70%), rgba(173, 173, 162, 70%)), url('${pricingBackground.src}')`,
       }}

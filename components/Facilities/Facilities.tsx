@@ -102,7 +102,7 @@ export default function Facilities() {
               return (
                 <motion.article
                   key={`${facility.title}-${index}`}
-                  className="absolute left-0 top-0 h-full w-[82vw] max-w-[360px] overflow-hidden rounded-[26px] bg-[#06233a] shadow-[0_26px_70px_rgba(6,35,58,.22)] ring-1 ring-white/60 sm:max-w-[430px] lg:max-w-[520px] xl:max-w-[600px]"
+                  className="absolute left-2 top-0 h-full w-[calc(100%-1rem)] max-w-[360px] overflow-hidden rounded-[26px] bg-[#06233a] shadow-[0_26px_70px_rgba(6,35,58,.22)] ring-1 ring-white/60 sm:max-w-[430px] lg:max-w-[520px] xl:max-w-[600px]"
                   animate={{
                     x: offset * getSlideDistance(),
                     scale: index === active ? 1 : 0.9,
@@ -118,25 +118,31 @@ export default function Facilities() {
                   }}
                   transition={{ duration: 0.75, ease: smoothEase }}
                 >
-                  {facility.showFullImage ? (
-                    <Image
-                      src={facility.image}
-                      alt=""
-                      fill
-                      aria-hidden="true"
-                      className="scale-110 object-cover opacity-60 blur-xl"
-                      sizes="(min-width: 1280px) 600px, (min-width: 1024px) 520px, 82vw"
-                    />
+                  {offset >= -1 && offset <= 2 ? (
+                    <>
+                      {facility.showFullImage ? (
+                        <Image
+                          src={facility.image}
+                          alt=""
+                          fill
+                          aria-hidden="true"
+                          className="scale-110 object-cover opacity-60 blur-xl"
+                          sizes="(min-width: 1280px) 600px, (min-width: 1024px) 520px, 82vw"
+                        />
+                      ) : null}
+                      <Image
+                        src={facility.image}
+                        alt={facility.title}
+                        fill
+                        className={
+                          facility.showFullImage
+                            ? "object-contain"
+                            : "object-cover"
+                        }
+                        sizes="(min-width: 1280px) 600px, (min-width: 1024px) 520px, 82vw"
+                      />
+                    </>
                   ) : null}
-                  <Image
-                    src={facility.image}
-                    alt={facility.title}
-                    fill
-                    className={
-                      facility.showFullImage ? "object-contain" : "object-cover"
-                    }
-                    sizes="(min-width: 1280px) 600px, (min-width: 1024px) 520px, 82vw"
-                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#06233a]/95 via-[#06233a]/35 to-transparent" />
 
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white sm:p-7 xl:p-9">

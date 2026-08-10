@@ -26,7 +26,6 @@ import playAreaImage from "@/public/playarea.png";
 import poolAreaImage from "@/public/poolarea.png";
 import projectorScreenImage from "@/public/projectorscreen.png";
 import roomImage from "@/public/room.jpg";
-// import securityImage from "@/public/security.jpg";
 import spaciousLawnImage from "@/public/spaciouslawn.png";
 import swimmingPoolImage from "@/public/swimmingpool.png";
 

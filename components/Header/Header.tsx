@@ -31,6 +31,7 @@ export default function Header() {
           alt="Vicky Farmhouse"
           width={2000}
           height={2000}
+          sizes="(min-width: 1024px) 380px, (min-width: 768px) 335px, (min-width: 640px) 300px, 270px"
           priority
         />
       </motion.a>

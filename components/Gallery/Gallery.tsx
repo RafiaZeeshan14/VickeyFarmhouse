@@ -114,13 +114,15 @@ export default function Gallery() {
                     }}
                     onClick={() => goToSlide(index)}
                   >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 1280px) 470px, (min-width: 1024px) 430px, 78vw"
-                    />
+                    {Math.abs(offset) <= 3 ? (
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 1280px) 470px, (min-width: 1024px) 430px, 78vw"
+                      />
+                    ) : null}
 
                     <div className="absolute inset-0 bg-gradient-to-t from-[#06233a]/55 via-black/5 to-transparent" />
                   </motion.div>

@@ -121,6 +121,7 @@ export default function About() {
                 alt="Vicky Farmhouse outdoor lawn and rooms"
                 width={1600}
                 height={900}
+                sizes="(min-width: 1280px) 470px, (min-width: 1024px) 360px, (min-width: 640px) 360px, 68vw"
               />
             </div>
           </motion.div>
@@ -139,6 +140,7 @@ export default function About() {
                 alt="Vicky Farmhouse covered swimming pool"
                 width={1600}
                 height={900}
+                sizes="(min-width: 1280px) 480px, (min-width: 1024px) 370px, (min-width: 640px) 380px, 68vw"
               />
             </div>
           </motion.div>

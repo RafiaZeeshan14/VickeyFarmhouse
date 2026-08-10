@@ -63,6 +63,7 @@ export default function Footer() {
               alt="Vicky Farmhouse"
               width={2000}
               height={2000}
+              sizes="440px"
             />
           </a>
 

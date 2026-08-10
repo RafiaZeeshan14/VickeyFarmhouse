@@ -35,7 +35,7 @@ export default function Location() {
   return (
     <section
       id="location"
-      className="scroll-mt-28 relative overflow-hidden bg-cover bg-center bg-fixed px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-20"
+      className="scroll-mt-28 relative overflow-hidden bg-cover bg-center px-4 py-16 text-[#06233a] sm:px-6 lg:bg-fixed lg:px-8 lg:py-20"
       style={{
         backgroundImage: `linear-gradient(rgba(251,250,247,.50), rgba(251,250,247,.50)), url('${locationBackground.src}')`,
       }}
