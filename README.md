@@ -34,7 +34,12 @@ integration and the admin API all run inside this app as Next.js route handlers.
 
 ```bash
 npm install
-cp .env.example .env.local    # then fill in the values
+# PowerShell
+Copy-Item .env.example .env.local
+
+# macOS/Linux
+# cp .env.example .env.local
+
 npm run dev
 ```
 
@@ -77,7 +82,7 @@ lib/
 └─ api.ts                   typed browser-side API client
 
 components/                 landing sections, shared pickers, admin dashboard
-middleware.ts               gates /admin behind a valid session
+proxy.ts                    gates /admin behind a valid session
 styles/                     globals (Tailwind) + scoped page stylesheets
 ```
 

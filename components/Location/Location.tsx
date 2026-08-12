@@ -1,53 +1,33 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import {
+  createFadeUp,
+  createScaleReveal,
+  createStaggerContainer,
+} from "@/animations";
+import { siteContact } from "@/lib/site";
+import locationBackground from "@/public/outdoorar.png";
+import { motion, useReducedMotion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 const contactDetails = [
   {
     Icon: MapPin,
-    text: "358R+X3V, A Rehman Gabol Goth Gadap Town, Karachi",
+    text: siteContact.address,
   },
   {
     Icon: Phone,
-    text: "+92 3712108053",
+    text: siteContact.phone,
   },
   {
     Icon: Mail,
-    text: "Vickyfarmhouse@gmail.com",
+    text: siteContact.email,
   },
 ];
 
-const smoothEase = [0.25, 1, 0.5, 1] as const;
-
-const containerVariants: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.12,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: smoothEase },
-  },
-};
-
-const mapReveal: Variants = {
-  hidden: { opacity: 0, scale: 0.98, x: 28 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    x: 0,
-    transition: { duration: 0.85, ease: smoothEase },
-  },
-};
+const containerVariants = createStaggerContainer(0.12, 0.12);
+const fadeUp = createFadeUp();
+const mapReveal = createScaleReveal({ x: 28, duration: 0.85 });
 
 export default function Location() {
   const shouldReduceMotion = useReducedMotion();
@@ -55,10 +35,9 @@ export default function Location() {
   return (
     <section
       id="location"
-      className="scroll-mt-28 relative overflow-hidden bg-cover bg-center bg-fixed px-4 py-16 text-[#06233a] sm:px-6 lg:px-8 lg:py-20"
+      className="scroll-mt-28 relative overflow-hidden bg-cover bg-center px-4 py-16 text-[#06233a] sm:px-6 lg:bg-fixed lg:px-8 lg:py-20"
       style={{
-        backgroundImage:
-          "linear-gradient(rgba(251,250,247,.50), rgba(251,250,247,.50)), url('/villa6.jpg')",
+        backgroundImage: `linear-gradient(rgba(251,250,247,.50), rgba(251,250,247,.50)), url('${locationBackground.src}')`,
       }}
     >
       <motion.div
@@ -125,7 +104,7 @@ export default function Location() {
           <iframe
             className="h-full min-h-[360px] w-full border-0 lg:min-h-[480px]"
             title="Vicky Farmhouse map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.0128470269665!2d67.1894532!3d25.0675537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34f006e3045f5%3A0xbef464f04a192b17!2sVicky%E2%80%99s%20Farmhouse%20Gadap!5e0!3m2!1sen!2s!4v1780569888939!5m2!1sen!2s"
+            src={siteContact.mapEmbed}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />

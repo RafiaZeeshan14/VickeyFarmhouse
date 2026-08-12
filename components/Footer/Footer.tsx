@@ -1,95 +1,41 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import Link from "next/link";
+import {
+  createFadeUp,
+  createStaggerContainer,
+  smoothEase,
+} from "@/animations";
+import { footerLinks, siteContact } from "@/lib/site";
+import logoImage from "@/public/vlogo.png";
+import { motion, useReducedMotion } from "framer-motion";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-
-const whatsappLink =
-  "https://wa.me/923712108053?text=Hello%20I%20want%20to%20book%20Vicky%20Farmhouse";
-
-// Absolute paths so these keep working from /booking and /track too.
-const quickLinks = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/#aboutus" },
-  { label: "Facilities", href: "/#facilities" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "Gallery", href: "/#gallery" },
-  { label: "Location", href: "/#location" },
-  { label: "Track Booking", href: "/track" },
-  { label: "Contact Us", href: "/#contact" },
-];
 
 const socialLinks = [
   {
     label: "Facebook",
     href: "https://facebook.com/",
     color: "hover:bg-[#1877f2]",
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
-        <path
-          fill="currentColor"
-          d="M14.2 8.6V7.1c0-.7.5-.9.8-.9h2V3h-2.8c-3.1 0-3.8 2.3-3.8 3.8v1.8H8v3.5h2.4V21h3.8v-8.9h2.6l.4-3.5h-3Z"
-        />
-      </svg>
-    ),
+    path: "M14.2 8.6V7.1c0-.7.5-.9.8-.9h2V3h-2.8c-3.1 0-3.8 2.3-3.8 3.8v1.8H8v3.5h2.4V21h3.8v-8.9h2.6l.4-3.5h-3Z",
   },
   {
     label: "Instagram",
     href: "https://instagram.com/",
     color: "hover:bg-[#e1306c]",
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
-        <path
-          fill="currentColor"
-          d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm8.9 2.1a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4ZM12 7.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Zm0 2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z"
-        />
-      </svg>
-    ),
+    path: "M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm8.9 2.1a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4ZM12 7.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Zm0 2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z",
   },
   {
     label: "WhatsApp",
-    href: whatsappLink,
+    href: siteContact.whatsapp,
     color: "hover:bg-[#25d366]",
-    icon: (
-      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
-        <path
-          fill="currentColor"
-          d="M12 2a9.8 9.8 0 0 0-8.4 14.9L2.4 22l5.2-1.2A9.8 9.8 0 1 0 12 2Zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.7.7-3-.2-.3A8 8 0 1 1 12 19.8Zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.2-.3.2-.6.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.1 1.6.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1 0-.2-.2-.3-.4-.4Z"
-        />
-      </svg>
-    ),
+    path: "M12 2a9.8 9.8 0 0 0-8.4 14.9L2.4 22l5.2-1.2A9.8 9.8 0 1 0 12 2Zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.7.7-3-.2-.3A8 8 0 1 1 12 19.8Zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.2-.3.2-.6.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.1 1.6.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1 0-.2-.2-.3-.4-.4Z",
   },
 ];
 
-const smoothEase = [0.25, 1, 0.5, 1] as const;
-
-const footerContainer: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.12,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: smoothEase },
-  },
-};
-
-const smallFade: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, ease: smoothEase },
-  },
-};
+const footerContainer = createStaggerContainer(0.12, 0.12);
+const fadeUp = createFadeUp();
+const smallFade = createFadeUp({ distance: 14, duration: 0.55 });
 
 export default function Footer() {
   const shouldReduceMotion = useReducedMotion();
@@ -107,19 +53,20 @@ export default function Footer() {
         viewport={{ once: true, amount: 0.2 }}
       >
         <motion.div variants={fadeUp}>
-          <a
+          <Link
             className="relative block h-28 w-52 overflow-hidden"
             href="/"
             aria-label="Vicky Farmhouse home"
           >
             <Image
               className="absolute left-1/2 top-1/2 h-[440px] w-[440px] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain"
-              src="/vlogo.png"
+              src={logoImage}
               alt="Vicky Farmhouse"
               width={2000}
               height={2000}
+              sizes="440px"
             />
-          </a>
+          </Link>
 
           <p className="mt-4 max-w-xs text-sm font-medium leading-7 text-white/80">
             Vicky Farmhouse is your perfect getaway for picnics, parties, and
@@ -134,7 +81,7 @@ export default function Footer() {
           <h3 className="text-base font-bold uppercase">Quick Links</h3>
 
           <motion.nav className="mt-5 grid gap-2.5" variants={footerContainer}>
-            {quickLinks.map((link) => (
+            {footerLinks.map((link) => (
               <motion.a
                 key={link.label}
                 variants={smallFade}
@@ -162,7 +109,7 @@ export default function Footer() {
                 <MapPin className="h-4 w-4" strokeWidth={2.4} />
               </span>
               <span className="text-sm font-normal leading-6 text-white/80">
-                358R+X3V, A Rehman Gabol Goth Gadap Town, Karachi
+                {siteContact.address}
               </span>
             </motion.div>
 
@@ -175,9 +122,9 @@ export default function Footer() {
               </span>
               <a
                 className="text-sm font-normal text-white/80 transition-colors hover:text-[#e6a334]"
-                href="tel:+923712108053"
+                href={siteContact.phoneHref}
               >
-                +92 3712108053
+                {siteContact.phone}
               </a>
             </motion.div>
 
@@ -190,9 +137,9 @@ export default function Footer() {
               </span>
               <a
                 className="text-sm font-normal text-white/80 transition-colors hover:text-[#e6a334]"
-                href="mailto:Vickyfarmhouse@gmail.com"
+                href={siteContact.emailHref}
               >
-                Vickyfarmhouse@gmail.com
+                {siteContact.email}
               </a>
             </motion.div>
           </motion.div>
@@ -212,7 +159,13 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label={social.label}
               >
-                {social.icon}
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                >
+                  <path fill="currentColor" d={social.path} />
+                </svg>
               </motion.a>
             ))}
           </motion.div>

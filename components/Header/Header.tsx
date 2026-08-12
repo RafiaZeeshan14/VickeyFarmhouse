@@ -1,32 +1,15 @@
 "use client";
 
+import { navigationLinks } from "@/lib/site";
+import logoImage from "@/public/vlogo.png";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useState, type ReactNode } from "react";
 import { CalendarCheck, Menu, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-
-const navItems = [
-  { label: "Home", href: "#" },
-  { label: "About Us", href: "#aboutus" },
-  { label: "Facilities", href: "#facilities" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Location", href: "#location" },
-   { label: "Terms & Conditions", href: "#terms" },
-  { label: "Contact", href: "#contact" },
-];
-
-const bookingHref = "/booking";
 
 interface HeaderProps {
-  /**
-   * Prefix for the section anchors. Empty on the landing page so they scroll
-   * in place; "/" on subpages so they route home first.
-   */
   hrefBase?: string;
-  /** Extra controls rendered next to the Book Now button (e.g. booking status). */
   actions?: ReactNode;
-  /** Which nav item is highlighted as current. */
   activeLabel?: string;
 }
 
@@ -53,11 +36,12 @@ export default function Header({
         transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
       >
         <Image
-          className="absolute left-1/2 top-[60%] h-[330px] w-[330px] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain sm:h-[380px] sm:w-[380px] md:h-[430px] md:w-[430px] lg:top-[62%] lg:h-[480px] lg:w-[480px]"
-          src="/vlogo.png"
+          className="absolute left-1/2 top-[54%] h-[270px] w-[270px] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain sm:h-[300px] sm:w-[300px] md:h-[335px] md:w-[335px] lg:h-[380px] lg:w-[380px]"
+          src={logoImage}
           alt="Vicky Farmhouse"
           width={2000}
           height={2000}
+          sizes="(min-width: 1024px) 380px, (min-width: 768px) 335px, (min-width: 640px) 300px, 270px"
           priority
         />
       </motion.a>
@@ -89,7 +73,7 @@ export default function Header({
 
         <motion.a
           className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#06233a] px-4 text-[11px] font-bold uppercase text-white shadow-[0_12px_22px_rgba(6,35,58,.2)] transition-colors hover:bg-[#e6a334] hover:text-[#06233a] sm:px-5"
-          href={bookingHref}
+          href="/booking"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.97 }}
         >
@@ -101,18 +85,22 @@ export default function Header({
         className="hidden flex-1 items-center justify-center gap-5 lg:flex xl:gap-10"
         aria-label="Primary navigation"
       >
-        {navItems.map((item, index) => (
+        {navigationLinks.map((item, index) => (
           <motion.a
             key={item.label}
             className={`relative py-2.5 text-[11px] font-semibold uppercase tracking-normal transition-colors hover:text-[#e6a334] xl:text-sm ${
               item.label === activeLabel
                 ? "text-[#e99c1c] after:absolute after:bottom-px after:left-0 after:right-0 after:h-[3px] after:rounded-full after:bg-[#e9a52a]"
-                : "text-[#09293e]"
+                : "text-white drop-shadow-[0_1px_4px_rgba(0,0,0,.45)]"
             }`}
             href={`${hrefBase}${item.href}`}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.55 + index * 0.07, ease: "easeOut" }}
+            transition={{
+              duration: 0.5,
+              delay: 0.55 + index * 0.07,
+              ease: "easeOut",
+            }}
             whileHover={{ y: -2 }}
           >
             {item.label}
@@ -130,7 +118,7 @@ export default function Header({
 
         <motion.a
           className="inline-flex min-h-[42px] items-center justify-center gap-2.5 rounded-full bg-[#06233a] px-3.5 text-[11px] font-semibold uppercase text-white shadow-[0_12px_22px_rgba(6,35,58,.2)] transition-colors hover:bg-[#e2a13a] hover:text-[#06233a] sm:px-5 lg:min-h-12 lg:px-7 lg:text-[13px]"
-          href={bookingHref}
+          href="/booking"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.97 }}
         >
@@ -150,7 +138,7 @@ export default function Header({
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <nav className="grid gap-1 p-4" aria-label="Mobile navigation">
-              {navItems.map((item, index) => (
+              {navigationLinks.map((item, index) => (
                 <motion.a
                   key={item.label}
                   className={`rounded-2xl px-4 py-3 text-sm font-black uppercase tracking-normal transition-colors hover:bg-[#fff5e1] hover:text-[#e6a334] ${
@@ -167,7 +155,6 @@ export default function Header({
                   {item.label}
                 </motion.a>
               ))}
-           
             </nav>
           </motion.div>
         ) : null}

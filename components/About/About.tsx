@@ -1,7 +1,16 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import {
+  createFadeUp,
+  createScaleReveal,
+  createStaggerContainer,
+  easeOutExpo,
+} from "@/animations";
+import outdoorImage from "@/public/outdoorar.png";
+import swimmingPoolImage from "@/public/swimmingpool.png";
+import { motion, useReducedMotion } from "framer-motion";
 import { Bed, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
+import Image from "next/image";
 
 const aboutFeatures = [
   {
@@ -26,48 +35,26 @@ const aboutFeatures = [
   },
 ];
 
-const easeOutExpo = [0.16, 1, 0.3, 1] as const;
-
-const containerVariants: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.14,
-      delayChildren: 0.18,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 26 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: easeOutExpo },
-  },
-};
-
-const imageFloatLeft: Variants = {
-  hidden: { opacity: 0, x: -36, y: 20, scale: 0.96 },
-  show: {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.85, ease: easeOutExpo },
-  },
-};
-
-const imageFloatRight: Variants = {
-  hidden: { opacity: 0, x: 36, y: 20, scale: 0.96 },
-  show: {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.85, ease: easeOutExpo },
-  },
-};
+const containerVariants = createStaggerContainer(0.14, 0.18);
+const fadeUp = createFadeUp({
+  distance: 26,
+  duration: 0.65,
+  ease: easeOutExpo,
+});
+const imageFloatLeft = createScaleReveal({
+  initialScale: 0.96,
+  x: -36,
+  y: 20,
+  duration: 0.85,
+  ease: easeOutExpo,
+});
+const imageFloatRight = createScaleReveal({
+  initialScale: 0.96,
+  x: 36,
+  y: 20,
+  duration: 0.85,
+  ease: easeOutExpo,
+});
 
 export default function About() {
   const shouldReduceMotion = useReducedMotion();
@@ -79,7 +66,6 @@ export default function About() {
     >
       <div className="pointer-events-none absolute -top-12 left-0 right-0 h-20 bg-[#fbfaf7]" />
 
-      {/* Premium Gradient Glow */}
       <div className="pointer-events-none absolute -right-28 top-10 h-96 w-96 rounded-full bg-[#e6a334]/18 blur-3xl" />
       <div className="pointer-events-none absolute -left-28 bottom-10 h-96 w-96 rounded-full bg-[#e6a334]/16 blur-3xl" />
 
@@ -129,10 +115,13 @@ export default function About() {
             }
           >
             <div className="h-36 overflow-hidden rounded bg-[#d7e6d6] sm:h-44 xl:h-52">
-              <img
+              <Image
                 className="h-full w-full object-cover object-[50%_28%]"
-                src="/hero.png"
-                alt="Green farmhouse garden pathway"
+                src={outdoorImage}
+                alt="Vicky Farmhouse outdoor lawn and rooms"
+                width={1600}
+                height={900}
+                sizes="(min-width: 1280px) 470px, (min-width: 1024px) 360px, (min-width: 640px) 360px, 68vw"
               />
             </div>
           </motion.div>
@@ -145,10 +134,13 @@ export default function About() {
             }
           >
             <div className="h-40 overflow-hidden rounded bg-[#d7e6d6] sm:h-52 xl:h-60">
-              <img
-                className="h-full w-full object-cover object-[75%_58%]"
-                src="/hero.png"
-                alt="Farmhouse lawn with poolside seating"
+              <Image
+                className="h-full w-full object-cover object-[50%_58%]"
+                src={swimmingPoolImage}
+                alt="Vicky Farmhouse covered swimming pool"
+                width={1600}
+                height={900}
+                sizes="(min-width: 1280px) 480px, (min-width: 1024px) 370px, (min-width: 640px) 380px, 68vw"
               />
             </div>
           </motion.div>

@@ -147,8 +147,8 @@ The `ADMIN_KEY` never reaches the browser.
 3. That goes back as an `httpOnly`, `sameSite=lax` cookie lasting 8 hours
 4. Every admin route verifies the signature and expiry before doing anything
 
-`middleware.ts` also gates the `/admin` pages, but that's only a UX redirect —
-the real enforcement is per-route, since middleware alone would leave the API
+`proxy.ts` also gates the `/admin` pages, but that's only a UX redirect —
+the real enforcement is per-route, since the proxy alone would leave the API
 open.
 
 Login attempts are throttled per IP. On serverless each instance keeps its own

@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
+import logoImage from "@/public/vlogo.png";
 import "../styles/globals.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700", "900"],
   variable: "--font-sans",
 });
 
@@ -12,9 +13,9 @@ export const metadata: Metadata = {
   title: "Vicky Farmhouse",
   description: "A perfect picnic and event destination surrounded by nature.",
   icons: {
-    icon: "/vlogo.png",
-    shortcut: "/vlogo.png",
-    apple: "/vlogo.png",
+    icon: logoImage.src,
+    shortcut: logoImage.src,
+    apple: logoImage.src,
   },
 };
 

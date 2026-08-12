@@ -3,12 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   devIndicators: false,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 2678400,
   },
 }
 

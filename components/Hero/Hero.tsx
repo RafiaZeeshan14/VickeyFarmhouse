@@ -1,240 +1,147 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { House, Sprout, Waves } from "lucide-react";
+import {
+  createFadeUp,
+  createScaleReveal,
+  createStaggerContainer,
+  easeOutExpo,
+} from "@/animations";
+import SwimmingPoolImage from "@/public/swimmingpool.png";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import Header from "../Header/Header";
 import AvailabilitySearch from "./AvailabilitySearch";
 
-const features = [
-  {
-    Icon: Sprout,
-    label: "Nature",
-    subLabel: "All Around",
-    color: "bg-[#3f8f51]",
-  },
-  {
-    Icon: House,
-    label: "Premium",
-    subLabel: "Stay Experience",
-    color: "bg-[#f49a20]",
-  },
-  {
-    Icon: Waves,
-    label: "Pool & Open",
-    subLabel: "Spaces",
-    color: "bg-[#2f9ad8]",
-  },
+const heroBackground = {
+  backgroundImage: `url('${SwimmingPoolImage.src}')`,
+};
+
+const descriptionLines = [
+  "Your perfect picnic & event destination",
+  "surrounded by nature and comfort.",
 ];
 
-const heroBackground = {
-  backgroundImage:
-    "linear-gradient(90deg, rgba(255,255,255,.86) 0%, rgba(255,255,255,.68) 30%, rgba(255,255,255,.24) 54%, rgba(255,255,255,.04) 78%, rgba(255,255,255,0) 100%), linear-gradient(180deg, rgba(255,255,255,.76) 0%, rgba(255,255,255,.24) 22%, rgba(255,255,255,0) 48%), url('/hero.png')",
-};
-
-const descriptionText =
-  "Your perfect picnic & event destination surrounded by nature and comfort.";
-
-const easeOutExpo = [0.16, 1, 0.3, 1] as const;
-
-const containerVariants: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.16,
-      delayChildren: 0.35,
-    },
-  },
-};
-
-const featureContainer: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: easeOutExpo },
-  },
-};
-
-const softReveal: Variants = {
-  hidden: { opacity: 0, scale: 0.98, y: 18 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.72, ease: easeOutExpo },
-  },
-};
+const containerVariants = createStaggerContainer(0.16, 0.35);
+const fadeUp = createFadeUp({ duration: 0.65, ease: easeOutExpo });
+const softReveal = createScaleReveal({
+  y: 18,
+  duration: 0.72,
+  ease: easeOutExpo,
+});
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <motion.section id="#"
-      className="scroll-mt-28 relative min-h-[820px] overflow-hidden bg-cover bg-[68%_center] sm:min-h-[840px] md:min-h-[860px] md:bg-[66%_center] lg:min-h-screen lg:bg-center"
+    <motion.section
+      id="#"
+      className="scroll-mt-28 relative min-h-[820px] overflow-hidden bg-cover bg-[64%_center] pb-24 sm:min-h-[840px] md:min-h-[860px] md:bg-[62%_center] lg:min-h-[max(100vh,860px)] lg:bg-[center_42%] lg:pb-28"
       style={heroBackground}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
     >
-      <motion.div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_12%_48%,rgba(255,255,255,.9)_0%,rgba(255,255,255,.66)_28%,rgba(255,255,255,.26)_48%,rgba(255,255,255,0)_72%)] sm:bg-[radial-gradient(ellipse_at_16%_48%,rgba(255,255,255,.9)_0%,rgba(255,255,255,.68)_30%,rgba(255,255,255,.28)_50%,rgba(255,255,255,0)_74%)] lg:bg-[radial-gradient(ellipse_at_19%_46%,rgba(255,255,255,.86)_0%,rgba(255,255,255,.62)_27%,rgba(255,255,255,.32)_44%,rgba(255,255,255,.08)_64%,rgba(255,255,255,0)_78%)] xl:bg-[radial-gradient(ellipse_at_19%_46%,rgba(255,255,255,.84)_0%,rgba(255,255,255,.58)_27%,rgba(255,255,255,.3)_44%,rgba(255,255,255,.08)_64%,rgba(255,255,255,0)_78%)]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 0.35 }}
+      <video
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[62%_center] md:object-[60%_center] lg:object-[center_42%]"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster={SwimmingPoolImage.src}
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        <source src="/farmVideo.mp4" type="video/mp4" />
+      </video>
+
+      <div
+        className="pointer-events-none absolute bottom-0 left-0 top-[140px] w-full bg-[linear-gradient(90deg,rgba(0,0,0,.38)_0%,rgba(0,0,0,.26)_45%,rgba(0,0,0,.08)_76%,transparent_100%)] sm:w-[82%] lg:w-[62%]"
+        aria-hidden="true"
       />
 
       <Header />
 
       <motion.div
-        className="relative z-10 mx-auto mt-20 w-[calc(100%-36px)] max-w-[590px] pb-20 sm:mt-8 sm:w-[calc(100%-48px)] md:mt-10 md:max-w-[720px] lg:mt-20 lg:w-[calc(100%-64px)] lg:max-w-none xl:mt-24 xl:w-[calc(100%-176px)] xl:pb-0 2xl:mt-28 2xl:w-[min(1860px,calc(100%-192px))]"
+        className="relative z-10 mx-auto flex min-h-[636px] w-[calc(100%-36px)] max-w-[590px] items-center justify-center py-8 sm:min-h-[656px] sm:w-[calc(100%-48px)] md:min-h-[676px] md:max-w-[720px] lg:mt-16 lg:block lg:min-h-0 lg:w-[calc(100%-64px)] lg:max-w-[1640px] lg:py-0 xl:mt-20"
         variants={containerVariants}
         initial={shouldReduceMotion ? false : "hidden"}
         animate={shouldReduceMotion ? undefined : "show"}
       >
-        <div className="grid items-center gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(320px,380px)] xl:gap-4 2xl:gap-6">
-          <div className="max-w-[680px] lg:max-w-[980px] xl:max-w-none">
+        <div className="grid w-full items-center gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(340px,420px)] xl:gap-12">
+          <div className="mx-auto max-w-[680px] text-center lg:mx-0 lg:max-w-[800px] lg:text-left xl:max-w-[860px]">
           <motion.p
-            className="hidden lg:block mb-3 text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#e2693a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]"
+            className="mb-3 hidden text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#d7663b] sm:text-[42px] md:text-[48px] lg:mb-3 lg:block lg:text-[46px] xl:text-[50px]"
             variants={fadeUp}
           >
             A Perfect Escape
           </motion.p>
-<motion.p
-            className="lg:hidden  text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#e2693a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]"
+          <motion.p
+            className="text-center font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(27px,7vw,40px)] italic leading-none text-[#e2693a] sm:text-[38px] md:text-[44px] lg:hidden"
             variants={fadeUp}
           >
-            A Perfect 
+            A Perfect
           </motion.p>
           <motion.p
-            className="lg:hidden mb-3 text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#e2693a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]"
+            className="mb-3 text-center font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(27px,7vw,40px)] italic leading-none text-[#e2693a] sm:text-[38px] md:text-[44px] lg:hidden"
             variants={fadeUp}
           >
-           Escape
+            Escape
           </motion.p>
 
-
           <motion.h1
-            className="m-0 text-[clamp(31px,8.7vw,50px)] font-black uppercase leading-[1.05] tracking-normal text-[#06233a] sm:text-[50px] md:text-[64px] lg:text-[clamp(70px,5.8vw,86px)] lg:leading-[.98] xl:text-[clamp(56px,4vw,76px)]"
+            className="m-0 text-[clamp(42px,11.5vw,60px)] font-black uppercase leading-[1.03] tracking-[-.035em] text-white drop-shadow-[0_3px_12px_rgba(0,0,0,.48)] sm:text-[62px] md:text-[72px] lg:text-[clamp(64px,4.8vw,78px)] lg:leading-[.98] xl:text-[80px]"
             variants={fadeUp}
           >
             <span className="hidden whitespace-nowrap lg:block">
               Relax, Celebrate
             </span>
             <span className="hidden text-[#f2a10c] lg:block">
-              & Create Memories
+              &amp; Create Memories
             </span>
 
             <span className="block whitespace-nowrap lg:hidden">Relax</span>
             <span className="block whitespace-nowrap lg:hidden">Celebrate</span>
             <span className="hidden text-[#f2a10c] md:block lg:hidden">
-              & Create Memories
+              &amp; Create Memories
             </span>
-            <span className="block text-[#f2a10c] md:hidden">& Create</span>
+            <span className="block text-[#f2a10c] md:hidden">&amp; Create</span>
             <span className="block text-[#f2a10c] md:hidden">Memories</span>
           </motion.h1>
 
           <motion.p
-            className="mt-5 flex max-w-[400px] items-start gap-3 rounded-[22px] border border-white/70 bg-white/55 p-4 text-[14px] font-medium leading-[1.5] text-[#17334a] shadow-[0_14px_34px_rgba(6,35,58,.13),inset_0_1px_0_rgba(255,255,255,.85)] ring-1 ring-white/35 backdrop-blur-[16px] sm:max-w-[500px] sm:gap-3.5 sm:rounded-[24px] sm:p-5 sm:text-[15px] md:max-w-[540px] md:text-[17px] lg:mt-8 lg:flex lg:max-w-[700px] lg:items-start lg:gap-3 lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:text-[clamp(15px,1.4vw,18px)] lg:font-semibold lg:shadow-none lg:ring-0 lg:backdrop-blur-0 xl:mt-9 xl:text-lg"
+            className="mx-auto mt-6 max-w-[620px] text-[15px] font-medium leading-[1.55] text-white drop-shadow-[0_2px_6px_rgba(0,0,0,.65)] sm:text-[17px] md:text-[19px] lg:mx-0 lg:mt-7 lg:border-l-2 lg:border-[#d99a2b] lg:pl-5 lg:text-lg"
             variants={softReveal}
           >
             <span className="font-medium font-['Brush_Script_MT','Segoe_Script',cursive] lg:italic">
-              {descriptionText}
+              {descriptionLines.map((line) => (
+                <span key={line} className="block md:whitespace-nowrap">
+                  {line}
+                </span>
+              ))}
             </span>
           </motion.p>
 
           <motion.div
-            className="mt-8 hidden flex-wrap items-center gap-x-8 gap-y-5 lg:mt-14 lg:flex xl:mt-16 xl:gap-x-12"
-            aria-label="Farmhouse highlights"
-            variants={featureContainer}
+            className="mt-7 flex justify-center lg:justify-start"
+            variants={fadeUp}
           >
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.label}
-                className="flex items-center gap-8 xl:gap-12"
-                variants={fadeUp}
-              >
-                <div className="grid grid-cols-[38px_auto] items-center gap-3 text-[12px] font-semibold uppercase leading-tight text-[#08263c] sm:grid-cols-[50px_auto] sm:gap-3.5 sm:text-[13px] xl:text-[15px]">
-                  <span
-                    className={`grid h-9 w-9 place-items-center rounded-full text-white shadow-[0_10px_20px_rgba(6,35,58,.16)] sm:h-[50px] sm:w-[50px] ${feature.color}`}
-                  >
-                    <feature.Icon
-                      className="h-5 w-5 sm:h-7 sm:w-7"
-                      strokeWidth={2.4}
-                      aria-hidden="true"
-                    />
-                  </span>
-                  <span>
-                    {feature.label}
-                    <small className="mt-1 block text-[inherit] font-semibold">
-                      {feature.subLabel}
-                    </small>
-                  </span>
-                </div>
-
-                {index < features.length - 1 && (
-                  <span
-                    className="hidden h-10 w-px bg-[#06233a]/20 lg:block"
-                    aria-hidden="true"
-                  />
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="mt-8 max-w-[560px] lg:hidden"
-            variants={softReveal}
-          >
-            <motion.div
-              className="grid grid-cols-3 items-center rounded-3xl border border-white/65 bg-white/55 px-3 py-4 shadow-[0_18px_42px_rgba(6,35,58,.14),inset_0_1px_0_rgba(255,255,255,.82)] ring-1 ring-white/35 backdrop-blur-[16px] sm:px-5 sm:py-5 md:px-6"
-              variants={featureContainer}
+            <motion.a
+              className="group inline-flex min-h-[52px] min-w-[210px] items-center justify-center gap-3 rounded-full bg-[#06233a] px-7 text-[12px] font-bold uppercase tracking-[.08em] text-white shadow-[0_16px_34px_rgba(6,35,58,.24)] transition-colors hover:bg-[#d99926] hover:text-[#06233a] sm:text-[13px]"
+              href="#aboutus"
+              whileHover={shouldReduceMotion ? undefined : { y: -2 }}
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
             >
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature.label}
-                  className="flex min-w-0 items-center justify-center gap-2 px-1 text-[9px] font-semibold uppercase leading-tight text-[#08263c] sm:gap-3 sm:text-[11px] md:text-xs"
-                  variants={fadeUp}
-                >
-                  <span
-                    className={`grid h-9 w-9 shrink-0 place-items-center rounded-full text-white shadow-[0_10px_20px_rgba(6,35,58,.16)] sm:h-11 sm:w-11 ${feature.color}`}
-                  >
-                    <feature.Icon
-                      className="h-5 w-5 sm:h-6 sm:w-6"
-                      strokeWidth={2.4}
-                      aria-hidden="true"
-                    />
-                  </span>
-
-                  <span className="min-w-0 text-left">
-                    {feature.label}
-                    <small className="mt-1 block text-[inherit] font-semibold">
-                      {feature.subLabel}
-                    </small>
-                  </span>
-
-                  {index < features.length - 1 ? (
-                    <span
-                      className="ml-auto hidden h-12 w-px bg-[#06233a]/12 sm:block"
-                      aria-hidden="true"
-                    />
-                  ) : null}
-                </motion.div>
-              ))}
-            </motion.div>
+              Explore More
+              <ArrowUpRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
+            </motion.a>
           </motion.div>
           </div>
 
-          <div className="w-full max-w-[420px] xl:justify-self-start xl:-translate-x-14 2xl:-translate-x-20">
+          <div className="mx-auto w-full max-w-[420px] xl:mx-0 xl:justify-self-end">
             <AvailabilitySearch />
           </div>
         </div>
