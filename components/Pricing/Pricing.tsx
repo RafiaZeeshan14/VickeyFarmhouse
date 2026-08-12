@@ -14,6 +14,8 @@ const plans = [
   {
     Icon: CalendarDays,
     title: "Weekend 24 hrs",
+    bookingType: "fullday",
+    priceKey: "weekend24Hrs",
     description: "24 Hours Full Experience",
     price: "RS 150,000",
     unit: "/ Weekend",
@@ -29,6 +31,8 @@ const plans = [
    {
      Icon: SunMedium,
     title: "Weekend 12 hrs (Day)",
+    bookingType: "day",
+    priceKey: "weekend12HrsDay",
     description: "12 Hours Day Experience",
     price: "RS 100,000",
     unit: "/ Weekend",
@@ -46,6 +50,8 @@ const plans = [
   {
     Icon: Moon,
     title: "Weekend 12 hrs (Night)",
+    bookingType: "night",
+    priceKey: "weekend12Hrs",
     description: "12 Hours Night Experience",
     price: "RS 120,000",
     unit: "/ Weekend",
@@ -62,6 +68,8 @@ const plans = [
     {
     Icon: CalendarDays,
     title: "Non Weekend 24 hrs",
+    bookingType: "fullday",
+    priceKey: "nonWeekend24Hrs",
     description: "24 Hours Full Experience",
     price: "RS 100,000",
     unit: "/ Day",
@@ -77,6 +85,8 @@ const plans = [
   {
     Icon: SunMedium,
     title: "Non Weekend 12 hrs (Day)",
+    bookingType: "day",
+    priceKey: "nonWeekend12HrsDay",
     description: "12 Hours Day Experience",
     price: "RS 65,000",
     unit: "/ Day",
@@ -93,6 +103,8 @@ const plans = [
   {
     Icon: Moon,
     title: "Non Weekend 12 hrs (Night)",
+    bookingType: "night",
+    priceKey: "nonWeekend40Person12Hrs",
     description: "12 Hours Night Experience",
     price: "RS 75,000",
     unit: "/ Night",
@@ -187,8 +199,15 @@ const listItemReveal: Variants = {
   },
 };
 
-export default function Pricing() {
+export default function Pricing({ rates }: { rates?: Record<string, number> }) {
   const shouldReduceMotion = useReducedMotion();
+
+  // Live rates come from the admin settings; the hardcoded strings stay as a
+  // fallback so the section still renders if the database is unreachable.
+  const priceLabel = (plan: (typeof plans)[number]) => {
+    const live = rates?.[plan.priceKey];
+    return live != null ? `RS ${Number(live).toLocaleString("en-PK")}` : plan.price;
+  };
 
   return (
     <section
@@ -280,7 +299,7 @@ export default function Pricing() {
                 variants={smoothReveal}
               >
                 <span className="text-[clamp(32px,3.15vw,56px)] font-bold leading-none text-[#06233a]">
-                  {plan.price}
+                  {priceLabel(plan)}
                 </span>
                 <span className="shrink-0 pb-1 text-sm font-bold text-[#5e6b75]">
                   {plan.unit}
@@ -293,9 +312,7 @@ export default function Pricing() {
                     ? `border-[#e6a334] bg-[#e6a334] text-[#06233a] shadow-[0_12px_24px_rgba(230,163,52,.24)] ${plan.buttonHover}`
                     : `${plan.accentBorder} bg-white/55 ${plan.accentText} ${plan.buttonHover}`
                 }`}
-                href="https://wa.me/923712108053?text=Hello%20I%20want%20to%20book%20Vicky%20Farmhouse"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/booking?type=${plan.bookingType}`}
                 variants={smoothReveal}
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
               >

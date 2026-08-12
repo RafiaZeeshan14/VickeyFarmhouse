@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { House, Sprout, Waves } from "lucide-react";
 import Header from "../Header/Header";
+import AvailabilitySearch from "./AvailabilitySearch";
 
 const features = [
   {
@@ -95,12 +96,13 @@ export default function Hero() {
       <Header />
 
       <motion.div
-        className="relative z-10 mx-auto mt-20 w-[calc(100%-36px)] max-w-[590px] sm:mt-8 sm:w-[calc(100%-48px)] md:mt-10 md:max-w-[720px] lg:mt-20 lg:w-[calc(100%-64px)] lg:max-w-none xl:mt-24 xl:w-[calc(100%-176px)] 2xl:mt-28 2xl:w-[min(1860px,calc(100%-192px))]"
+        className="relative z-10 mx-auto mt-20 w-[calc(100%-36px)] max-w-[590px] pb-20 sm:mt-8 sm:w-[calc(100%-48px)] md:mt-10 md:max-w-[720px] lg:mt-20 lg:w-[calc(100%-64px)] lg:max-w-none xl:mt-24 xl:w-[calc(100%-176px)] xl:pb-0 2xl:mt-28 2xl:w-[min(1860px,calc(100%-192px))]"
         variants={containerVariants}
         initial={shouldReduceMotion ? false : "hidden"}
         animate={shouldReduceMotion ? undefined : "show"}
       >
-        <div className="max-w-[680px] lg:max-w-[980px] xl:max-w-[1060px] 2xl:max-w-[1120px]">
+        <div className="grid items-center gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(320px,380px)] xl:gap-4 2xl:gap-6">
+          <div className="max-w-[680px] lg:max-w-[980px] xl:max-w-none">
           <motion.p
             className="hidden lg:block mb-3 text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#e2693a] sm:text-[42px] md:text-[48px] lg:mb-2 lg:text-[50px] xl:text-[54px]"
             variants={fadeUp}
@@ -122,7 +124,7 @@ export default function Hero() {
 
 
           <motion.h1
-            className="m-0 text-[clamp(31px,8.7vw,50px)] font-black uppercase leading-[1.05] tracking-normal text-[#06233a] sm:text-[50px] md:text-[64px] lg:text-[clamp(70px,5.8vw,86px)] lg:leading-[.98] xl:text-[clamp(76px,4.25vw,86px)]"
+            className="m-0 text-[clamp(31px,8.7vw,50px)] font-black uppercase leading-[1.05] tracking-normal text-[#06233a] sm:text-[50px] md:text-[64px] lg:text-[clamp(70px,5.8vw,86px)] lg:leading-[.98] xl:text-[clamp(56px,4vw,76px)]"
             variants={fadeUp}
           >
             <span className="hidden whitespace-nowrap lg:block">
@@ -229,31 +231,12 @@ export default function Hero() {
                 </motion.div>
               ))}
             </motion.div>
-
-            <motion.a 
-              className="mx-auto mt-6 inline-flex min-h-12 w-[min(100%,260px)] items-center justify-center gap-2 rounded-full border-2 border-[#e6a3346b] bg-white/60 px-6 text-[12px] font-bold uppercase text-[#e6a334] shadow-[0_14px_30px_rgba(6,35,58,.12),inset_0_0_0_1px_rgba(255,255,255,.72)] backdrop-blur-[10px] transition-colors hover:border-[#e6a334] hover:bg-[#e6a334] hover:text-[#06233a] md:min-h-[52px] md:w-[280px] md:text-sm"
-              variants={fadeUp}
-              whileHover={shouldReduceMotion ? undefined : { y: -2 }}
-              whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
-            >
-              Explore More
-              <span aria-hidden="true">&gt;</span>
-            </motion.a>
           </motion.div>
+          </div>
 
-          <motion.div
-            className="mt-6 hidden flex-wrap items-center gap-3 sm:mt-7 sm:gap-4 lg:mt-12 lg:flex xl:mt-14 xl:gap-6"
-            variants={fadeUp}
-          >
-            <motion.a 
-              className="inline-flex min-h-11 w-[calc(50%-6px)] min-w-[160px] items-center justify-center gap-2 rounded-full border-2 border-[#e6a3346b] bg-white/60 px-4 text-[12px] font-bold uppercase text-[#e6a334] shadow-[inset_0_0_0_1px_rgba(255,255,255,.72)] transition-colors hover:border-[#e6a334] hover:bg-[#e6a334] hover:text-[#06233a] sm:w-auto sm:min-w-[218px] sm:gap-2.5 sm:px-7 sm:text-[13px] lg:min-h-12"
-              whileHover={shouldReduceMotion ? undefined : { y: -2 }}
-              whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
-            >
-              Explore More
-              <span aria-hidden="true">&gt;</span>
-            </motion.a>
-          </motion.div>
+          <div className="w-full max-w-[420px] xl:justify-self-start xl:-translate-x-14 2xl:-translate-x-20">
+            <AvailabilitySearch />
+          </div>
         </div>
       </motion.div>
 

@@ -7,14 +7,16 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 const whatsappLink =
   "https://wa.me/923712108053?text=Hello%20I%20want%20to%20book%20Vicky%20Farmhouse";
 
+// Absolute paths so these keep working from /booking and /track too.
 const quickLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About Us", href: "#aboutus" },
-  { label: "Facilities", href: "#facilities" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Location", href: "#location" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/#aboutus" },
+  { label: "Facilities", href: "/#facilities" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Gallery", href: "/#gallery" },
+  { label: "Location", href: "/#location" },
+  { label: "Track Booking", href: "/track" },
+  { label: "Contact Us", href: "/#contact" },
 ];
 
 const socialLinks = [
@@ -107,7 +109,7 @@ export default function Footer() {
         <motion.div variants={fadeUp}>
           <a
             className="relative block h-28 w-52 overflow-hidden"
-            href="#home"
+            href="/"
             aria-label="Vicky Farmhouse home"
           >
             <Image
@@ -240,9 +242,7 @@ export default function Footer() {
             whileHover={shouldReduceMotion ? undefined : { y: -3 }}
             whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
             className="mt-10 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#e6a334] px-8 text-[13px] font-bold uppercase text-[#06233a] shadow-[0_12px_22px_rgba(0,0,0,.22)] transition-colors hover:bg-white"
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/booking"
           >
             Book Now
           </motion.a>
