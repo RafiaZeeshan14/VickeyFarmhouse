@@ -10,6 +10,7 @@ import SwimmingPoolImage from "@/public/swimmingpool.png";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Header from "../Header/Header";
+import AvailabilitySearch from "./AvailabilitySearch";
 
 const heroBackground = {
   backgroundImage: `url('${SwimmingPoolImage.src}')`,
@@ -67,7 +68,8 @@ export default function Hero() {
         initial={shouldReduceMotion ? false : "hidden"}
         animate={shouldReduceMotion ? undefined : "show"}
       >
-        <div className="max-w-[680px] text-center lg:max-w-[800px] lg:text-left xl:max-w-[860px]">
+        <div className="grid w-full items-center gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(340px,420px)] xl:gap-12">
+          <div className="mx-auto max-w-[680px] text-center lg:mx-0 lg:max-w-[800px] lg:text-left xl:max-w-[860px]">
           <motion.p
             className="mb-3 hidden text-left font-['Brush_Script_MT','Segoe_Script',cursive] text-[clamp(30px,8vw,46px)] italic leading-none text-[#d7663b] sm:text-[42px] md:text-[48px] lg:mb-3 lg:block lg:text-[46px] xl:text-[50px]"
             variants={fadeUp}
@@ -137,6 +139,11 @@ export default function Hero() {
               />
             </motion.a>
           </motion.div>
+          </div>
+
+          <div className="mx-auto w-full max-w-[420px] xl:mx-0 xl:justify-self-end">
+            <AvailabilitySearch />
+          </div>
         </div>
       </motion.div>
 

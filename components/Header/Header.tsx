@@ -1,6 +1,6 @@
 "use client";
 
-import { navigationLinks, siteContact } from "@/lib/site";
+import { navigationLinks } from "@/lib/site";
 import logoImage from "@/public/vlogo.png";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
@@ -35,8 +35,6 @@ export default function Header({
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
       >
-        {actions}
-
         <Image
           className="absolute left-1/2 top-[54%] h-[270px] w-[270px] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain sm:h-[300px] sm:w-[300px] md:h-[335px] md:w-[335px] lg:h-[380px] lg:w-[380px]"
           src={logoImage}
@@ -54,6 +52,8 @@ export default function Header({
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
       >
+        {actions}
+
         <motion.button
           className="inline-grid h-10 w-10 place-items-center rounded-full bg-white/80 text-[#e6a334] shadow-[0_10px_24px_rgba(6,35,58,.14)] ring-1 ring-[#e6a334]/20 backdrop-blur transition-colors hover:bg-[#e6a334] hover:text-white"
           type="button"

@@ -7,7 +7,6 @@ import {
   smoothEase,
 } from "@/animations";
 import { pricingPlans } from "@/data/pricing";
-import { siteContact } from "@/lib/site";
 import pricingBackground from "@/public/outdoorar.png";
 import { motion, useReducedMotion } from "framer-motion";
 import { AlertTriangle, ShieldCheck, UsersRound } from "lucide-react";
@@ -20,7 +19,9 @@ const cardReveal = createFadeUp({ distance: 30, duration: 0.82 });
 const listContainer = createStaggerContainer(0.045, 0.12);
 const listItemReveal = createSlideReveal({ x: -10, duration: 0.45 });
 
-export default function Pricing() {
+const formatPrice = (value: number) => `RS ${value.toLocaleString("en-PK")}`;
+
+export default function Pricing({ rates }: { rates?: Record<string, number> }) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -108,7 +109,9 @@ export default function Pricing() {
                 variants={smoothReveal}
               >
                 <span className="text-[clamp(32px,10vw,48px)] font-bold leading-none text-[#06233a] md:text-[clamp(32px,3.15vw,56px)]">
-                  {plan.price}
+                  {rates?.[plan.priceKey] != null
+                    ? formatPrice(rates[plan.priceKey])
+                    : plan.price}
                 </span>
                 <span className="shrink-0 pb-1 text-sm font-bold text-[#5e6b75]">
                   {plan.unit}
@@ -121,9 +124,7 @@ export default function Pricing() {
                     ? `border-[#e6a334] bg-[#e6a334] text-[#06233a] shadow-[0_12px_24px_rgba(230,163,52,.24)] ${plan.buttonHover}`
                     : `${plan.accentBorder} bg-white/55 ${plan.accentText} ${plan.buttonHover}`
                 }`}
-                href={siteContact.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/booking?type=${plan.bookingType}`}
                 variants={smoothReveal}
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
               >

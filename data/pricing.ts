@@ -1,4 +1,5 @@
 import { CalendarDays, Moon, SunMedium, type LucideIcon } from "lucide-react";
+import type { PriceKey } from "@/lib/pricing";
 
 type ButtonStyle = "solid" | "outline";
 
@@ -13,6 +14,8 @@ export interface PricingPlan {
   accentBorder: string;
   buttonHover: string;
   button: ButtonStyle;
+  priceKey: PriceKey;
+  bookingType: "fullday" | "day" | "night";
 }
 
 const greenTheme = {
@@ -47,6 +50,8 @@ export const pricingPlans: PricingPlan[] = [
     description: "24 Hours Full Experience",
     price: "RS 150,000",
     unit: "/ Weekend",
+    priceKey: "weekend24Hrs",
+    bookingType: "fullday",
     ...greenTheme,
   },
   {
@@ -55,6 +60,8 @@ export const pricingPlans: PricingPlan[] = [
     description: "12 Hours Day Experience",
     price: "RS 100,000",
     unit: "/ Weekend",
+    priceKey: "weekend12HrsDay",
+    bookingType: "day",
     ...goldTheme,
   },
   {
@@ -63,6 +70,8 @@ export const pricingPlans: PricingPlan[] = [
     description: "12 Hours Night Experience",
     price: "RS 120,000",
     unit: "/ Weekend",
+    priceKey: "weekend12Hrs",
+    bookingType: "night",
     ...blueTheme,
   },
   {
@@ -71,6 +80,8 @@ export const pricingPlans: PricingPlan[] = [
     description: "24 Hours Full Experience",
     price: "RS 100,000",
     unit: "/ Day",
+    priceKey: "nonWeekend24Hrs",
+    bookingType: "fullday",
     ...greenTheme,
   },
   {
@@ -79,6 +90,8 @@ export const pricingPlans: PricingPlan[] = [
     description: "12 Hours Day Experience",
     price: "RS 65,000",
     unit: "/ Day",
+    priceKey: "nonWeekend12HrsDay",
+    bookingType: "day",
     ...goldTheme,
   },
   {
@@ -87,6 +100,8 @@ export const pricingPlans: PricingPlan[] = [
     description: "12 Hours Night Experience",
     price: "RS 75,000",
     unit: "/ Night",
+    priceKey: "nonWeekend40Person12Hrs",
+    bookingType: "night",
     ...blueTheme,
   },
 ];
