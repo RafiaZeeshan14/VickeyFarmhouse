@@ -4,10 +4,20 @@ import { navigationLinks, siteContact } from "@/lib/site";
 import logoImage from "@/public/vlogo.png";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { CalendarCheck, Menu, X } from "lucide-react";
 
-export default function Header() {
+interface HeaderProps {
+  hrefBase?: string;
+  actions?: ReactNode;
+  activeLabel?: string;
+}
+
+export default function Header({
+  hrefBase = "",
+  actions,
+  activeLabel = "Home",
+}: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -19,12 +29,14 @@ export default function Header() {
     >
       <motion.a
         className="relative block h-[74px] w-[132px] shrink-0 overflow-hidden sm:h-[82px] sm:w-[150px] md:h-[92px] md:w-[170px] lg:h-[104px] lg:w-[190px]"
-        href="#"
+        href={hrefBase || "#"}
         aria-label="Vicky Farmhouse home"
         initial={{ opacity: 0, scale: 0.94 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
       >
+        {actions}
+
         <Image
           className="absolute left-1/2 top-[54%] h-[270px] w-[270px] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain sm:h-[300px] sm:w-[300px] md:h-[335px] md:w-[335px] lg:h-[380px] lg:w-[380px]"
           src={logoImage}
@@ -61,9 +73,7 @@ export default function Header() {
 
         <motion.a
           className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#06233a] px-4 text-[11px] font-bold uppercase text-white shadow-[0_12px_22px_rgba(6,35,58,.2)] transition-colors hover:bg-[#e6a334] hover:text-[#06233a] sm:px-5"
-          href={siteContact.whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/booking"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.97 }}
         >
@@ -79,11 +89,11 @@ export default function Header() {
           <motion.a
             key={item.label}
             className={`relative py-2.5 text-[11px] font-semibold uppercase tracking-normal transition-colors hover:text-[#e6a334] xl:text-sm ${
-              item.label === "Home"
+              item.label === activeLabel
                 ? "text-[#e99c1c] after:absolute after:bottom-px after:left-0 after:right-0 after:h-[3px] after:rounded-full after:bg-[#e9a52a]"
                 : "text-white drop-shadow-[0_1px_4px_rgba(0,0,0,.45)]"
             }`}
-            href={item.href}
+            href={`${hrefBase}${item.href}`}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -98,18 +108,23 @@ export default function Header() {
         ))}
       </nav>
 
-      <motion.a
-        className="mt-[13px] hidden min-h-[42px] items-center justify-center gap-2.5 rounded-full bg-[#06233a] px-3.5 text-[11px] font-semibold uppercase text-white shadow-[0_12px_22px_rgba(6,35,58,.2)] transition-colors hover:bg-[#e2a13a] hover:text-[#06233a] sm:px-5 lg:mt-0 lg:inline-flex lg:min-h-12 lg:px-7 lg:text-[13px]"
-        href="#"
+      <motion.div
+        className="mt-[13px] hidden items-center gap-3 lg:mt-0 lg:flex"
         initial={{ opacity: 0, x: 18 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.75, ease: "easeOut" }}
-        whileHover={{ y: -2 }}
-        whileTap={{ scale: 0.97 }}
       >
-        <CalendarCheck className="h-4 w-4" strokeWidth={2.4} aria-hidden="true" />
-        Book Now
-      </motion.a>
+        {actions}
+        <motion.a
+          className="inline-flex min-h-[42px] items-center justify-center gap-2.5 rounded-full bg-[#06233a] px-3.5 text-[11px] font-semibold uppercase text-white shadow-[0_12px_22px_rgba(6,35,58,.2)] transition-colors hover:bg-[#e2a13a] hover:text-[#06233a] sm:px-5 lg:min-h-12 lg:px-7 lg:text-[13px]"
+          href="/booking"
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.97 }}
+        >
+          <CalendarCheck className="h-4 w-4" strokeWidth={2.4} aria-hidden="true" />
+          Book Now
+        </motion.a>
+      </motion.div>
 
       <AnimatePresence>
         {isMenuOpen ? (
@@ -126,11 +141,11 @@ export default function Header() {
                 <motion.a
                   key={item.label}
                   className={`rounded-2xl px-4 py-3 text-sm font-black uppercase tracking-normal transition-colors hover:bg-[#fff5e1] hover:text-[#e6a334] ${
-                    item.label === "Home"
+                    item.label === activeLabel
                       ? "bg-[#fff5e1] text-[#e99c1c]"
                       : "text-[#09293e]"
                   }`}
-                  href={item.href}
+                  href={`${hrefBase}${item.href}`}
                   onClick={() => setIsMenuOpen(false)}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
