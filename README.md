@@ -1,86 +1,132 @@
 # Vicky Farmhouse
 
-A responsive single-page website for Vicky Farmhouse in Gadap Town, Karachi. It presents the venue, facilities, booking packages, gallery, rules, location, and direct WhatsApp booking options.
+The full website for Vicky Farmhouse — the public marketing site, the guest
+booking flow, and the staff admin dashboard, all in one Next.js app.
 
-## Tech stack
+**Live:** [vickyfarmhouse.com](https://vickyfarmhouse.com)
 
-- Next.js 16 with the App Router
-- React 19 and TypeScript
-- Tailwind CSS 4
-- Framer Motion for animations
-- Lucide React for icons
+---
 
-## Main sections
+## What's in here
 
-The homepage is assembled in `app/page.tsx` from components in `components/`:
+| Area | Route | Who it's for |
+|---|---|---|
+| Marketing site | `/` | Visitors |
+| Booking flow | `/booking` | Guests picking a date and slot |
+| Booking tracker | `/track`, `/track/[code]` | Guests checking their request status |
+| Admin dashboard | `/admin` | Staff |
+| API | `/api/*` | Internal — used by the pages above |
 
-- Header and hero
-- About and promotional video
-- Facilities and pricing packages
-- Image gallery
-- Terms and conditions
-- Location, contact details, and footer
+There is **no separate backend service**. The database, the WhatsApp
+integration and the admin API all run inside this app as Next.js route handlers.
 
-Static images and the promotional video are stored in `public/`. Global styles live in `styles/globals.css`.
+## Stack
 
-## Local setup
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Tailwind CSS 4** for the marketing site; plain scoped CSS for the booking
+  and admin pages (see [Styling](#styling))
+- **Framer Motion** for landing-page animation
+- **MongoDB** via **Mongoose**
+- **Recharts** for admin analytics
+- **Meta WhatsApp Cloud API** for guest notifications
 
-### Requirements
-
-- Node.js 20.9 or newer
-- npm
-
-### Install and run
+## Getting started
 
 ```bash
 npm install
+# PowerShell
+Copy-Item .env.example .env.local
+
+# macOS/Linux
+# cp .env.example .env.local
+
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-This project currently requires no environment variables.
+You need at minimum `MONGODB_URI` and `ADMIN_KEY` in `.env.local`. Keep
+`WHATSAPP_ENABLED=false` locally so testing never messages real guests. Every
+variable is documented in [DEPLOYMENT.md](./DEPLOYMENT.md).
 
-## Commands
+Without a database the public pages still render — prices fall back to the
+defaults in `lib/pricing.ts` and the calendar shows every date as available.
 
-| Command Purpose |
-| --- | --- |
-| `npm run dev` | Start the local development server |
-| `npm run lint` | Check the code with ESLint |
-| `npm run build` | Create an optimized production build |
-| `npm start` | Run the production build |
+| Command | What it does |
+|---|---|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm start` | Serve the production build |
+| `npm run lint` | ESLint |
 
 ## Project structure
 
-```text
-app/                 Next.js layout and homepage
-animations/          Reusable Framer Motion animation variants
-components/          Page sections and interactive UI
-data/                Typed facilities, pricing, gallery, and terms content
-lib/                 Shared site links and contact information
-public/              Images, logo, and promotional video
-styles/              Global CSS
-next.config.js       Next.js configuration
-postcss.config.js    Tailwind/PostCSS configuration
-eslint.config.mjs    ESLint configuration
-tailwind.config.js   Tailwind theme configuration
-tsconfig.json        TypeScript configuration
+```
+app/
+├─ page.tsx                 landing page (reads live prices from the DB)
+├─ booking/                 date + slot picker, availability, booking form
+├─ track/                   guest-facing status lookup
+├─ admin/                   dashboard + sign-in page
+└─ api/
+   ├─ bookings/             public: create, look up, availability, pricing
+   ├─ admin/                protected: bookings, stats, settings, chats
+   └─ whatsapp/webhook/     incoming WhatsApp messages from Meta
+
+lib/
+├─ db.ts                    cached Mongoose connection (serverless-safe)
+├─ models/                  Booking, Setting, Message
+├─ pricing.ts               price rules, shared by the UI and the server
+├─ availability.ts          slot-aware clash detection
+├─ whatsapp.ts              Cloud API client + message templates
+├─ adminAuth.ts             signed session cookie helpers
+└─ api.ts                   typed browser-side API client
+
+components/                 landing sections, shared pickers, admin dashboard
+proxy.ts                    gates /admin behind a valid session
+styles/                     globals (Tailwind) + scoped page stylesheets
 ```
 
-## Updating content
+## Documentation
 
-- Change section text and links inside the relevant file in `components/`.
-- Update packages and prices in `data/pricing.ts`.
-- Update facilities, gallery items, and policies in the matching file under `data/`.
-- Update navigation and contact details in `lib/site.ts`.
-- Add or replace media in `public/`, then update its `/filename.ext` reference in the component.
-- Update page title, description, and icons in `app/layout.tsx`.
+| Document | For | Covers |
+|---|---|---|
+| [ARCHITECTURE.md](./ARCHITECTURE.md) | Developers | Booking model, slot rules, pricing, WhatsApp, admin auth, serverless notes |
+| [API.md](./API.md) | Developers | Every endpoint, request/response shapes, status codes |
+| [DEPLOYMENT.md](./DEPLOYMENT.md) | Whoever owns Vercel + Meta | Environment variables, WhatsApp webhook cutover, go-live steps |
+| [ADMIN_GUIDE.md](./ADMIN_GUIDE.md) | Farmhouse staff | Day-to-day use of the dashboard — no technical knowledge needed |
 
-## Production
+## How it works
 
-```bash
-npm run build
-npm start
-```
+A short version — see [ARCHITECTURE.md](./ARCHITECTURE.md) for the details.
 
-The site can also be deployed to any hosting platform that supports Next.js, such as Vercel.
+- A guest picks a date on the landing page and lands on `/booking`, which shows
+  every slot available on those dates with a live price.
+- Submitting creates a **pending** booking and sends a WhatsApp confirmation
+  with a tracking link.
+- Staff approve or reject it in `/admin`; the guest gets another WhatsApp
+  message either way.
+- Prices and shift timings are edited in **Admin → Settings** and flow straight
+  through to the public pricing section and every quoted fee.
+
+## Styling
+
+Three separate systems, deliberately kept apart:
+
+- **Landing page** — Tailwind utilities, navy `#06233a` + gold `#e6a334`
+- **Booking / track** — `styles/booking.css`, scoped under `.bk-page`
+- **Admin** — `styles/admin.css`, scoped under `.admin-page`
+
+The booking and admin stylesheets use generic selectors (`.btn`, `label`,
+`input`, `.modal`) inherited from the original standalone apps. The `.bk-page`
+and `.admin-page` wrappers are what keep them from leaking into the Tailwind
+landing page — **don't remove those wrapper classes.**
+
+`styles/datepicker.css` is shared by both and is global, since the calendar
+appears in the landing hero, the booking page and the admin filters. It takes
+its accent colour from a CSS variable so each context can retint it.
+
+## Deployment
+
+Hosted on Vercel with `vickyfarmhouse.com` as the custom domain. Environment
+variables, the WhatsApp webhook cutover and admin access are all covered in
+[DEPLOYMENT.md](./DEPLOYMENT.md).

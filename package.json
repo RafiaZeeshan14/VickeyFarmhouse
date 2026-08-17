@@ -1,8 +1,7 @@
 {
   "name": "vickeyfarmhouse",
   "version": "1.0.0",
-  "description": "A modern landing page for Vickey Farmhouse built with Next.js and Tailwind CSS",
-  "author": "Your Name",
+  "description": "Vicky Farmhouse landing page, booking flow, and admin dashboard",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
@@ -26,6 +25,8 @@
   },
   "dependencies": {
     "framer-motion": "^12.40.0",
-    "lucide-react": "^1.17.0"
+    "lucide-react": "^1.17.0",
+    "mongoose": "^9.9.1",
+    "recharts": "^3.10.1"
   }
 }

@@ -1,0 +1,230 @@
+/*
+ * Slot-aware calendar. Shared by the hero availability search and the booking
+ * page, so it lives outside the .bk-page scope. Every class is drp-prefixed,
+ * which keeps it clear of the Tailwind utilities used on the landing page.
+ * The accent is a variable: gold on the landing page, overridden inside
+ * .bk-page so the booking page keeps its original look.
+ */
+:root {
+  --drp-accent: #e6a334;
+  --drp-accent-contrast: #06233a;
+  --drp-ink: #06233a;
+  --drp-muted: #5a6670;
+  --drp-surface: #ffffff;
+  --drp-soft: #f4f1ea;
+}
+
+.drp-range {
+  display: contents;
+}
+.drp-wrap {
+  position: relative;
+}
+.drp-wrap > label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--drp-muted);
+}
+
+.drp-input {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid rgba(6, 35, 58, 0.14);
+  border-radius: 12px;
+  background: var(--drp-surface);
+  color: var(--drp-ink);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.drp-input:hover {
+  border-color: var(--drp-accent);
+}
+.drp-input:focus-visible {
+  outline: none;
+  border-color: var(--drp-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--drp-accent) 30%, transparent);
+}
+.drp-placeholder {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.drp-pop {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 120;
+  width: 308px;
+  max-width: min(90vw, 340px);
+  background: var(--drp-surface);
+  border-radius: 18px;
+  padding: 15px;
+  box-shadow: 0 22px 60px rgba(6, 35, 58, 0.28);
+  color: var(--drp-ink);
+}
+.drp-pop-inline {
+  position: static;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.drp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.drp-head strong {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--drp-ink);
+}
+.drp-nav {
+  border: none;
+  background: var(--drp-soft);
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  color: var(--drp-ink);
+  line-height: 1;
+}
+.drp-nav:hover:not(:disabled) {
+  background: var(--drp-accent);
+  color: var(--drp-accent-contrast);
+}
+.drp-nav:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.drp-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.drp-dow {
+  text-align: center;
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--drp-muted);
+  text-transform: uppercase;
+  padding: 4px 0;
+}
+.drp-day {
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  aspect-ratio: 1;
+  border-radius: 9px;
+  cursor: pointer;
+  color: var(--drp-ink);
+}
+.drp-day:hover:not(:disabled) {
+  background: var(--drp-soft);
+}
+.drp-day:disabled {
+  color: #c3cbd2;
+  cursor: default;
+}
+.drp-day.booked {
+  color: #dc2626;
+  text-decoration: line-through;
+  background: rgba(254, 226, 226, 0.7);
+  opacity: 0.75;
+}
+.drp-day.in-range {
+  background: color-mix(in srgb, var(--drp-accent) 22%, white);
+  border-radius: 0;
+}
+.drp-day.edge {
+  background: var(--drp-accent);
+  color: var(--drp-accent-contrast);
+  font-weight: 800;
+}
+
+.drp-legend {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+  font-size: 0.72rem;
+  color: var(--drp-muted);
+}
+.drp-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.drp-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.drp-dot.booked-dot {
+  background: #fca5a5;
+}
+.drp-dot.sel-dot {
+  background: var(--drp-accent);
+}
+
+/* ===== Hero availability card ===== */
+.hero-search .drp-wrap > label {
+  color: #17334a;
+  letter-spacing: 0.1em;
+}
+.hero-search .drp-input {
+  min-height: 52px;
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+/* The hero clips its overflow, and a popup hanging below the card would be cut
+   off. Anchor it to the card instead so it overlays the card's own area, which
+   always sits inside the hero regardless of viewport height. */
+.hero-search {
+  position: relative;
+}
+.hero-search .drp-wrap {
+  position: static;
+}
+.hero-search .drp-pop {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  max-width: none;
+  padding: 12px;
+  box-shadow: 0 18px 44px rgba(6, 35, 58, 0.3);
+}
+.hero-search .drp-head {
+  margin-bottom: 6px;
+}
+.hero-search .drp-day {
+  aspect-ratio: auto;
+  height: 30px;
+  font-size: 0.8rem;
+}
+.hero-search .drp-dow {
+  padding: 2px 0;
+}
+.hero-search .drp-legend {
+  display: none;
+}
